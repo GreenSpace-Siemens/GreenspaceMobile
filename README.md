@@ -55,6 +55,10 @@ Install dependencies:
 - [Firebase](https://firebase.google.com/)
 - [React Navigation](https://reactnavigation.org/)
 
+## Style Guide and Conventions
+
+- [Thoughtbot](https://thoughtbot.com/blog/best-practices-while-developing-a-react-native-app)
+
 ## License
 
 Distributed under the MIT License. See `LICENSE` for more information.
