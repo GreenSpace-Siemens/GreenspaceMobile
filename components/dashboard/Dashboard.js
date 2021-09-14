@@ -12,7 +12,7 @@ const Stack = createNativeStackNavigator();
 // Stack Navigators will route to other pages or components
 function Home() {
     return (
-        <View>
+        <View style={{ height: '100%', backgroundColor: '#ffffff' }}>
             <Text>Home</Text>
         </View>
     );
@@ -20,7 +20,7 @@ function Home() {
 
 function Messages() {
     return (
-        <View>
+        <View style={{ height: '100%', backgroundColor: '#ffffff' }}>
             <Text>Messages</Text>
         </View>
     );
@@ -28,7 +28,7 @@ function Messages() {
 
 function SavedJobs() {
     return (
-        <View>
+        <View style={{ height: '100%', backgroundColor: '#ffffff' }}>
             <Text>Saved Jobs</Text>
         </View>
     );
@@ -36,7 +36,7 @@ function SavedJobs() {
 
 function Profile() {
     return (
-        <View>
+        <View style={{ height: '100%', backgroundColor: '#ffffff' }}>
             <Text>Profile</Text>
         </View>
     );
@@ -49,7 +49,15 @@ function Dashboard({ navigation, route }) {
 
     return (
         <View style={{ height: '100%' }}>
-            <Tab.Navigator initialRouteName="Home">
+            <Tab.Navigator
+                initialRouteName="Home"
+                screenOptions={{
+                    headerShown: false,
+                    tabBarStyle: {
+                        elevation: 0,
+                        borderTopWidth: 0,
+                    },
+                }}>
                 <Tab.Screen
                     name="Home"
                     component={Home}
