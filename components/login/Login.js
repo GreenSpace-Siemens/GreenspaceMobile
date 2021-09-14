@@ -45,6 +45,7 @@ function Login({ navigation }) {
                     placeholder="Password"
                     style={styles.input}
                     placeholderTextColor="#8D8D8D"
+                    secureTextEntry={true}
                     onChangeText={password => handlePassword(password)}
                     value={password}
                 />
