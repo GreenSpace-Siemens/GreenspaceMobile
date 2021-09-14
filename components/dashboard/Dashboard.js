@@ -5,7 +5,8 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Entypo from 'react-native-vector-icons/Entypo';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons';
+
+import Search from '../search/Search';
 
 const Stack = createNativeStackNavigator();
 
@@ -76,6 +77,20 @@ function Dashboard({ navigation, route }) {
                         tabBarIcon: () => (
                             <Entypo
                                 name="message"
+                                color={'#0FA97D'}
+                                size={28}
+                            />
+                        ),
+                    }}
+                />
+                <Tab.Screen
+                    name="Search"
+                    component={Search}
+                    options={{
+                        tabBarLabel: 'Messages',
+                        tabBarIcon: () => (
+                            <FontAwesome
+                                name="search"
                                 color={'#0FA97D'}
                                 size={28}
                             />
