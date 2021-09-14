@@ -1,5 +1,12 @@
 import React from 'react';
-import { View, StyleSheet, Text, TextInput } from 'react-native';
+import {
+    View,
+    StyleSheet,
+    Text,
+    TextInput,
+    TouchableWithoutFeedback,
+    Keyboard,
+} from 'react-native';
 import { Button } from 'react-native-elements';
 
 function Login({ navigation }) {
@@ -28,42 +35,50 @@ function Login({ navigation }) {
         setPassword(null);
     };
 
+    const DismissKeyboard = ({ children }) => (
+        <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+            {children}
+        </TouchableWithoutFeedback>
+    );
+
     return (
-        <View style={styles.container}>
-            <View style={styles.header}>
-                <Text style={styles.title}>GREENSPACE</Text>
+        <DismissKeyboard>
+            <View style={styles.container}>
+                <View style={styles.header}>
+                    <Text style={styles.title}>GREENSPACE</Text>
+                </View>
+                <View style={styles.loginForm}>
+                    <TextInput
+                        placeholder="Email"
+                        style={styles.input}
+                        placeholderTextColor="#8D8D8D"
+                        onChangeText={username => handleUsername(username)}
+                        value={username}
+                    />
+                    <TextInput
+                        placeholder="Password"
+                        style={styles.input}
+                        placeholderTextColor="#8D8D8D"
+                        secureTextEntry={true}
+                        onChangeText={password => handlePassword(password)}
+                        value={password}
+                    />
+                    <Text style={styles.link}>Forgot Password?</Text>
+                    <Button
+                        title="Sign In"
+                        titleStyle={styles.buttonTitle}
+                        containerStyle={styles.buttonContainer}
+                        buttonStyle={styles.button}
+                        onPress={() => handleLogin()}
+                    />
+                    <Text
+                        onPress={() => navigation.navigate('Register')}
+                        style={styles.link}>
+                        Create Account?
+                    </Text>
+                </View>
             </View>
-            <View style={styles.loginForm}>
-                <TextInput
-                    placeholder="Email"
-                    style={styles.input}
-                    placeholderTextColor="#8D8D8D"
-                    onChangeText={username => handleUsername(username)}
-                    value={username}
-                />
-                <TextInput
-                    placeholder="Password"
-                    style={styles.input}
-                    placeholderTextColor="#8D8D8D"
-                    secureTextEntry={true}
-                    onChangeText={password => handlePassword(password)}
-                    value={password}
-                />
-                <Text style={styles.link}>Forgot Password?</Text>
-                <Button
-                    title="Sign In"
-                    titleStyle={styles.buttonTitle}
-                    containerStyle={styles.buttonContainer}
-                    buttonStyle={styles.button}
-                    onPress={() => handleLogin()}
-                />
-                <Text
-                    onPress={() => navigation.navigate('Register')}
-                    style={styles.link}>
-                    Create Account?
-                </Text>
-            </View>
-        </View>
+        </DismissKeyboard>
     );
 }
 
