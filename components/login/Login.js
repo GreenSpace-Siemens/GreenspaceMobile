@@ -10,31 +10,37 @@ import {
 import { Button } from 'react-native-elements';
 
 function Login({ navigation }) {
+    // Username input handler
     const [username, setUsername] = React.useState(null);
     const handleUsername = username => {
         setUsername(username);
     };
 
+    // Password input handler
     const [password, setPassword] = React.useState(null);
     const handlePassword = password => {
         setPassword(password);
     };
 
+    // Submits login credentials
     const handleLogin = () => {
         const user = {
             username: username,
             password: password,
         };
 
+        // For debugging purposes
         console.log(`Username: ${username}`);
         console.log(`Password: ${password}`);
 
         navigation.navigate('Dashboard', user);
 
+        // Clears form inputs on submission
         setUsername(null);
         setPassword(null);
     };
 
+    // Dismisses keyboard when touching outside
     const DismissKeyboard = ({ children }) => (
         <TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
             {children}
