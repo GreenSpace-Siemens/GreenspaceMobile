@@ -20,7 +20,13 @@ function Home() {
                 component={Main}
                 options={{ headerShown: false }}
             />
-            <Stack.Screen name="Notifications" component={Notifications} />
+            <Stack.Screen
+                name="Notifications"
+                component={Notifications}
+                options={{
+                    animation: 'slide_from_right',
+                }}
+            />
         </Stack.Navigator>
     );
 }
