@@ -142,6 +142,4 @@ function Dashboard({ navigation, route }) {
     );
 }
 
-const styles = StyleSheet.create({});
-
 export default Dashboard;
