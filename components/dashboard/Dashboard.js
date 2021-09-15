@@ -5,6 +5,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Entypo from 'react-native-vector-icons/Entypo';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Search from '../search/Search';
 import Main from '../main/Main';
 import Notifications from '../notifications/Notifications';
@@ -25,6 +26,8 @@ function Home() {
                 component={Notifications}
                 options={{
                     animation: 'slide_from_right',
+                    headerTitleStyle: { color: '#525B76' },
+                    headerTintColor: '#525B76',
                 }}
             />
         </Stack.Navigator>
