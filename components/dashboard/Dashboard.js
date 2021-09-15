@@ -1,21 +1,27 @@
 import React from 'react';
-import { View, StyleSheet, Text, Button } from 'react-native';
+import { View, StyleSheet, Text } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Entypo from 'react-native-vector-icons/Entypo';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-
 import Search from '../search/Search';
+import Main from '../main/Main';
+import Notifications from '../notifications/Notifications';
 
 const Stack = createNativeStackNavigator();
 
 // Stack Navigators will route to other pages or components
 function Home() {
     return (
-        <View style={{ height: '100%', backgroundColor: '#ffffff' }}>
-            <Text>Home</Text>
-        </View>
+        <Stack.Navigator initialRouteName="Main">
+            <Stack.Screen
+                name="Main"
+                component={Main}
+                options={{ headerShown: false }}
+            />
+            <Stack.Screen name="Notifications" component={Notifications} />
+        </Stack.Navigator>
     );
 }
 
@@ -87,7 +93,7 @@ function Dashboard({ navigation, route }) {
                     name="Search"
                     component={Search}
                     options={{
-                        tabBarLabel: 'Messages',
+                        tabBarLabel: 'Search',
                         tabBarIcon: () => (
                             <FontAwesome
                                 name="search"
