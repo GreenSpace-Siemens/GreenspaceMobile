@@ -58,7 +58,7 @@ function Login({ navigation }) {
                     style={styles.input}
                     placeholderTextColor="#8D8D8D"
                     onChangeText={username => handleUsername(username)}
-                    // value={username}
+                    value={username}
                 />
                 <TextInput
                     placeholder="Password"
@@ -66,7 +66,7 @@ function Login({ navigation }) {
                     placeholderTextColor="#8D8D8D"
                     secureTextEntry={true}
                     onChangeText={password => handlePassword(password)}
-                    // value={password}
+                    value={password}
                 />
                 <Text style={styles.link}>Forgot Password?</Text>
                 <Button
