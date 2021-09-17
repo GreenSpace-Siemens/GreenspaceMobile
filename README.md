@@ -50,14 +50,23 @@ Install dependencies:
 
 ### IOS
 
+## Available Recommendation Systems
+
+1. SVD++
+2. [Alternating Least Squares (ALS)](https://towardsdatascience.com/prototyping-a-recommender-system-step-by-step-part-2-alternating-least-square-als-matrix-4a76c58714a1)
+3. [Bayesian Personalized Ranking (BPR)](https://towardsdatascience.com/recommender-system-using-bayesian-personalized-ranking-d30e98bba0b9)
+4. [Factorization Machine](<https://towardsdatascience.com/factorization-machines-for-item-recommendation-with-implicit-feedback-data-5655a7c749db#:~:text=Factorization%20Machines%20(FM)%20are%20generic,regression%2C%20classification%2C%20and%20ranking.>)
+5. [Lambda Mart](https://www.educative.io/edpresso/what-is-lambdamart)
+6. [Restricted Boltzmann Machines (RBM)](https://en.wikipedia.org/wiki/Restricted_Boltzmann_machine)
+
 ## Tools and Packages
 
-- [Firebase](https://firebase.google.com/)
-- [React Navigation](https://reactnavigation.org/)
+-   [Firebase](https://firebase.google.com/)
+-   [React Navigation](https://reactnavigation.org/)
 
 ## Style Guide and Conventions
 
-- [Thoughtbot](https://thoughtbot.com/blog/best-practices-while-developing-a-react-native-app)
+-   [Thoughtbot](https://thoughtbot.com/blog/best-practices-while-developing-a-react-native-app)
 
 ## License
 
