@@ -31,9 +31,11 @@ const styles = StyleSheet.create({
         backgroundColor: '#EFEFEF',
         borderRadius: 15,
         fontSize: 20,
-        padding: 10,
+        paddingTop: 6,
+        paddingBottom: 6,
+        paddingLeft: 30,
     },
-    resultsContainer: { flex: 8 },
+    resultsContainer: { flex: 9 },
 });
 
 export default Search;
