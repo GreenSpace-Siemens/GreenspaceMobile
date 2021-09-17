@@ -14,6 +14,7 @@
     <li>
       <a href="#getting-started">Getting Started</a>
     </li>
+      <li><a href="#available-recommendation-systems">Available Recommendation Systems</a></li>
     <li><a href="#tools-and-packages">Tools and Packages</a></li>
     <li><a href="#license">License</a></li>
   </ol>
