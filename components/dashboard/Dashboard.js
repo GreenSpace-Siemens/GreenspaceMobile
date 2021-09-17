@@ -2,6 +2,7 @@ import React from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import Entypo from 'react-native-vector-icons/Entypo';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -12,6 +13,8 @@ import Search from '../search/Search';
 import Main from '../main/Main';
 import Notifications from '../notifications/Notifications';
 import Recipients from '../recipients/Recipients';
+import SavedJobs from '../savedjobs/SavedJobs';
+import Applied from '../applied/Applied';
 
 const Stack = createNativeStackNavigator();
 
@@ -39,7 +42,7 @@ function Home() {
 
 function Messages() {
     return (
-        <Stack.Navigator initialRouteName="Messages">
+        <Stack.Navigator initialRouteName="MessagesNav">
             <Stack.Screen
                 name="Messages"
                 component={Recipients}
@@ -51,10 +54,15 @@ function Messages() {
     );
 }
 
-function SavedJobs() {
+const TopTab = createMaterialTopTabNavigator();
+
+function Saved() {
     return (
-        <View style={{ height: '100%', backgroundColor: '#ffffff' }}>
-            <Text>Saved Jobs</Text>
+        <View style={{ height: '100%' }}>
+            <TopTab.Navigator initialRouteName="Jobs">
+                <TopTab.Screen name="Jobs" component={SavedJobs} />
+                <TopTab.Screen name="Applied" component={Applied} />
+            </TopTab.Navigator>
         </View>
     );
 }
@@ -67,14 +75,14 @@ function Profile() {
     );
 }
 
-const Tab = createBottomTabNavigator();
+const BottomTab = createBottomTabNavigator();
 
 function Dashboard({ navigation, route }) {
     const { username, password } = route.params;
 
     return (
         <View style={{ height: '100%' }}>
-            <Tab.Navigator
+            <BottomTab.Navigator
                 initialRouteName="Home"
                 screenOptions={{
                     headerShown: false,
@@ -83,7 +91,7 @@ function Dashboard({ navigation, route }) {
                         borderTopWidth: 0,
                     },
                 }}>
-                <Tab.Screen
+                <BottomTab.Screen
                     name="Home"
                     component={Home}
                     options={{
@@ -93,8 +101,8 @@ function Dashboard({ navigation, route }) {
                         ),
                     }}
                 />
-                <Tab.Screen
-                    name="Messages"
+                <BottomTab.Screen
+                    name="MessagesNav"
                     component={Messages}
                     options={{
                         tabBarLabel: 'Messages',
@@ -107,7 +115,7 @@ function Dashboard({ navigation, route }) {
                         ),
                     }}
                 />
-                <Tab.Screen
+                <BottomTab.Screen
                     name="Search"
                     component={Search}
                     options={{
@@ -121,9 +129,9 @@ function Dashboard({ navigation, route }) {
                         ),
                     }}
                 />
-                <Tab.Screen
-                    name="SavedJobs"
-                    component={SavedJobs}
+                <BottomTab.Screen
+                    name="Saved"
+                    component={Saved}
                     options={{
                         tabBarLabel: 'Saved',
                         tabBarIcon: () => (
@@ -135,7 +143,7 @@ function Dashboard({ navigation, route }) {
                         ),
                     }}
                 />
-                <Tab.Screen
+                <BottomTab.Screen
                     name="Profile"
                     component={Profile}
                     options={{
@@ -149,7 +157,7 @@ function Dashboard({ navigation, route }) {
                         ),
                     }}
                 />
-            </Tab.Navigator>
+            </BottomTab.Navigator>
         </View>
     );
 }
