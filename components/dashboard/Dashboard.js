@@ -6,9 +6,12 @@ import Entypo from 'react-native-vector-icons/Entypo';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+
+// Child Components
 import Search from '../search/Search';
 import Main from '../main/Main';
 import Notifications from '../notifications/Notifications';
+import Recipients from '../recipients/Recipients';
 
 const Stack = createNativeStackNavigator();
 
@@ -36,9 +39,15 @@ function Home() {
 
 function Messages() {
     return (
-        <View style={{ height: '100%', backgroundColor: '#ffffff' }}>
-            <Text>Messages</Text>
-        </View>
+        <Stack.Navigator initialRouteName="Messages">
+            <Stack.Screen
+                name="Messages"
+                component={Recipients}
+                options={{
+                    headerTitleStyle: { color: '#525B76' },
+                }}
+            />
+        </Stack.Navigator>
     );
 }
 
