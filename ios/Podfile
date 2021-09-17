@@ -12,6 +12,8 @@ target 'GreenspaceMobile' do
     :hermes_enabled => false
   )
 
+  pod 'react-native-viewpager', :path => '../node_modules/@react-native-community/viewpager'
+
   target 'GreenspaceMobileTests' do
     inherit! :complete
     # Pods for testing
