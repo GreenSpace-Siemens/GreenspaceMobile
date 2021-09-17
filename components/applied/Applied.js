@@ -3,7 +3,7 @@ import { View, StyleSheet, TextInput, Button, Text } from 'react-native';
 
 function Applied() {
     return (
-        <View>
+        <View style={{ height: '100%', backgroundColor: '#ffffff' }}>
             <Text>Applied</Text>
         </View>
     );
