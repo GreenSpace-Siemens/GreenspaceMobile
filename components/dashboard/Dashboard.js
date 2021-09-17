@@ -15,6 +15,9 @@ import Notifications from '../notifications/Notifications';
 import Recipients from '../recipients/Recipients';
 import SavedJobs from '../savedjobs/SavedJobs';
 import Applied from '../applied/Applied';
+import ProfilePage from '../profilepage/ProfilePage';
+import EditProfile from '../editprofile/EditProfile';
+import Settings from '../settings/Settings';
 
 const Stack = createNativeStackNavigator();
 
@@ -69,9 +72,29 @@ function Saved() {
 
 function Profile() {
     return (
-        <View style={{ height: '100%', backgroundColor: '#ffffff' }}>
-            <Text>Profile</Text>
-        </View>
+        <Stack.Navigator initialRouteName="Profile">
+            <Stack.Screen
+                name="EditProfile"
+                component={EditProfile}
+                options={{
+                    headerTitleStyle: { color: '#525B76' },
+                }}
+            />
+            <Stack.Screen
+                name="Profile"
+                component={ProfilePage}
+                options={{
+                    headerTitleStyle: { color: '#525B76' },
+                }}
+            />
+            <Stack.Screen
+                name="Settings"
+                component={Settings}
+                options={{
+                    headerTitleStyle: { color: '#525B76' },
+                }}
+            />
+        </Stack.Navigator>
     );
 }
 
@@ -144,7 +167,7 @@ function Dashboard({ navigation, route }) {
                     }}
                 />
                 <BottomTab.Screen
-                    name="Profile"
+                    name="ProfileNav"
                     component={Profile}
                     options={{
                         tabBarLabel: 'Saved',
