@@ -118,6 +118,7 @@ function Profile() {
                 component={EditProfile}
                 options={{
                     headerTitleStyle: { color: '#525B76' },
+                    animation: 'slide_from_right',
                 }}
             />
             <Stack.Screen
@@ -132,6 +133,7 @@ function Profile() {
                 component={Settings}
                 options={{
                     headerTitleStyle: { color: '#525B76' },
+                    animation: 'slide_from_right',
                 }}
             />
         </Stack.Navigator>
