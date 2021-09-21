@@ -60,10 +60,52 @@ const TopTab = createMaterialTopTabNavigator();
 function Saved() {
     return (
         <View style={{ height: '100%' }}>
-            <TopTab.Navigator initialRouteName="Jobs">
-                <TopTab.Screen name="Jobs" component={SavedJobs} />
-                <TopTab.Screen name="Applied" component={Applied} />
-            </TopTab.Navigator>
+            <View style={styles.header}>
+                <Text style={styles.title}>Saved</Text>
+            </View>
+            <View style={styles.body}>
+                <TopTab.Navigator
+                    initialRouteName="Jobs"
+                    screenOptions={{
+                        tabBarPressColor: '#ffffff',
+                        tabBarIndicatorStyle: { backgroundColor: '#0FA97D' },
+                    }}>
+                    <TopTab.Screen
+                        name="Jobs"
+                        component={SavedJobs}
+                        options={{
+                            tabBarLabel: ({ focused }) => {
+                                return (
+                                    <Text
+                                        style={{
+                                            color: focused ? '#0FA97D' : null,
+                                            fontWeight: '500',
+                                        }}>
+                                        Jobs
+                                    </Text>
+                                );
+                            },
+                        }}
+                    />
+                    <TopTab.Screen
+                        name="Applied"
+                        component={Applied}
+                        options={{
+                            tabBarLabel: ({ focused }) => {
+                                return (
+                                    <Text
+                                        style={{
+                                            color: focused ? '#0FA97D' : null,
+                                            fontWeight: '500',
+                                        }}>
+                                        Applied
+                                    </Text>
+                                );
+                            },
+                        }}
+                    />
+                </TopTab.Navigator>
+            </View>
         </View>
     );
 }
@@ -182,5 +224,21 @@ function Dashboard({ navigation, route }) {
         </View>
     );
 }
+
+const styles = StyleSheet.create({
+    header: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'flex-end',
+        backgroundColor: '#ffffff',
+    },
+    title: {
+        fontSize: 25,
+        fontWeight: 'bold',
+        color: '#525B76',
+    },
+    body: { flex: 13 },
+});
 
 export default Dashboard;
