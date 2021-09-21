@@ -48,7 +48,7 @@ function Messages() {
                 name="Messages"
                 component={Recipients}
                 options={{
-                    headerTitleStyle: { color: '#525B76' },
+                    headerShown: false,
                 }}
             />
         </Stack.Navigator>
