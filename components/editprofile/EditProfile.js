@@ -140,6 +140,9 @@ function EditProfile({ navigation }) {
                                                 ? '#0FA97D'
                                                 : '#525B76',
                                             fontWeight: '500',
+                                            width: 71,
+                                            textAlign: 'center',
+                                            margin: 0,
                                         }}>
                                         Experience
                                     </Text>
@@ -159,6 +162,8 @@ function EditProfile({ navigation }) {
                                                 ? '#0FA97D'
                                                 : '#525B76',
                                             fontWeight: '500',
+                                            width: 71,
+                                            textAlign: 'center',
                                         }}>
                                         Education
                                     </Text>
