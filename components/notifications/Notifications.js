@@ -11,6 +11,7 @@ function Notifications({ navigation }) {
                     name="chevron-left"
                     size={45}
                     style={styles.icon}
+                    onPress={() => navigation.navigate('Main')}
                 />
                 <Text style={styles.title}>Notifications</Text>
                 <Entypo
@@ -38,7 +39,6 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 25,
-        fontFamily: 'Roboto',
         fontWeight: 'bold',
         color: '#525B76',
     },
