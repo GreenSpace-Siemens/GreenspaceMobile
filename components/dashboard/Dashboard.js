@@ -78,7 +78,9 @@ function Saved() {
                                 return (
                                     <Text
                                         style={{
-                                            color: focused ? '#0FA97D' : null,
+                                            color: focused
+                                                ? '#0FA97D'
+                                                : '#525B76',
                                             fontWeight: '500',
                                         }}>
                                         Jobs
@@ -95,7 +97,9 @@ function Saved() {
                                 return (
                                     <Text
                                         style={{
-                                            color: focused ? '#0FA97D' : null,
+                                            color: focused
+                                                ? '#0FA97D'
+                                                : '#525B76',
                                             fontWeight: '500',
                                         }}>
                                         Applied
