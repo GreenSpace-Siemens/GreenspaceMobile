@@ -6,7 +6,6 @@ import { createMaterialTopTabNavigator } from '@react-navigation/material-top-ta
 import Entypo from 'react-native-vector-icons/Entypo';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 // Child Components
 import Search from '../search/Search';
@@ -35,8 +34,7 @@ function Home() {
                 component={Notifications}
                 options={{
                     animation: 'slide_from_right',
-                    headerTitleStyle: { color: '#525B76' },
-                    headerTintColor: '#525B76',
+                    headerShown: false,
                 }}
             />
         </Stack.Navigator>
