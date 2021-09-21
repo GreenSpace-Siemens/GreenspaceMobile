@@ -23,20 +23,14 @@ const Stack = createNativeStackNavigator();
 // Stack Navigators will route to other pages or components
 function Home() {
     return (
-        <Stack.Navigator initialRouteName="Main">
-            <Stack.Screen
-                name="Main"
-                component={Main}
-                options={{ headerShown: false }}
-            />
-            <Stack.Screen
-                name="Notifications"
-                component={Notifications}
-                options={{
-                    animation: 'slide_from_right',
-                    headerShown: false,
-                }}
-            />
+        <Stack.Navigator
+            initialRouteName="Main"
+            screenOptions={{
+                headerShown: false,
+                animation: 'slide_from_right',
+            }}>
+            <Stack.Screen name="Main" component={Main} />
+            <Stack.Screen name="Notifications" component={Notifications} />
         </Stack.Navigator>
     );
 }
@@ -116,7 +110,9 @@ function Saved() {
 
 function Profile() {
     return (
-        <Stack.Navigator initialRouteName="Profile">
+        <Stack.Navigator
+            initialRouteName="Profile"
+            screenOptions={{ headerShown: false }}>
             <Stack.Screen
                 name="EditProfile"
                 component={EditProfile}

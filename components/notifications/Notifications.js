@@ -10,15 +10,11 @@ function Notifications({ navigation }) {
                 <MaterialIcons
                     name="chevron-left"
                     size={45}
-                    style={styles.icon}
+                    color="#525B76"
                     onPress={() => navigation.navigate('Main')}
                 />
                 <Text style={styles.title}>Notifications</Text>
-                <Entypo
-                    name="dots-three-vertical"
-                    size={27}
-                    style={styles.icon}
-                />
+                <Entypo name="dots-three-vertical" size={27} color="#525B76" />
             </View>
             <View style={styles.body}>
                 <Text>Body</Text>
@@ -36,15 +32,13 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
+        paddingLeft: 12,
+        paddingRight: 12,
     },
     title: {
         fontSize: 25,
         fontWeight: 'bold',
         color: '#525B76',
-    },
-    icon: {
-        color: '#525B76',
-        margin: 12,
     },
     body: {
         flex: 9,
