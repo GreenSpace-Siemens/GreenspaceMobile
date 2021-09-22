@@ -6,7 +6,6 @@ import { createMaterialTopTabNavigator } from '@react-navigation/material-top-ta
 import Entypo from 'react-native-vector-icons/Entypo';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 // Child Components
 import Search from '../search/Search';
@@ -24,21 +23,14 @@ const Stack = createNativeStackNavigator();
 // Stack Navigators will route to other pages or components
 function Home() {
     return (
-        <Stack.Navigator initialRouteName="Main">
-            <Stack.Screen
-                name="Main"
-                component={Main}
-                options={{ headerShown: false }}
-            />
-            <Stack.Screen
-                name="Notifications"
-                component={Notifications}
-                options={{
-                    animation: 'slide_from_right',
-                    headerTitleStyle: { color: '#525B76' },
-                    headerTintColor: '#525B76',
-                }}
-            />
+        <Stack.Navigator
+            initialRouteName="Main"
+            screenOptions={{
+                headerShown: false,
+                animation: 'slide_from_right',
+            }}>
+            <Stack.Screen name="Main" component={Main} />
+            <Stack.Screen name="Notifications" component={Notifications} />
         </Stack.Navigator>
     );
 }
@@ -50,7 +42,7 @@ function Messages() {
                 name="Messages"
                 component={Recipients}
                 options={{
-                    headerTitleStyle: { color: '#525B76' },
+                    headerShown: false,
                 }}
             />
         </Stack.Navigator>
@@ -62,22 +54,71 @@ const TopTab = createMaterialTopTabNavigator();
 function Saved() {
     return (
         <View style={{ height: '100%' }}>
-            <TopTab.Navigator initialRouteName="Jobs">
-                <TopTab.Screen name="Jobs" component={SavedJobs} />
-                <TopTab.Screen name="Applied" component={Applied} />
-            </TopTab.Navigator>
+            <View style={styles.header}>
+                <Text style={styles.title}>Saved</Text>
+            </View>
+            <View style={styles.body}>
+                <TopTab.Navigator
+                    initialRouteName="Jobs"
+                    screenOptions={{
+                        tabBarPressColor: '#ffffff',
+                        tabBarIndicatorStyle: { backgroundColor: '#0FA97D' },
+                    }}>
+                    <TopTab.Screen
+                        name="Jobs"
+                        component={SavedJobs}
+                        options={{
+                            tabBarLabel: ({ focused }) => {
+                                return (
+                                    <Text
+                                        style={{
+                                            color: focused
+                                                ? '#0FA97D'
+                                                : '#525B76',
+                                            fontWeight: '500',
+                                        }}>
+                                        Jobs
+                                    </Text>
+                                );
+                            },
+                        }}
+                    />
+                    <TopTab.Screen
+                        name="Applied"
+                        component={Applied}
+                        options={{
+                            tabBarLabel: ({ focused }) => {
+                                return (
+                                    <Text
+                                        style={{
+                                            color: focused
+                                                ? '#0FA97D'
+                                                : '#525B76',
+                                            fontWeight: '500',
+                                        }}>
+                                        Applied
+                                    </Text>
+                                );
+                            },
+                        }}
+                    />
+                </TopTab.Navigator>
+            </View>
         </View>
     );
 }
 
 function Profile() {
     return (
-        <Stack.Navigator initialRouteName="Profile">
+        <Stack.Navigator
+            initialRouteName="Profile"
+            screenOptions={{ headerShown: false }}>
             <Stack.Screen
                 name="EditProfile"
                 component={EditProfile}
                 options={{
                     headerTitleStyle: { color: '#525B76' },
+                    animation: 'slide_from_right',
                 }}
             />
             <Stack.Screen
@@ -92,6 +133,7 @@ function Profile() {
                 component={Settings}
                 options={{
                     headerTitleStyle: { color: '#525B76' },
+                    animation: 'slide_from_right',
                 }}
             />
         </Stack.Navigator>
@@ -184,5 +226,21 @@ function Dashboard({ navigation, route }) {
         </View>
     );
 }
+
+const styles = StyleSheet.create({
+    header: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'flex-end',
+        backgroundColor: '#ffffff',
+    },
+    title: {
+        fontSize: 25,
+        fontWeight: 'bold',
+        color: '#525B76',
+    },
+    body: { flex: 13 },
+});
 
 export default Dashboard;
