@@ -5,7 +5,7 @@ import { createMaterialTopTabNavigator } from '@react-navigation/material-top-ta
 
 function Cover({ navigation }) {
     return (
-        <View style={{ height: '100%' }}>
+        <View style={{ height: '100%', backgroundColor: '#ffffff' }}>
             <Text>Cover</Text>
         </View>
     );
@@ -13,7 +13,7 @@ function Cover({ navigation }) {
 
 function About({ navigation }) {
     return (
-        <View style={{ height: '100%' }}>
+        <View style={{ height: '100%', backgroundColor: '#ffffff' }}>
             <Text>About</Text>
         </View>
     );
@@ -21,7 +21,7 @@ function About({ navigation }) {
 
 function Skills({ navigation }) {
     return (
-        <View style={{ height: '100%' }}>
+        <View style={{ height: '100%', backgroundColor: '#ffffff' }}>
             <Text>Skills</Text>
         </View>
     );
@@ -29,7 +29,7 @@ function Skills({ navigation }) {
 
 function Experience({ navigation }) {
     return (
-        <View style={{ height: '100%' }}>
+        <View style={{ height: '100%', backgroundColor: '#ffffff' }}>
             <Text>Experience</Text>
         </View>
     );
@@ -37,7 +37,7 @@ function Experience({ navigation }) {
 
 function Education({ navigation }) {
     return (
-        <View style={{ height: '100%' }}>
+        <View style={{ height: '100%', backgroundColor: '#ffffff' }}>
             <Text>Education</Text>
         </View>
     );
