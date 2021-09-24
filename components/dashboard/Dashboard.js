@@ -16,7 +16,17 @@ import SavedJobs from '../savedjobs/SavedJobs';
 import Applied from '../applied/Applied';
 import ProfilePage from '../profilepage/ProfilePage';
 import EditProfile from '../editprofile/EditProfile';
-import Settings from '../settings/Settings';
+
+// Account Settings
+import {
+    Settings,
+    NotificationsSettings,
+    Subscription,
+} from '../settings/Settings';
+
+import { Account } from '../account/Account';
+
+import { ChangeEmail, ChangePassword, ChangePhone } from '../forms/Forms';
 
 const Stack = createNativeStackNavigator();
 
@@ -136,6 +146,54 @@ function Profile() {
                     animation: 'slide_from_right',
                 }}
             />
+            <Stack.Screen
+                name="Account"
+                component={Account}
+                options={{
+                    headerTitleStyle: { color: '#525B76' },
+                    animation: 'slide_from_right',
+                }}
+            />
+            <Stack.Screen
+                name="NotificationsSettings"
+                component={NotificationsSettings}
+                options={{
+                    headerTitleStyle: { color: '#525B76' },
+                    animation: 'slide_from_right',
+                }}
+            />
+            <Stack.Screen
+                name="Subscription"
+                component={Subscription}
+                options={{
+                    headerTitleStyle: { color: '#525B76' },
+                    animation: 'slide_from_right',
+                }}
+            />
+            <Stack.Screen
+                name="ChangeEmail"
+                component={ChangeEmail}
+                options={{
+                    headerTitleStyle: { color: '#525B76' },
+                    animation: 'slide_from_right',
+                }}
+            />
+            <Stack.Screen
+                name="ChangePhone"
+                component={ChangePhone}
+                options={{
+                    headerTitleStyle: { color: '#525B76' },
+                    animation: 'slide_from_right',
+                }}
+            />
+            <Stack.Screen
+                name="ChangePassword"
+                component={ChangePassword}
+                options={{
+                    headerTitleStyle: { color: '#525B76' },
+                    animation: 'slide_from_right',
+                }}
+            />
         </Stack.Navigator>
     );
 }
@@ -154,7 +212,9 @@ function Dashboard({ navigation, route }) {
                     tabBarStyle: {
                         elevation: 0,
                         borderTopWidth: 0,
+                        paddingBottom: 10,
                     },
+                    tabBarShowLabel: false,
                 }}>
                 <BottomTab.Screen
                     name="Home"
