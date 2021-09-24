@@ -103,6 +103,70 @@ export function ChangePassword({ navigation }) {
     );
 }
 
+export function Cover({ navigation }) {
+    return (
+        <View style={styles.editContainer}>
+            <TextInput
+                style={styles.coverInput}
+                placeholderTextColor="#8D8D8D"
+            />
+            <Text style={styles.coverLabel}>First Name</Text>
+            <TextInput
+                style={styles.coverInput}
+                placeholderTextColor="#8D8D8D"
+            />
+            <Text style={styles.coverLabel}>Last Name</Text>
+            <TextInput
+                style={styles.coverInput}
+                placeholderTextColor="#8D8D8D"
+            />
+            <Text style={styles.coverLabel}>Occupation</Text>
+            <TextInput
+                style={styles.coverInput}
+                placeholderTextColor="#8D8D8D"
+            />
+            <Text style={styles.coverLabel}>Company</Text>
+            <TextInput
+                style={styles.coverInput}
+                placeholderTextColor="#8D8D8D"
+            />
+            <Text style={styles.coverLabel}>Location</Text>
+        </View>
+    );
+}
+
+export function About({ navigation }) {
+    return (
+        <View style={styles.editContainer}>
+            <Text>About</Text>
+        </View>
+    );
+}
+
+export function Skills({ navigation }) {
+    return (
+        <View style={styles.EditContainer}>
+            <Text>Skills</Text>
+        </View>
+    );
+}
+
+export function Experiences({ navigation }) {
+    return (
+        <View style={styles.editContainer}>
+            <Text>Experience</Text>
+        </View>
+    );
+}
+
+export function Education({ navigation }) {
+    return (
+        <View style={styles.editContainer}>
+            <Text>Education</Text>
+        </View>
+    );
+}
+
 const styles = StyleSheet.create({
     container: { height: '100%', backgroundColor: '#ffffff' },
     header: {
@@ -145,4 +209,19 @@ const styles = StyleSheet.create({
         paddingBottom: 12,
         paddingLeft: 20,
     },
+    editContainer: { height: '100%', backgroundColor: '#ffffff', padding: 20 },
+    coverInput: {
+        borderRadius: 0,
+        borderBottomWidth: 1,
+        borderBottomColor: '#525B76',
+        width: '88%',
+        fontSize: 24,
+        fontWeight: 'bold',
+        color: '#0FA97D',
+        paddingTop: 5,
+        paddingBottom: 5,
+        paddingLeft: 0,
+        paddingRight: 0,
+    },
+    coverLabel: { color: '#525B76', fontWeight: 'bold', fontSize: 16 },
 });
