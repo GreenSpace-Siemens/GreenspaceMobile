@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, StyleSheet, Text } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
@@ -27,6 +28,8 @@ import {
 import { Account } from '../account/Account';
 
 import { ChangeEmail, ChangePassword, ChangePhone } from '../forms/Forms';
+
+import { AddSkill, AddExperience, AddEducation } from '../modals/Modals';
 
 const Stack = createNativeStackNavigator();
 
@@ -194,6 +197,11 @@ function Profile() {
                     animation: 'slide_from_right',
                 }}
             />
+            <Stack.Group screenOptions={{ presentation: 'modal' }}>
+                <Stack.Screen name="AddSkill" component={AddSkill} />
+                <Stack.Screen name="AddExperience" component={AddExperience} />
+                <Stack.Screen name="AddEducation" component={AddEducation} />
+            </Stack.Group>
         </Stack.Navigator>
     );
 }

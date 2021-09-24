@@ -3,45 +3,7 @@ import { View, StyleSheet, TextInput, Button, Text } from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 
-function Cover({ navigation }) {
-    return (
-        <View style={{ height: '100%', backgroundColor: '#ffffff' }}>
-            <Text>Cover</Text>
-        </View>
-    );
-}
-
-function About({ navigation }) {
-    return (
-        <View style={{ height: '100%', backgroundColor: '#ffffff' }}>
-            <Text>About</Text>
-        </View>
-    );
-}
-
-function Skills({ navigation }) {
-    return (
-        <View style={{ height: '100%', backgroundColor: '#ffffff' }}>
-            <Text>Skills</Text>
-        </View>
-    );
-}
-
-function Experience({ navigation }) {
-    return (
-        <View style={{ height: '100%', backgroundColor: '#ffffff' }}>
-            <Text>Experience</Text>
-        </View>
-    );
-}
-
-function Education({ navigation }) {
-    return (
-        <View style={{ height: '100%', backgroundColor: '#ffffff' }}>
-            <Text>Education</Text>
-        </View>
-    );
-}
+import { Cover, About, Skills, Experiences, Education } from '../forms/Forms';
 
 const TopTab = createMaterialTopTabNavigator();
 
@@ -130,7 +92,7 @@ function EditProfile({ navigation }) {
                     />
                     <TopTab.Screen
                         name="Experience"
-                        component={Experience}
+                        component={Experiences}
                         options={{
                             tabBarLabel: ({ focused }) => {
                                 return (

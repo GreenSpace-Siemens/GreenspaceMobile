@@ -1,7 +1,7 @@
 import React from 'react';
-import { Button } from 'react-native-elements';
 import { View, StyleSheet, TextInput, Text } from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import { RichEditor, RichToolbar } from 'react-native-pell-rich-editor';
 
 export function ChangeEmail({ navigation }) {
     return (
@@ -103,6 +103,107 @@ export function ChangePassword({ navigation }) {
     );
 }
 
+export function Cover({ navigation }) {
+    return (
+        <View style={styles.editContainer}>
+            <TextInput
+                style={styles.coverInput}
+                placeholderTextColor="#8D8D8D"
+            />
+            <Text style={styles.coverLabel}>First Name</Text>
+            <TextInput
+                style={styles.coverInput}
+                placeholderTextColor="#8D8D8D"
+            />
+            <Text style={styles.coverLabel}>Last Name</Text>
+            <TextInput
+                style={styles.coverInput}
+                placeholderTextColor="#8D8D8D"
+            />
+            <Text style={styles.coverLabel}>Occupation</Text>
+            <TextInput
+                style={styles.coverInput}
+                placeholderTextColor="#8D8D8D"
+            />
+            <Text style={styles.coverLabel}>Company</Text>
+            <TextInput
+                style={styles.coverInput}
+                placeholderTextColor="#8D8D8D"
+            />
+            <Text style={styles.coverLabel}>Location</Text>
+        </View>
+    );
+}
+
+export function About({ navigation }) {
+    const textRef = React.createRef();
+
+    return (
+        <View style={styles.aboutContainer}>
+            <RichEditor
+                ref={textRef}
+                editorStyle={{
+                    color: '#525B76',
+                }}
+                style={{ borderBottomWidth: 1, borderBottomColor: '#EFEFEF' }}
+                initialHeight="85%"
+                placeholder="Enter about description here..."
+            />
+            <RichToolbar
+                editor={textRef}
+                actions={[
+                    'keyboard',
+                    'bold',
+                    'italic',
+                    'underline',
+                    'orderedList',
+                    'unorderedList',
+                    'indent',
+                    'outdent',
+                    'undo',
+                    'redo',
+                ]}
+            />
+        </View>
+    );
+}
+
+export function Skills({ navigation }) {
+    return (
+        <View style={styles.editContainer}>
+            <Text
+                style={styles.link}
+                onPress={() => navigation.navigate('AddSkill')}>
+                Add New Skill
+            </Text>
+        </View>
+    );
+}
+
+export function Experiences({ navigation }) {
+    return (
+        <View style={styles.editContainer}>
+            <Text
+                style={styles.link}
+                onPress={() => navigation.navigate('AddExperience')}>
+                Add Experience
+            </Text>
+        </View>
+    );
+}
+
+export function Education({ navigation }) {
+    return (
+        <View style={styles.editContainer}>
+            <Text
+                style={styles.link}
+                onPress={() => navigation.navigate('AddEducation')}>
+                Add Education
+            </Text>
+        </View>
+    );
+}
+
 const styles = StyleSheet.create({
     container: { height: '100%', backgroundColor: '#ffffff' },
     header: {
@@ -145,4 +246,26 @@ const styles = StyleSheet.create({
         paddingBottom: 12,
         paddingLeft: 20,
     },
+    editContainer: { height: '100%', backgroundColor: '#ffffff', padding: 20 },
+    aboutContainer: {
+        height: '100%',
+        backgroundColor: '#ffffff',
+        flexDirection: 'column-reverse',
+        justifyContent: 'flex-end',
+    },
+    coverInput: {
+        borderRadius: 0,
+        borderBottomWidth: 1,
+        borderBottomColor: '#525B76',
+        width: '88%',
+        fontSize: 24,
+        fontWeight: 'bold',
+        color: '#0FA97D',
+        paddingTop: 5,
+        paddingBottom: 5,
+        paddingLeft: 0,
+        paddingRight: 0,
+    },
+    coverLabel: { color: '#525B76', fontWeight: 'bold', fontSize: 16 },
+    link: { color: '#0FA97D', fontWeight: 'bold', fontSize: 18 },
 });
