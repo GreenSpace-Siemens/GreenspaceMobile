@@ -20,13 +20,13 @@ import EditProfile from '../editprofile/EditProfile';
 // Account Settings
 import {
     Settings,
-    Account,
     NotificationsSettings,
     Subscription,
-    ChangeEmail,
-    ChangePhone,
-    ChangePassword,
 } from '../settings/Settings';
+
+import { Account } from '../account/Account';
+
+import { ChangeEmail, ChangePassword, ChangePhone } from '../forms/Forms';
 
 const Stack = createNativeStackNavigator();
 

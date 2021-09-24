@@ -3,90 +3,6 @@ import { Button } from 'react-native-elements';
 import { View, StyleSheet, TextInput, Switch, Text } from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
-export function ChangeEmail() {
-    return (
-        <View>
-            <Text>Email</Text>
-        </View>
-    );
-}
-
-export function ChangePhone() {
-    return (
-        <View>
-            <Text>Phone</Text>
-        </View>
-    );
-}
-
-export function ChangePassword() {
-    return (
-        <View>
-            <Text>Password</Text>
-        </View>
-    );
-}
-
-export function Account({ navigation }) {
-    return (
-        <View style={styles.container}>
-            <View style={styles.header}>
-                <MaterialIcons
-                    name="chevron-left"
-                    size={45}
-                    color="#525B76"
-                    style={styles.icon}
-                    onPress={() => navigation.navigate('Settings')}
-                />
-                <Text style={styles.title}>Account</Text>
-            </View>
-            <View style={styles.body}>
-                <Text styl e={styles.subtitle}>
-                    Login Information
-                </Text>
-                <Button
-                    title={
-                        <View style={styles.buttonTitle}>
-                            <Text style={styles.buttonLabel}>Email</Text>
-                            <Text style={styles.buttonSubLabel}>
-                                johndoe@siemens.com {'>'}
-                            </Text>
-                        </View>
-                    }
-                    containerStyle={styles.buttonContainer}
-                    buttonStyle={styles.button}
-                    onPress={() => navigation.navigate('ChangeEmail')}
-                />
-                <Button
-                    title={
-                        <View style={styles.buttonTitle}>
-                            <Text style={styles.buttonLabel}>Phone</Text>
-                            <Text style={styles.buttonSubLabel}>
-                                +1 (123) 456 - 7890 {'>'}
-                            </Text>
-                        </View>
-                    }
-                    containerStyle={styles.buttonContainer}
-                    buttonStyle={styles.button}
-                    onPress={() => navigation.navigate('ChangePhone')}
-                />
-                <Button
-                    title={
-                        <View style={styles.buttonTitle}>
-                            <Text style={styles.buttonLabel}>Password</Text>
-                            <Text style={styles.buttonSubLabel}>{'>'}</Text>
-                        </View>
-                    }
-                    containerStyle={styles.buttonContainer}
-                    buttonStyle={styles.button}
-                    onPress={() => navigation.navigate('ChangePassword')}
-                />
-                <Text style={styles.subtitle}>Accounts</Text>
-            </View>
-        </View>
-    );
-}
-
 export function NotificationsSettings({ navigation }) {
     const [enabled, setEnabled] = React.useState([false, false, false]);
 
@@ -159,7 +75,16 @@ export function Subscription({ navigation }) {
                 <Text style={styles.title}>Subscription</Text>
             </View>
             <View style={styles.body}>
-                <Text>Subscription</Text>
+                <Text
+                    style={{
+                        fontSize: 20,
+                        fontWeight: 'bold',
+                        textAlign: 'center',
+                        marginTop: 250,
+                        color: '#0FA97D',
+                    }}>
+                    Subscriptions coming soon!
+                </Text>
             </View>
         </View>
     );
@@ -194,7 +119,7 @@ export function Settings({ navigation }) {
                 <Text
                     style={styles.link}
                     onPress={() => navigation.navigate('Subscription')}>
-                    Settings
+                    Subscription
                 </Text>
             </View>
         </View>
@@ -208,22 +133,22 @@ const styles = StyleSheet.create({
         borderBottomWidth: 0.5,
         borderBottomColor: '#525B76',
         flexDirection: 'row',
-        justifyContent: 'flex-start',
+        justifyContent: 'space-between',
         alignItems: 'center',
     },
     title: {
         fontSize: 25,
         fontWeight: 'bold',
         color: '#525B76',
-        marginLeft: 84,
-    },
-    subtitle: {
-        fontWeight: 'bold',
-        fontSize: 18,
-        marginTop: 15,
+        position: 'absolute',
+        width: '100%',
+        textAlign: 'center',
+        zIndex: -1,
     },
     icon: { marginLeft: 12 },
-    body: { flex: 9, padding: 10 },
+    body: {
+        flex: 9,
+    },
     link: {
         color: '#0FA97D',
         borderBottomWidth: 1,
@@ -235,33 +160,10 @@ const styles = StyleSheet.create({
     toggle: {
         flexDirection: 'row',
         alignItems: 'center',
-        // backgroundColor: 'red',
         padding: 12,
         borderBottomWidth: 1,
         borderBottomColor: '#EFEFEF',
     },
     switchLabel: { flex: 1, fontWeight: '500', fontSize: 18, color: '#0FA97D' },
     switch: { flex: 1 },
-    buttonContainer: {
-        borderRadius: 0,
-        borderBottomWidth: 1,
-        borderBottomColor: '#EFEFEF',
-    },
-    button: {
-        backgroundColor: '#ffffff',
-        paddingTop: 13,
-        paddingBottom: 13,
-    },
-    buttonTitle: {
-        display: 'flex',
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        width: '100%',
-    },
-    buttonLabel: {
-        fontSize: 18,
-    },
-    buttonSubLabel: {
-        color: '#8D8D8D',
-    },
 });
