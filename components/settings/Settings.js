@@ -1,27 +1,101 @@
 import React from 'react';
-import { View, StyleSheet, TextInput, Button, Text } from 'react-native';
+import { View, StyleSheet, TextInput, Switch, Text } from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
-export function Account() {
+export function Account({ navigation }) {
     return (
-        <View>
-            <Text>Account</Text>
+        <View style={styles.container}>
+            <View style={styles.header}>
+                <MaterialIcons
+                    name="chevron-left"
+                    size={45}
+                    color="#525B76"
+                    style={styles.icon}
+                    onPress={() => navigation.navigate('Settings')}
+                />
+                <Text style={styles.title}>Account</Text>
+            </View>
+            <View style={styles.body}>
+                <Text>Account</Text>
+            </View>
         </View>
     );
 }
 
-export function NotificationsSettings() {
+export function NotificationsSettings({ navigation }) {
+    const [enabled, setEnabled] = React.useState([false, false, false]);
+
+    // Sets switches on and off
+    const toggleSwitch = id => {
+        let newEnabled = [...enabled];
+        newEnabled[id] = !newEnabled[id];
+        setEnabled(newEnabled);
+    };
+
     return (
-        <View>
-            <Text>Notifications</Text>
+        <View style={styles.container}>
+            <View style={styles.header}>
+                <MaterialIcons
+                    name="chevron-left"
+                    size={45}
+                    color="#525B76"
+                    style={styles.icon}
+                    onPress={() => navigation.navigate('Settings')}
+                />
+                <Text style={styles.title}>Notifications</Text>
+            </View>
+            <View style={styles.body}>
+                <View style={styles.toggle}>
+                    <Text style={styles.switchLabel}>Messages</Text>
+                    <Switch
+                        style={styles.switch}
+                        trackColor={{ false: '#D4D1D1', true: '#0FA97D' }}
+                        thumbColor="#ffffff"
+                        onValueChange={() => toggleSwitch(0)}
+                        value={enabled[0]}
+                    />
+                </View>
+                <View style={styles.toggle}>
+                    <Text style={styles.switchLabel}>New Jobs</Text>
+                    <Switch
+                        style={styles.switch}
+                        trackColor={{ false: '#D4D1D1', true: '#0FA97D' }}
+                        thumbColor="#ffffff"
+                        onValueChange={() => toggleSwitch(1)}
+                        value={enabled[1]}
+                    />
+                </View>
+                <View style={styles.toggle}>
+                    <Text style={styles.switchLabel}>Application Activity</Text>
+                    <Switch
+                        style={styles.switch}
+                        trackColor={{ false: '#D4D1D1', true: '#0FA97D' }}
+                        thumbColor="#ffffff"
+                        onValueChange={() => toggleSwitch(2)}
+                        value={enabled[2]}
+                    />
+                </View>
+            </View>
         </View>
     );
 }
 
-export function Subscription() {
+export function Subscription({ navigation }) {
     return (
-        <View>
-            <Text>Subscription</Text>
+        <View style={styles.container}>
+            <View style={styles.header}>
+                <MaterialIcons
+                    name="chevron-left"
+                    size={45}
+                    color="#525B76"
+                    style={styles.icon}
+                    onPress={() => navigation.navigate('Settings')}
+                />
+                <Text style={styles.title}>Subscription</Text>
+            </View>
+            <View style={styles.body}>
+                <Text>Subscription</Text>
+            </View>
         </View>
     );
 }
@@ -88,4 +162,14 @@ const styles = StyleSheet.create({
         fontWeight: '500',
         fontSize: 18,
     },
+    toggle: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        // backgroundColor: 'red',
+        padding: 12,
+        borderBottomWidth: 1,
+        borderBottomColor: '#EFEFEF',
+    },
+    switchLabel: { flex: 1, fontWeight: '500', fontSize: 18, color: '#0FA97D' },
+    switch: { flex: 1 },
 });
