@@ -41,7 +41,9 @@ export function Account({ navigation }) {
                 <Text style={styles.title}>Account</Text>
             </View>
             <View style={styles.body}>
-                <Text style={styles.subtitle}>Login Information</Text>
+                <Text styl e={styles.subtitle}>
+                    Login Information
+                </Text>
                 <Button
                     title={
                         <View style={styles.buttonTitle}>

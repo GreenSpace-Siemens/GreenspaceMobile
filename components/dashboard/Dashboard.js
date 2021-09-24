@@ -212,7 +212,9 @@ function Dashboard({ navigation, route }) {
                     tabBarStyle: {
                         elevation: 0,
                         borderTopWidth: 0,
+                        paddingBottom: 10,
                     },
+                    tabBarShowLabel: false,
                 }}>
                 <BottomTab.Screen
                     name="Home"
