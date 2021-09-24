@@ -16,7 +16,14 @@ import SavedJobs from '../savedjobs/SavedJobs';
 import Applied from '../applied/Applied';
 import ProfilePage from '../profilepage/ProfilePage';
 import EditProfile from '../editprofile/EditProfile';
-import Settings from '../settings/Settings';
+
+// Account Settings
+import {
+    Settings,
+    Account,
+    NotificationsSettings,
+    Subscription,
+} from '../settings/Settings';
 
 const Stack = createNativeStackNavigator();
 
@@ -131,6 +138,30 @@ function Profile() {
             <Stack.Screen
                 name="Settings"
                 component={Settings}
+                options={{
+                    headerTitleStyle: { color: '#525B76' },
+                    animation: 'slide_from_right',
+                }}
+            />
+            <Stack.Screen
+                name="Account"
+                component={Account}
+                options={{
+                    headerTitleStyle: { color: '#525B76' },
+                    animation: 'slide_from_right',
+                }}
+            />
+            <Stack.Screen
+                name="NotificationsSettings"
+                component={NotificationsSettings}
+                options={{
+                    headerTitleStyle: { color: '#525B76' },
+                    animation: 'slide_from_right',
+                }}
+            />
+            <Stack.Screen
+                name="Subscription"
+                component={Subscription}
                 options={{
                     headerTitleStyle: { color: '#525B76' },
                     animation: 'slide_from_right',

@@ -2,7 +2,31 @@ import React from 'react';
 import { View, StyleSheet, TextInput, Button, Text } from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
-function Settings({ navigation }) {
+export function Account() {
+    return (
+        <View>
+            <Text>Account</Text>
+        </View>
+    );
+}
+
+export function NotificationsSettings() {
+    return (
+        <View>
+            <Text>Notifications</Text>
+        </View>
+    );
+}
+
+export function Subscription() {
+    return (
+        <View>
+            <Text>Subscription</Text>
+        </View>
+    );
+}
+
+export function Settings({ navigation }) {
     return (
         <View style={styles.container}>
             <View style={styles.header}>
@@ -16,7 +40,23 @@ function Settings({ navigation }) {
                 <Text style={styles.title}>Settings</Text>
             </View>
             <View style={styles.body}>
-                <Text>Settings</Text>
+                <Text
+                    style={styles.link}
+                    onPress={() => navigation.navigate('Account')}>
+                    Account
+                </Text>
+                <Text
+                    style={styles.link}
+                    onPress={() =>
+                        navigation.navigate('NotificationsSettings')
+                    }>
+                    Notifications
+                </Text>
+                <Text
+                    style={styles.link}
+                    onPress={() => navigation.navigate('Subscription')}>
+                    Settings
+                </Text>
             </View>
         </View>
     );
@@ -40,5 +80,12 @@ const styles = StyleSheet.create({
     },
     icon: { marginLeft: 12 },
     body: { flex: 9 },
+    link: {
+        color: '#0FA97D',
+        borderBottomWidth: 1,
+        borderBottomColor: '#EFEFEF',
+        padding: 10,
+        fontWeight: '500',
+        fontSize: 18,
+    },
 });
-export default Settings;
