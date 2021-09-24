@@ -23,6 +23,9 @@ import {
     Account,
     NotificationsSettings,
     Subscription,
+    ChangeEmail,
+    ChangePhone,
+    ChangePassword,
 } from '../settings/Settings';
 
 const Stack = createNativeStackNavigator();
@@ -162,6 +165,30 @@ function Profile() {
             <Stack.Screen
                 name="Subscription"
                 component={Subscription}
+                options={{
+                    headerTitleStyle: { color: '#525B76' },
+                    animation: 'slide_from_right',
+                }}
+            />
+            <Stack.Screen
+                name="ChangeEmail"
+                component={ChangeEmail}
+                options={{
+                    headerTitleStyle: { color: '#525B76' },
+                    animation: 'slide_from_right',
+                }}
+            />
+            <Stack.Screen
+                name="ChangePhone"
+                component={ChangePhone}
+                options={{
+                    headerTitleStyle: { color: '#525B76' },
+                    animation: 'slide_from_right',
+                }}
+            />
+            <Stack.Screen
+                name="ChangePassword"
+                component={ChangePassword}
                 options={{
                     headerTitleStyle: { color: '#525B76' },
                     animation: 'slide_from_right',
