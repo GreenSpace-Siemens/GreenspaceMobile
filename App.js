@@ -14,7 +14,7 @@ import Register from './components/register/Register';
 import Main from './components/main/Main'; // ! Home
 import Notifications from './components/notifications/Notifications';
 import Recipients from './components/recipients/Recipients'; // ! Messages
-import ProfilePage from './components/profilepage/ProfilePage';
+import ProfilePage from './components/profilepage/ProfilePage'; // ! Profile
 import { NotificationsSettings } from './components/settings/Settings';
 import { Subscription } from './components/settings/Settings';
 import { Settings } from './components/settings/Settings';
@@ -24,6 +24,7 @@ import {
     ChangePhone,
     ChangePassword,
 } from './components/forms/Forms';
+import Search from './components/search/Search';
 
 // * Navigations
 import Dashboard from './components/dashboard/Dashboard';
@@ -35,7 +36,7 @@ const Stack = createNativeStackNavigator();
 function App() {
     return (
         <SafeAreaProvider>
-            <Account />
+            <Search />
             {/* <NavigationContainer>
                 <Stack.Navigator initialRouteName="Login">
                     <Stack.Screen
