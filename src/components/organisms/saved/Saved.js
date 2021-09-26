@@ -1,12 +1,12 @@
 import React from 'react';
 import { View, StyleSheet, TextInput, Button, Text } from 'react-native';
 
-function SavedJobs() {
+function Saved() {
     return (
         <View style={{ height: '100%', backgroundColor: '#ffffff' }}>
-            <Text>Saved Jobs</Text>
+            <Text>Saved Organism</Text>
         </View>
     );
 }
 
-export default SavedJobs;
+export default Saved;

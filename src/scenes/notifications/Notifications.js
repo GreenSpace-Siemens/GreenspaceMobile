@@ -11,7 +11,7 @@ function Notifications({ navigation }) {
                     name="chevron-left"
                     size={45}
                     color="#525B76"
-                    onPress={() => navigation.navigate('Main')}
+                    onPress={() => navigation.goBack()}
                 />
                 <Text style={styles.title}>Notifications</Text>
                 <Entypo name="dots-three-vertical" size={27} color="#525B76" />

@@ -3,44 +3,35 @@ import { View, StyleSheet, TextInput, Text } from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { RichEditor, RichToolbar } from 'react-native-pell-rich-editor';
 
-function Password({ navigation }) {
+function About({ navigation }) {
+    const textRef = React.createRef();
+
     return (
-        <View style={styles.container}>
-            <View style={styles.header}>
-                <MaterialIcons
-                    name="chevron-left"
-                    size={45}
-                    color="#525B76"
-                    onPress={() => navigation.goBack()}
-                />
-                <Text style={styles.title}>Phone</Text>
-                <MaterialIcons
-                    name="check"
-                    size={45}
-                    color="#0FA97D"
-                    onPress={() => navigation.goBack()}
-                />
-            </View>
-            <View style={styles.body}>
-                <TextInput
-                    placeholder="Current Password"
-                    style={styles.passwordInput}
-                    placeholderTextColor="#000000"
-                    secureTextEntry={true}
-                />
-                <TextInput
-                    placeholder="New Password"
-                    style={styles.passwordInput}
-                    placeholderTextColor="#000000"
-                    secureTextEntry={true}
-                />
-                <TextInput
-                    placeholder="Confirm Password"
-                    style={styles.passwordInput}
-                    placeholderTextColor="#000000"
-                    secureTextEntry={true}
-                />
-            </View>
+        <View style={styles.aboutContainer}>
+            <RichEditor
+                ref={textRef}
+                editorStyle={{
+                    color: '#525B76',
+                }}
+                style={{ borderBottomWidth: 1, borderBottomColor: '#EFEFEF' }}
+                initialHeight="85%"
+                placeholder="Enter about description here..."
+            />
+            <RichToolbar
+                editor={textRef}
+                actions={[
+                    'keyboard',
+                    'bold',
+                    'italic',
+                    'underline',
+                    'orderedList',
+                    'unorderedList',
+                    'indent',
+                    'outdent',
+                    'undo',
+                    'redo',
+                ]}
+            />
         </View>
     );
 }
@@ -111,4 +102,4 @@ const styles = StyleSheet.create({
     link: { color: '#0FA97D', fontWeight: 'bold', fontSize: 18 },
 });
 
-export default Password;
+export default About;

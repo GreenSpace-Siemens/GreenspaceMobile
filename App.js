@@ -14,32 +14,13 @@ import Dashboard from './components/dashboard/Dashboard';
 
 // * Not Sure
 
-// import AuthNavigator from './src/navigations/auth-navigator';
-
-const Stack = createNativeStackNavigator();
+import RootNavigator from './src/navigations/index';
 
 function App() {
     return (
         <SafeAreaProvider>
-            <NavigationContainer>
-                {/* <Stack.Navigator initialRouteName="Login">
-                    <Stack.Screen
-                        name="Login"
-                        component={Login}
-                        options={{ headerShown: false }}
-                    />
-                    <Stack.Screen
-                        name="Register"
-                        component={Register}
-                        options={{ headerShown: false }}
-                    />
-                    <Stack.Screen
-                        name="Dashboard"
-                        component={Dashboard}
-                        options={{ headerShown: false }}
-                    />
-                </Stack.Navigator> */}
-            </NavigationContainer>
+            <RootNavigator />
+            {/* <Cover /> */}
         </SafeAreaProvider>
     );
 }

@@ -3,7 +3,7 @@ import { Button } from 'react-native-elements';
 import { View, StyleSheet, TextInput, Switch, Text } from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
-export function Account({ navigation }) {
+function Account({ navigation }) {
     return (
         <View style={styles.container}>
             <View style={styles.header}>
@@ -30,7 +30,7 @@ export function Account({ navigation }) {
                         }
                         containerStyle={styles.buttonContainer}
                         buttonStyle={styles.button}
-                        onPress={() => navigation.navigate('ChangeEmail')}
+                        onPress={() => navigation.navigate('Email')}
                     />
                     <Button
                         title={
@@ -43,7 +43,7 @@ export function Account({ navigation }) {
                         }
                         containerStyle={styles.buttonContainer}
                         buttonStyle={styles.button}
-                        onPress={() => navigation.navigate('ChangePhone')}
+                        onPress={() => navigation.navigate('Phone')}
                     />
                     <Button
                         title={
@@ -54,7 +54,7 @@ export function Account({ navigation }) {
                         }
                         containerStyle={styles.buttonContainer}
                         buttonStyle={styles.button}
-                        onPress={() => navigation.navigate('ChangePassword')}
+                        onPress={() => navigation.navigate('Password')}
                     />
                 </View>
                 <View>
@@ -119,3 +119,5 @@ const styles = StyleSheet.create({
     signout: { fontSize: 18, fontWeight: 'bold', width: '100%' },
     signoutButton: { padding: 13, backgroundColor: '#B4E4D6' },
 });
+
+export default Account;

@@ -1,20 +1,26 @@
+import { tSTypeAliasDeclaration } from '@babel/types';
 import React from 'react';
-import { View, StyleSheet, Text, Button } from 'react-native';
+import { View, StyleSheet, TextInput, Button, Text } from 'react-native';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import Entypo from 'react-native-vector-icons/Entypo';
 
-function Notifications({ navigation }) {
+function Profile({ navigation }) {
     return (
         <View style={styles.container}>
             <View style={styles.header}>
                 <MaterialIcons
-                    name="chevron-left"
-                    size={45}
+                    name="edit"
+                    size={30}
                     color="#525B76"
-                    onPress={() => navigation.navigate('Main')}
+                    onPress={() => navigation.navigate('EditProfileNavigator')}
                 />
-                <Text style={styles.title}>Notifications</Text>
-                <Entypo name="dots-three-vertical" size={27} color="#525B76" />
+                <Text style={styles.title}>Profile</Text>
+                <Ionicons
+                    name="settings-sharp"
+                    size={30}
+                    color="#525B76"
+                    onPress={() => navigation.navigate('Settings')}
+                />
             </View>
             <View style={styles.body}>
                 <Text>Body</Text>
@@ -27,8 +33,6 @@ const styles = StyleSheet.create({
     container: { height: '100%', backgroundColor: '#ffffff' },
     header: {
         flex: 1,
-        borderBottomWidth: 0.5,
-        borderBottomColor: '#525B76',
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
@@ -40,9 +44,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         color: '#525B76',
     },
-    body: {
-        flex: 9,
-    },
+    body: { flex: 9 },
 });
 
-export default Notifications;
+export default Profile;

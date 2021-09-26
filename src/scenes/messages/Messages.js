@@ -2,7 +2,7 @@ import React from 'react';
 import { View, StyleSheet, TextInput, Button, Text } from 'react-native';
 import Entypo from 'react-native-vector-icons/Entypo';
 
-function Recipients() {
+function Messages() {
     return (
         <View style={styles.container}>
             <View style={styles.header}>
@@ -41,4 +41,4 @@ const styles = StyleSheet.create({
     body: { flex: 9 },
 });
 
-export default Recipients;
+export default Messages;

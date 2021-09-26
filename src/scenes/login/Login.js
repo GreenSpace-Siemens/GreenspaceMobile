@@ -26,7 +26,7 @@ function Login({ navigation }) {
         console.log(`Username: ${username}`);
         console.log(`Password: ${password}`);
 
-        navigation.navigate('Dashboard', user);
+        navigation.navigate('App', user);
 
         // Clears form inputs on submission
         setUsername(null);

@@ -3,7 +3,7 @@ import { View, StyleSheet, Text } from 'react-native';
 import { Button } from 'react-native-elements';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-function Main({ navigation }) {
+function Home({ navigation }) {
     return (
         <View style={styles.container}>
             <View style={styles.header}>
@@ -49,4 +49,4 @@ const styles = StyleSheet.create({
     buttonContainer: {},
 });
 
-export default Main;
+export default Home;
