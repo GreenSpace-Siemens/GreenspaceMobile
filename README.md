@@ -16,6 +16,7 @@
     </li>
       <li><a href="#available-recommendation-systems">Available Recommendation Systems</a></li>
     <li><a href="#tools-and-packages">Tools and Packages</a></li>
+    <li><a href="#project-structure-guide">Project Structure Guide</a></li>
     <li><a href="#license">License</a></li>
   </ol>
 </details>
@@ -64,6 +65,10 @@ Install dependencies:
 
 -   [Firebase](https://firebase.google.com/)
 -   [React Navigation](https://reactnavigation.org/)
+
+## Project Structure Guide
+
+-   [Project Structure Guid](https://cheesecakelabs.com/blog/efficient-way-structure-react-native-projects/)
 
 ## License
 
