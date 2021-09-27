@@ -2,18 +2,17 @@ import React from 'react';
 import { View, StyleSheet, TextInput, Button, Text } from 'react-native';
 import Entypo from 'react-native-vector-icons/Entypo';
 
-function Messages() {
+import Header from '../../components/molecules/header/Header';
+
+function Messages({ navigation }) {
     return (
         <View style={styles.container}>
-            <View style={styles.header}>
-                <Text style={styles.title}>Messages</Text>
-                <Entypo
-                    name="new-message"
-                    color="#525B76"
-                    size={25}
-                    style={styles.icon}
-                />
-            </View>
+            <Header
+                navigation={navigation}
+                title="Messages"
+                leftButton={null}
+                rightButton="compose"
+            />
             <View style={styles.body}>
                 <Text>Recipents</Text>
             </View>
@@ -38,7 +37,7 @@ const styles = StyleSheet.create({
         marginRight: 83,
     },
     icon: { marginRight: 30 },
-    body: { flex: 9 },
+    body: { flex: 9, borderTopWidth: 0.5, borderTopColor: '#525B76' },
 });
 
 export default Messages;

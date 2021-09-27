@@ -3,19 +3,17 @@ import { Button } from 'react-native-elements';
 import { View, StyleSheet, TextInput, Switch, Text } from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
+import Header from '../../components/molecules/header/Header';
+
 function Account({ navigation }) {
     return (
         <View style={styles.container}>
-            <View style={styles.header}>
-                <MaterialIcons
-                    name="chevron-left"
-                    size={45}
-                    color="#525B76"
-                    style={styles.icon}
-                    onPress={() => navigation.goBack()}
-                />
-                <Text style={styles.title}>Account</Text>
-            </View>
+            <Header
+                navigation={navigation}
+                title="Account"
+                leftButton="back"
+                rightButton={null}
+            />
             <View style={styles.body}>
                 <View style={styles.accountInformation}>
                     <Text style={styles.subtitle}>Login Information</Text>
@@ -90,6 +88,8 @@ const styles = StyleSheet.create({
         flex: 9,
         flexDirection: 'column',
         justifyContent: 'space-between',
+        borderTopWidth: 0.5,
+        borderTopColor: '#525B76',
     },
     accountInformation: { padding: 8 },
     subtitle: {

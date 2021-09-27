@@ -3,19 +3,17 @@ import { View, StyleSheet, Text, Button } from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Entypo from 'react-native-vector-icons/Entypo';
 
+import Header from '../../components/molecules/header/Header';
+
 function Notifications({ navigation }) {
     return (
         <View style={styles.container}>
-            <View style={styles.header}>
-                <MaterialIcons
-                    name="chevron-left"
-                    size={45}
-                    color="#525B76"
-                    onPress={() => navigation.goBack()}
-                />
-                <Text style={styles.title}>Notifications</Text>
-                <Entypo name="dots-three-vertical" size={27} color="#525B76" />
-            </View>
+            <Header
+                navigation={navigation}
+                title="Notifications"
+                leftButton="back"
+                rightButton="threedots"
+            />
             <View style={styles.body}>
                 <Text>Body</Text>
             </View>
@@ -42,6 +40,8 @@ const styles = StyleSheet.create({
     },
     body: {
         flex: 9,
+        borderTopWidth: 0.5,
+        borderTopColor: '#525B76',
     },
 });
 

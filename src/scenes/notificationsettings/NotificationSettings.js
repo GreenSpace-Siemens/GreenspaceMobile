@@ -3,6 +3,8 @@ import { Button } from 'react-native-elements';
 import { View, StyleSheet, TextInput, Switch, Text } from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
+import Header from '../../components/molecules/header/Header';
+
 function NotificationSettings({ navigation }) {
     const [enabled, setEnabled] = React.useState([false, false, false]);
 
@@ -15,16 +17,12 @@ function NotificationSettings({ navigation }) {
 
     return (
         <View style={styles.container}>
-            <View style={styles.header}>
-                <MaterialIcons
-                    name="chevron-left"
-                    size={45}
-                    color="#525B76"
-                    style={styles.icon}
-                    onPress={() => navigation.navigate('Settings')}
-                />
-                <Text style={styles.title}>Notifications</Text>
-            </View>
+            <Header
+                navigation={navigation}
+                title="Notifications"
+                leftButton="back"
+                rightButton={null}
+            />
             <View style={styles.body}>
                 <View style={styles.toggle}>
                     <Text style={styles.switchLabel}>Messages</Text>
@@ -83,6 +81,8 @@ const styles = StyleSheet.create({
     icon: { marginLeft: 12 },
     body: {
         flex: 9,
+        borderTopWidth: 0.5,
+        borderTopColor: '#525B76',
     },
     link: {
         color: '#0FA97D',

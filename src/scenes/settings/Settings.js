@@ -3,19 +3,17 @@ import { Button } from 'react-native-elements';
 import { View, StyleSheet, TextInput, Switch, Text } from 'react-native';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
+import Header from '../../components/molecules/header/Header';
+
 function Settings({ navigation }) {
     return (
         <View style={styles.container}>
-            <View style={styles.header}>
-                <MaterialIcons
-                    name="chevron-left"
-                    size={45}
-                    color="#525B76"
-                    style={styles.icon}
-                    onPress={() => navigation.navigate('Profile')}
-                />
-                <Text style={styles.title}>Settings</Text>
-            </View>
+            <Header
+                navigation={navigation}
+                title="Settings"
+                leftButton="back"
+                rightButton={null}
+            />
             <View style={styles.body}>
                 <Text
                     style={styles.link}
@@ -59,6 +57,8 @@ const styles = StyleSheet.create({
     icon: { marginLeft: 12 },
     body: {
         flex: 9,
+        borderTopWidth: 0.5,
+        borderTopColor: '#525B76',
     },
     link: {
         color: '#0FA97D',
