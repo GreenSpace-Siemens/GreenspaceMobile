@@ -68,7 +68,7 @@ Install dependencies:
 
 ## Project Structure Guide
 
--   [Project Structure Guid](https://cheesecakelabs.com/blog/efficient-way-structure-react-native-projects/)
+-   [Project Structure Guide](https://cheesecakelabs.com/blog/efficient-way-structure-react-native-projects/)
 
 ## License
 
