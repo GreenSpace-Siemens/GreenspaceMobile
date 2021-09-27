@@ -11,11 +11,10 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 // Components
 import About from '../components/organisms/about/About';
-import Applied from '../../components/applied/Applied';
+import Applied from '../components/organisms/applied/Applied';
 import Cover from '../components/organisms/cover/Cover';
 import Education from '../components/organisms/education/Education';
 import Experiences from '../components/organisms/experiences/Experiences';
-import Header from '../components/molecules/header/Header';
 import Saved from '../components/organisms/saved/Saved';
 import Skills from '../components/organisms/skills/Skills';
 import TopTabLabel from '../components/atoms/toptablabel/TopTabLabel';
