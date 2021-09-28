@@ -1,9 +1,8 @@
 import React from 'react';
-import { Button } from 'react-native-elements';
-import { View, StyleSheet, TextInput, Switch, Text } from 'react-native';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-
+import { View, StyleSheet, Text } from 'react-native';
+import { Colors } from '../../styles/index';
 import Header from '../../components/molecules/header/Header';
+import { WHITE } from '../../styles/colors';
 
 function Settings({ navigation }) {
     return (
@@ -36,47 +35,20 @@ function Settings({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-    container: { height: '100%', backgroundColor: '#ffffff' },
-    header: {
-        flex: 1,
-        borderBottomWidth: 0.5,
-        borderBottomColor: '#525B76',
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-    },
-    title: {
-        fontSize: 25,
-        fontWeight: 'bold',
-        color: '#525B76',
-        position: 'absolute',
-        width: '100%',
-        textAlign: 'center',
-        zIndex: -1,
-    },
-    icon: { marginLeft: 12 },
+    container: { height: '100%', backgroundColor: Colors.WHITE },
     body: {
         flex: 9,
         borderTopWidth: 0.5,
-        borderTopColor: '#525B76',
+        borderTopColor: Colors.GRAY_DARK,
     },
     link: {
-        color: '#0FA97D',
+        color: Colors.GREEN,
         borderBottomWidth: 1,
-        borderBottomColor: '#EFEFEF',
+        borderBottomColor: Colors.GRAY_LIGHT,
         padding: 10,
         fontWeight: '500',
         fontSize: 18,
     },
-    toggle: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        padding: 12,
-        borderBottomWidth: 1,
-        borderBottomColor: '#EFEFEF',
-    },
-    switchLabel: { flex: 1, fontWeight: '500', fontSize: 18, color: '#0FA97D' },
-    switch: { flex: 1 },
 });
 
 export default Settings;

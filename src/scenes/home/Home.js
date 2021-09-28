@@ -2,6 +2,7 @@ import React from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 import { Button } from 'react-native-elements';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import { Colors } from '../../styles/index';
 
 function Home({ navigation }) {
     return (
@@ -13,10 +14,9 @@ function Home({ navigation }) {
                         <Ionicons
                             name="notifications"
                             size={25}
-                            color={'#0FA97D'}
+                            color={Colors.GREEN}
                         />
                     }
-                    containerStyle={styles.buttonContainer}
                     buttonStyle={styles.button}
                     onPress={() => navigation.navigate('Notifications')}
                 />
@@ -28,7 +28,7 @@ function Home({ navigation }) {
 const styles = StyleSheet.create({
     container: {
         height: '100%',
-        backgroundColor: '#ffffff',
+        backgroundColor: Colors.WHITE,
     },
     header: {
         display: 'flex',
@@ -42,11 +42,10 @@ const styles = StyleSheet.create({
         textAlign: 'right',
         fontSize: 30,
         fontWeight: '800',
-        color: '#0FA97D',
+        color: Colors.GREEN,
         marginRight: '16%',
     },
     button: { backgroundColor: 'transparent' },
-    buttonContainer: {},
 });
 
 export default Home;
