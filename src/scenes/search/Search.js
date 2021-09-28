@@ -1,5 +1,6 @@
 import React from 'react';
-import { View, StyleSheet, TextInput, Button } from 'react-native';
+import { View, StyleSheet, TextInput } from 'react-native';
+import { Colors } from '../../styles/index';
 
 function Search() {
     return (
@@ -8,7 +9,7 @@ function Search() {
                 <TextInput
                     placeholder="Job title, Company, or Profile"
                     style={styles.input}
-                    placeholderTextColor="#8D8D8D"
+                    placeholderTextColor={Colors.GRAY_MEDIUM}
                 />
             </View>
             <View style={styles.resultsContainer}></View>
@@ -17,18 +18,18 @@ function Search() {
 }
 
 const styles = StyleSheet.create({
-    container: { height: '100%', backgroundColor: '#ffffff' },
+    container: { height: '100%', backgroundColor: Colors.WHITE },
     searchBar: {
         flex: 1,
         borderBottomWidth: 0.2,
-        borderColor: '#525B76',
+        borderColor: Colors.GRAY_DARK,
         flexDirection: 'column',
         justifyContent: 'center',
         paddingLeft: 10,
         paddingRight: 10,
     },
     input: {
-        backgroundColor: '#EFEFEF',
+        backgroundColor: Colors.GRAY_LIGHT,
         borderRadius: 15,
         fontSize: 20,
         paddingTop: 6,

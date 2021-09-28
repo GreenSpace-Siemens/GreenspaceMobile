@@ -1,8 +1,7 @@
 import React from 'react';
 import { View, StyleSheet, TextInput, Button, Text } from 'react-native';
-import Entypo from 'react-native-vector-icons/Entypo';
-
 import Header from '../../components/molecules/header/Header';
+import { Colors } from '../../styles/index';
 
 function Messages({ navigation }) {
     return (
@@ -21,23 +20,8 @@ function Messages({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-    container: { height: '100%', backgroundColor: '#ffffff' },
-    header: {
-        flex: 1,
-        borderBottomWidth: 0.5,
-        borderBottomColor: '#525B76',
-        flexDirection: 'row',
-        justifyContent: 'flex-end',
-        alignItems: 'center',
-    },
-    title: {
-        fontSize: 25,
-        fontWeight: 'bold',
-        color: '#525B76',
-        marginRight: 83,
-    },
-    icon: { marginRight: 30 },
-    body: { flex: 9, borderTopWidth: 0.5, borderTopColor: '#525B76' },
+    container: { height: '100%', backgroundColor: Colors.WHITE },
+    body: { flex: 9, borderTopWidth: 0.5, borderTopColor: Colors.GRAY_DARK },
 });
 
 export default Messages;

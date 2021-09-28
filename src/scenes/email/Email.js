@@ -1,8 +1,6 @@
 import React from 'react';
-import { View, StyleSheet, TextInput, Text } from 'react-native';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import { RichEditor, RichToolbar } from 'react-native-pell-rich-editor';
-
+import { View, StyleSheet, TextInput } from 'react-native';
+import { Colors } from '../../styles/index';
 import Header from '../../components/molecules/header/Header';
 
 function Email({ navigation }) {
@@ -18,7 +16,7 @@ function Email({ navigation }) {
                 <TextInput
                     placeholder="Enter or Update email"
                     style={styles.input}
-                    placeholderTextColor="#8D8D8D"
+                    placeholderTextColor={Colors.GRAY_MEDIUM}
                 />
             </View>
         </View>
@@ -26,71 +24,24 @@ function Email({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-    container: { height: '100%', backgroundColor: '#ffffff' },
-    header: {
-        flex: 1,
-        borderBottomWidth: 0.5,
-        borderBottomColor: '#525B76',
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        paddingLeft: 10,
-        paddingRight: 10,
-    },
-    title: {
-        fontSize: 25,
-        fontWeight: 'bold',
-        color: '#525B76',
-    },
+    container: { height: '100%', backgroundColor: Colors.WHITE },
     body: {
         flex: 9,
         flexDirection: 'column',
         justifyContent: 'flex-start',
         borderTopWidth: 0.5,
-        borderTopColor: '#525B76',
+        borderTopColor: Colors.GRAY_DARK,
     },
     input: {
-        backgroundColor: '#FFFFFF',
+        backgroundColor: Colors.WHITE,
         borderRadius: 0,
         borderBottomWidth: 1,
-        borderBottomColor: '#EFEFEF',
+        borderBottomColor: Colors.GRAY_LIGHT,
         fontSize: 15,
         paddingTop: 12,
         paddingBottom: 12,
         paddingLeft: 20,
     },
-    passwordInput: {
-        backgroundColor: '#FFFFFF',
-        borderRadius: 0,
-        borderBottomWidth: 1,
-        borderBottomColor: '#EFEFEF',
-        fontSize: 15,
-        paddingTop: 12,
-        paddingBottom: 12,
-        paddingLeft: 20,
-    },
-    editContainer: { height: '100%', backgroundColor: '#ffffff', padding: 20 },
-    aboutContainer: {
-        height: '100%',
-        backgroundColor: '#ffffff',
-        flexDirection: 'column-reverse',
-        justifyContent: 'flex-end',
-    },
-    coverInput: {
-        borderRadius: 0,
-        borderBottomWidth: 1,
-        borderBottomColor: '#525B76',
-        width: '88%',
-        fontSize: 24,
-        fontWeight: 'bold',
-        color: '#0FA97D',
-        paddingTop: 5,
-        paddingBottom: 5,
-        paddingLeft: 0,
-        paddingRight: 0,
-    },
-    coverLabel: { color: '#525B76', fontWeight: 'bold', fontSize: 16 },
-    link: { color: '#0FA97D', fontWeight: 'bold', fontSize: 18 },
 });
 
 export default Email;

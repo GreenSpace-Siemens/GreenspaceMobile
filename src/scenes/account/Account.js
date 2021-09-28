@@ -1,8 +1,7 @@
 import React from 'react';
 import { Button } from 'react-native-elements';
-import { View, StyleSheet, TextInput, Switch, Text } from 'react-native';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-
+import { View, StyleSheet, Text } from 'react-native';
+import { Colors } from '../../styles/index';
 import Header from '../../components/molecules/header/Header';
 
 function Account({ navigation }) {
@@ -68,28 +67,13 @@ function Account({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-    container: { height: '100%', backgroundColor: '#ffffff' },
-    header: {
-        flex: 1,
-        borderBottomWidth: 0.5,
-        borderBottomColor: '#525B76',
-        flexDirection: 'row',
-        justifyContent: 'flex-start',
-        alignItems: 'center',
-    },
-    title: {
-        fontSize: 25,
-        fontWeight: 'bold',
-        color: '#525B76',
-        marginLeft: 84,
-    },
-    icon: { marginLeft: 12 },
+    container: { height: '100%', backgroundColor: Colors.WHITE },
     body: {
         flex: 9,
         flexDirection: 'column',
         justifyContent: 'space-between',
         borderTopWidth: 0.5,
-        borderTopColor: '#525B76',
+        borderTopColor: Colors.GRAY_DARK,
     },
     accountInformation: { padding: 8 },
     subtitle: {
@@ -105,19 +89,19 @@ const styles = StyleSheet.create({
         width: '100%',
     },
     buttonLabel: { fontSize: 18 },
-    buttonSubLabel: { color: '#8D8D8D' },
+    buttonSubLabel: { color: Colors.GRAY_MEDIUM },
     buttonContainer: {
         borderRadius: 0,
         borderBottomWidth: 1,
-        borderBottomColor: '#EFEFEF',
+        borderBottomColor: Colors.GRAY_LIGHT,
     },
     button: {
-        backgroundColor: '#ffffff',
+        backgroundColor: Colors.WHITE,
         paddingTop: 13,
         paddingBottom: 13,
     },
     signout: { fontSize: 18, fontWeight: 'bold', width: '100%' },
-    signoutButton: { padding: 13, backgroundColor: '#B4E4D6' },
+    signoutButton: { padding: 13, backgroundColor: Colors.GREEN_LIGHT },
 });
 
 export default Account;

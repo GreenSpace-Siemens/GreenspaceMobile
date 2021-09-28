@@ -8,6 +8,7 @@ import Entypo from 'react-native-vector-icons/Entypo';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import { Colors } from '../styles/index';
 
 // Components
 import About from '../components/organisms/about/About';
@@ -41,7 +42,11 @@ function HomeNavigator({ navigation }) {
     return (
         <Stack.Navigator
             initialRouteName="Home"
-            screenOptions={{ headerShown: false }}>
+            screenOptions={{
+                headerShown: false,
+                animation: 'slide_from_right',
+                presentation: 'transparentModal',
+            }}>
             <Stack.Screen name="Home" component={Home} />
             <Stack.Screen name="Notifications" component={Notifications} />
         </Stack.Navigator>
@@ -68,8 +73,8 @@ function SavedNavigator({ navigation }) {
                 <TopTab.Navigator
                     initialRouteName="Saved"
                     screenOptions={{
-                        tabBarPressColor: '#FFFFFF',
-                        tabBarIndicatorStyle: { backgroundColor: '#0FA97D' },
+                        tabBarPressColor: Colors.WHITE,
+                        tabBarIndicatorStyle: { backgroundColor: Colors.GREEN },
                     }}>
                     <TopTab.Screen
                         name="Saved"
@@ -109,7 +114,11 @@ function ProfileNavigator({ navigation }) {
     return (
         <Stack.Navigator
             initialRouteName="Profile"
-            screenOptions={{ headerShown: false }}>
+            screenOptions={{
+                headerShown: false,
+                animation: 'slide_from_right',
+                presentation: 'transparentModal',
+            }}>
             <Stack.Screen name="Profile" component={Profile} />
             <Stack.Screen
                 name="EditProfileNavigator"
@@ -146,14 +155,14 @@ function EditProfileNavigator({ navigation }) {
                         textAlign: 'center',
                         fontSize: 25,
                         fontWeight: 'bold',
-                        color: '#525B76',
+                        color: Colors.GRAY_DARK,
                     }}>
                     Edit Profile
                 </Text>
                 <MaterialIcons
                     name="check"
                     size={45}
-                    color="#0FA97D"
+                    color={Colors.GREEN}
                     style={{ flex: 1 }}
                     onPress={() => navigation.navigate('Profile')}
                 />
@@ -162,9 +171,9 @@ function EditProfileNavigator({ navigation }) {
                 <TopTab.Navigator
                     initialRouteName="Cover"
                     screenOptions={{
-                        tabBarPressColor: '#ffffff',
+                        tabBarPressColor: Colors.WHITE,
                         tabBarIndicatorStyle: {
-                            backgroundColor: '#0FA97D',
+                            backgroundColor: Colors.GREEN,
                         },
                     }}>
                     <TopTab.Screen
@@ -245,71 +254,85 @@ function EditProfileNavigator({ navigation }) {
 
 function AppNavigator({ navigation }) {
     return (
-        <BottomTab.Navigator
-            initialRouteName="HomeNavigator"
-            screenOptions={{
-                headerShown: false,
-                tabBarStyle: {
-                    elevation: 0,
-                    borderTopWidth: 0,
-                    paddingBottom: 10,
-                },
-                tabBarShowLabel: false,
-            }}>
-            <BottomTab.Screen
-                name="HomeNavigator"
-                component={HomeNavigator}
-                options={{
-                    tabBarIcon: () => (
-                        <Entypo name="home" color={'#0FA97D'} size={28} />
-                    ),
-                }}
-            />
-            <BottomTab.Screen
-                name="MessageNavigator"
-                component={MessageNavigator}
-                options={{
-                    tabBarIcon: () => (
-                        <Entypo name="message" color={'#0FA97D'} size={28} />
-                    ),
-                }}
-            />
-            <BottomTab.Screen
-                name="Search"
-                component={Search}
-                options={{
-                    tabBarIcon: () => (
-                        <FontAwesome
-                            name="search"
-                            color={'#0FA97D'}
-                            size={28}
-                        />
-                    ),
-                }}
-            />
-            <BottomTab.Screen
-                name="SavedNavigator"
-                component={SavedNavigator}
-                options={{
-                    tabBarIcon: () => (
-                        <FontAwesome name="star" color={'#0FA97D'} size={28} />
-                    ),
-                }}
-            />
-            <BottomTab.Screen
-                name="ProfileNavigator"
-                component={ProfileNavigator}
-                options={{
-                    tabBarIcon: () => (
-                        <Ionicons
-                            name="md-person-circle-sharp"
-                            color={'#0FA97D'}
-                            size={30}
-                        />
-                    ),
-                }}
-            />
-        </BottomTab.Navigator>
+        <View style={{ height: '100%' }}>
+            <BottomTab.Navigator
+                initialRouteName="HomeNavigator"
+                screenOptions={{
+                    headerShown: false,
+                    tabBarStyle: {
+                        elevation: 0,
+                        borderTopWidth: 0,
+                        paddingBottom: 10,
+                    },
+                    tabBarShowLabel: false,
+                }}>
+                <BottomTab.Screen
+                    name="HomeNavigator"
+                    component={HomeNavigator}
+                    options={{
+                        tabBarIcon: () => (
+                            <Entypo
+                                name="home"
+                                color={Colors.GREEN}
+                                size={28}
+                            />
+                        ),
+                    }}
+                />
+                <BottomTab.Screen
+                    name="MessageNavigator"
+                    component={MessageNavigator}
+                    options={{
+                        tabBarIcon: () => (
+                            <Entypo
+                                name="message"
+                                color={Colors.GREEN}
+                                size={28}
+                            />
+                        ),
+                    }}
+                />
+                <BottomTab.Screen
+                    name="Search"
+                    component={Search}
+                    options={{
+                        tabBarIcon: () => (
+                            <FontAwesome
+                                name="search"
+                                color={Colors.GREEN}
+                                size={28}
+                            />
+                        ),
+                    }}
+                />
+                <BottomTab.Screen
+                    name="SavedNavigator"
+                    component={SavedNavigator}
+                    options={{
+                        tabBarIcon: () => (
+                            <FontAwesome
+                                name="star"
+                                color={Colors.GREEN}
+                                size={28}
+                            />
+                        ),
+                    }}
+                />
+                <BottomTab.Screen
+                    name="ProfileNavigator"
+                    component={ProfileNavigator}
+                    options={{
+                        tabBarIcon: () => (
+                            <Ionicons
+                                name="md-person-circle-sharp"
+                                color={Colors.GREEN}
+                                size={30}
+                            />
+                        ),
+                    }}
+                />
+            </BottomTab.Navigator>
+        </View>
     );
 }
 
@@ -320,12 +343,12 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'flex-end',
-        backgroundColor: '#ffffff',
+        backgroundColor: Colors.WHITE,
     },
     title: {
         fontSize: 25,
         fontWeight: 'bold',
-        color: '#525B76',
+        color: Colors.GRAY_DARK,
     },
     body: { flex: 13 },
 });
