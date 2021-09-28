@@ -20,6 +20,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
         backgroundColor: Colors.WHITE,
+        position: 'relative',
     },
     title: {
         flex: 5,
