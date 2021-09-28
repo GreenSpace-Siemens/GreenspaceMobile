@@ -42,7 +42,11 @@ function HomeNavigator({ navigation }) {
     return (
         <Stack.Navigator
             initialRouteName="Home"
-            screenOptions={{ headerShown: false }}>
+            screenOptions={{
+                headerShown: false,
+                animation: 'slide_from_right',
+                presentation: 'transparentModal',
+            }}>
             <Stack.Screen name="Home" component={Home} />
             <Stack.Screen name="Notifications" component={Notifications} />
         </Stack.Navigator>
@@ -110,7 +114,11 @@ function ProfileNavigator({ navigation }) {
     return (
         <Stack.Navigator
             initialRouteName="Profile"
-            screenOptions={{ headerShown: false }}>
+            screenOptions={{
+                headerShown: false,
+                animation: 'slide_from_right',
+                presentation: 'transparentModal',
+            }}>
             <Stack.Screen name="Profile" component={Profile} />
             <Stack.Screen
                 name="EditProfileNavigator"
