@@ -1,12 +1,19 @@
 import React from 'react';
-import { View, StyleSheet, Text, ColorPropType } from 'react-native';
+import { View, StyleSheet, Text } from 'react-native';
 import { Colors } from '../../../styles/index';
+import Header from '../../molecules/toolbar/ToolBar';
 
-function AddExperience({ navigation }) {
+function Background({ navigation }) {
     return (
         <View style={styles.container}>
             <View style={styles.background}></View>
             <View style={styles.form}>
+                <Header
+                    navigation={navigation}
+                    title="Add New Skill"
+                    leftButton="back"
+                    rightButton="check"
+                />
                 <View style={styles.formBody}></View>
             </View>
         </View>
@@ -40,4 +47,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default AddExperience;
+export default BackgroundBackground;

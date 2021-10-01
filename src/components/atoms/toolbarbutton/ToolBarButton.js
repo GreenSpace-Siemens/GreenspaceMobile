@@ -5,7 +5,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Entypo from 'react-native-vector-icons/Entypo';
 
-function HeaderButton({ navigation, type }) {
+function ToolBarButton({ navigation, type }) {
     const backIcon = (
         <MaterialIcons
             name="chevron-left"
@@ -85,4 +85,4 @@ const styles = StyleSheet.create({
     icon: { flex: 1, textAlign: 'center' },
 });
 
-export default HeaderButton;
+export default ToolBarButton;

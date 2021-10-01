@@ -1,15 +1,13 @@
 import React from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 import { Colors } from '../../../styles/index';
+import CustomModal from '../../molecules/custommodal/CustomModal';
 
 function Skills({ navigation }) {
     return (
         <View style={styles.container}>
-            <Text
-                style={styles.link}
-                onPress={() => navigation.navigate('AddSkill')}>
-                Add New Skill
-            </Text>
+            <Text style={styles.link}>Add New Skill</Text>
+            <CustomModal navigation={navigation} />
         </View>
     );
 }

@@ -1,19 +1,12 @@
 import React from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 import { Colors } from '../../../styles/index';
-import Header from '../../molecules/header/Header';
 
 function AddEducation({ navigation }) {
     return (
         <View style={styles.container}>
             <View style={styles.background}></View>
             <View style={styles.form}>
-                <Header
-                    navigation={navigation}
-                    title="Add Education"
-                    leftButton="back"
-                    rightButton="check"
-                />
                 <View style={styles.formBody}></View>
             </View>
         </View>

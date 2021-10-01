@@ -1,11 +1,11 @@
 import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import { Colors } from '../../../styles/index';
-import HeaderButton from '../../atoms/headerbutton/HeaderButton';
+import HeaderButton from '../../atoms/toolbarbutton/ToolBarButton';
 
-function Header({ navigation, title, leftButton, rightButton }) {
+function ToolBar({ navigation, title, leftButton, rightButton }) {
     return (
-        <View style={styles.header}>
+        <View style={styles.toolbar}>
             <HeaderButton navigation={navigation} type={leftButton} />
             <Text style={styles.title}>{title}</Text>
             <HeaderButton navigation={navigation} type={rightButton} />
@@ -14,13 +14,11 @@ function Header({ navigation, title, leftButton, rightButton }) {
 }
 
 const styles = StyleSheet.create({
-    header: {
-        flex: 1,
+    toolbar: {
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
         backgroundColor: Colors.WHITE,
-        position: 'relative',
     },
     title: {
         flex: 5,
@@ -31,4 +29,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default Header;
+export default ToolBar;

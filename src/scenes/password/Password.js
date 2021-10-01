@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, StyleSheet, TextInput } from 'react-native';
 import { Colors } from '../../styles/index';
-import Header from '../../components/molecules/header/Header';
+import Header from '../../components/organisms/header/Header';
 
 function Password({ navigation }) {
     return (

@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 import { Colors } from '../../../styles/index';
-import Header from '../../molecules/header/Header';
+import Header from '../../molecules/toolbar/ToolBar';
 
 function AddSkill({ navigation }) {
     return (

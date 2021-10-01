@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, StyleSheet, Text } from 'react-native';
-import Header from '../../components/molecules/header/Header';
+import Header from '../../components/organisms/header/Header';
 import { Colors } from '../../styles/index';
 
 function Profile({ navigation }) {
