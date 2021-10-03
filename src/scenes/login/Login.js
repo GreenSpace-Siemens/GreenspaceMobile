@@ -56,7 +56,11 @@ function Login({ navigation }) {
                     value={password}
                 /> */}
                 <Input placeholder="Username" style={styles.input} />
-                <Input placeholder="Password" style={styles.input} />
+                <Input
+                    placeholder="Password"
+                    type="password"
+                    style={styles.input}
+                />
                 <Text style={styles.link}>Forgot Password?</Text>
                 <Button style={styles.button} onPress={() => handleLogin()}>
                     Sign In

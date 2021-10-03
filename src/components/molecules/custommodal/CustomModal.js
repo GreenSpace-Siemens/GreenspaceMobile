@@ -1,8 +1,9 @@
 import React from 'react';
-import { TouchableOpacity } from 'react-native';
+import { TouchableOpacity, View } from 'react-native';
 import { Modal } from 'native-base';
 import { Colors } from '../../../styles/index';
 import ToolBar from '../toolbar/ToolBar';
+import SwipeLine from '../../atoms/swipeline/SwipeLine';
 
 import AddEducation from '../addeducation/AddEducation';
 import AddExperience from '../addexperience/AddExperience';
@@ -43,14 +44,24 @@ function CustomModal({
                     style={{
                         width: '100%',
                         maxWidth: '100%',
+                        maxHeight: '100%',
                         borderTopLeftRadius: 20,
                         borderTopRightRadius: 20,
                         borderBottomLeftRadius: 0,
                         borderBottomRightRadius: 0,
-                        padding: 10,
                         backgroundColor: Colors.WHITE,
+                        padding: 10,
                     }}>
-                    <Modal.Header>
+                    <Modal.Header
+                        style={{
+                            paddingTop: 0,
+                            paddingBottom: 0,
+                            paddingLeft: 0,
+                            paddingRight: 0,
+                            borderBottomWidth: 0,
+                            alignItems: 'center',
+                        }}>
+                        <SwipeLine />
                         <ToolBar
                             navigation={navigation}
                             title={title}
