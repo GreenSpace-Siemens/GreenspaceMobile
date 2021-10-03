@@ -1,37 +1,67 @@
 import React from 'react';
-import { Modal, Slide } from 'native-base';
+import { TouchableOpacity } from 'react-native';
+import { Modal } from 'native-base';
 import { Colors } from '../../../styles/index';
 import ToolBar from '../toolbar/ToolBar';
 
-function CustomModal({ navigation, title, leftButton, rightButton }) {
+import AddEducation from '../addeducation/AddEducation';
+import AddExperience from '../addexperience/AddExperience';
+import AddSkill from '../addskill/AddSkill';
+
+function CustomModal({
+    open,
+    toggleModal,
+    navigation,
+    title,
+    leftButton,
+    rightButton,
+}) {
+    const form = () => {
+        if (title === 'Add Skill') {
+            return <AddSkill />;
+        } else if (title === 'Add Experience') {
+            return <AddExperience />;
+        } else {
+            return <AddEducation />;
+        }
+    };
+
     return (
-        <Modal
-            isOpen={true}
-            style={{
-                flexDirection: 'column',
-                justifyContent: 'flex-end',
-                alignItems: 'center',
-            }}
-            animationPreset="slide">
-            <Modal.Content
+        <Modal isOpen={open} animationPreset="slide">
+            <TouchableOpacity
+                activeOpacity={1}
                 style={{
                     width: '100%',
-                    maxWidth: '100%',
-                    maxHeight: '100%',
-                    borderTopLeftRadius: 20,
-                    borderTopRightRadius: 20,
-                    borderBottomLeftRadius: 0,
-                    borderBottomRightRadius: 0,
-                    padding: 10,
-                    backgroundColor: Colors.WHITE,
-                }}>
-                <ToolBar
-                    navigation={navigation}
-                    title="Add New Skill"
-                    leftButton="back"
-                    rightButton="check"
-                />
-            </Modal.Content>
+                    height: '100%',
+                    flexDirection: 'column',
+                    justifyContent: 'flex-end',
+                    alignItems: 'center',
+                    backgroundColor: 'transparent',
+                }}
+                onPress={() => toggleModal()}>
+                <Modal.Content
+                    style={{
+                        width: '100%',
+                        maxWidth: '100%',
+                        borderTopLeftRadius: 20,
+                        borderTopRightRadius: 20,
+                        borderBottomLeftRadius: 0,
+                        borderBottomRightRadius: 0,
+                        padding: 10,
+                        backgroundColor: Colors.WHITE,
+                    }}>
+                    <Modal.Header>
+                        <ToolBar
+                            navigation={navigation}
+                            title={title}
+                            leftButton={leftButton}
+                            rightButton={rightButton}
+                            toggleModal={toggleModal}
+                        />
+                    </Modal.Header>
+                    <Modal.Body>{form()}</Modal.Body>
+                </Modal.Content>
+            </TouchableOpacity>
         </Modal>
     );
 }

@@ -5,14 +5,23 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Entypo from 'react-native-vector-icons/Entypo';
 
-function ToolBarButton({ navigation, type }) {
+function ToolBarButton({ navigation, type, toggleModal }) {
+    // Temporary
+    const goBack = () => {
+        if (toggleModal === undefined) {
+            navigation.goBack();
+        } else {
+            toggleModal();
+        }
+    };
+
     const backIcon = (
         <MaterialIcons
             name="chevron-left"
             size={45}
             color={Colors.GRAY_DARK}
             style={styles.icon}
-            onPress={() => navigation.goBack()}
+            onPress={() => goBack()}
         />
     );
 
@@ -22,7 +31,7 @@ function ToolBarButton({ navigation, type }) {
             size={45}
             color={Colors.GREEN}
             style={styles.icon}
-            onPress={() => navigation.goBack()}
+            onPress={() => goBack()}
         />
     );
 

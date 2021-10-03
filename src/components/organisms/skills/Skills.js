@@ -7,7 +7,12 @@ function Skills({ navigation }) {
     return (
         <View style={styles.container}>
             <Text style={styles.link}>Add New Skill</Text>
-            <CustomModal navigation={navigation} />
+            <CustomModal
+                navigation={navigation}
+                title="Add New Skill"
+                leftButton="back"
+                rightButton="check"
+            />
         </View>
     );
 }

@@ -1,14 +1,22 @@
 import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import { Colors } from '../../../styles/index';
-import HeaderButton from '../../atoms/toolbarbutton/ToolBarButton';
+import ToolBarButton from '../../atoms/toolbarbutton/ToolBarButton';
 
-function ToolBar({ navigation, title, leftButton, rightButton }) {
+function ToolBar({ navigation, title, leftButton, rightButton, toggleModal }) {
     return (
         <View style={styles.toolbar}>
-            <HeaderButton navigation={navigation} type={leftButton} />
+            <ToolBarButton
+                navigation={navigation}
+                type={leftButton}
+                toggleModal={toggleModal}
+            />
             <Text style={styles.title}>{title}</Text>
-            <HeaderButton navigation={navigation} type={rightButton} />
+            <ToolBarButton
+                navigation={navigation}
+                type={rightButton}
+                toggleModal={toggleModal}
+            />
         </View>
     );
 }
