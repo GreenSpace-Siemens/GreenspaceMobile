@@ -1,15 +1,16 @@
 import React from 'react';
-import { View, StyleSheet, TextInput } from 'react-native';
+import { View, StyleSheet } from 'react-native';
+import { Input } from 'native-base';
 import { Colors } from '../../styles/index';
 
 function Search() {
     return (
         <View style={styles.container}>
             <View style={styles.searchBar}>
-                <TextInput
+                <Input
                     placeholder="Job title, Company, or Profile"
-                    style={styles.input}
                     placeholderTextColor={Colors.GRAY_MEDIUM}
+                    style={styles.input}
                 />
             </View>
             <View style={styles.resultsContainer}></View>
@@ -30,7 +31,6 @@ const styles = StyleSheet.create({
     },
     input: {
         backgroundColor: Colors.GRAY_LIGHT,
-        borderRadius: 15,
         fontSize: 20,
         paddingTop: 6,
         paddingBottom: 6,

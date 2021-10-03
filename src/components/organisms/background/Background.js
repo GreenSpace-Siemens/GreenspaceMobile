@@ -3,23 +3,34 @@ import { View, StyleSheet, Text } from 'react-native';
 import { Colors } from '../../../styles/index';
 import CustomModal from '../../molecules/custommodal/CustomModal';
 
-function Skills({ navigation }) {
+function Background({ navigation, route }) {
+    const { link } = route.params;
+
+    const [open, setOpen] = React.useState(false);
+
+    const toggleModal = () => {
+        setOpen(!open);
+    };
+
     return (
         <View style={styles.container}>
-            <Text style={styles.link}>Add New Skill</Text>
+            <Text style={styles.link} onPress={() => toggleModal()}>
+                {link}
+            </Text>
             <CustomModal
+                open={open}
+                toggleModal={toggleModal}
                 navigation={navigation}
-                title="Add New Skill"
-                leftButton="back"
-                rightButton="check"
+                title={link}
+                leftButton="cancel"
+                rightButton="plus"
             />
         </View>
     );
 }
-
-export default Skills;
-
 const styles = StyleSheet.create({
     container: { height: '100%', backgroundColor: Colors.WHITE, padding: 20 },
     link: { color: Colors.GREEN, fontWeight: 'bold', fontSize: 18 },
 });
+
+export default Background;

@@ -1,18 +1,10 @@
 import React from 'react';
-import { View, StyleSheet, Switch, Text } from 'react-native';
+import { View, StyleSheet, Text } from 'react-native';
+import { Switch } from 'native-base';
 import { Colors } from '../../styles/index';
-import Header from '../../components/molecules/header/Header';
+import Header from '../../components/organisms/header/Header';
 
 function NotificationSettings({ navigation }) {
-    const [enabled, setEnabled] = React.useState([false, false, false]);
-
-    // Sets switches on and off
-    const toggleSwitch = id => {
-        let newEnabled = [...enabled];
-        newEnabled[id] = !newEnabled[id];
-        setEnabled(newEnabled);
-    };
-
     return (
         <View style={styles.container}>
             <Header
@@ -25,40 +17,34 @@ function NotificationSettings({ navigation }) {
                 <View style={styles.toggle}>
                     <Text style={styles.switchLabel}>Messages</Text>
                     <Switch
-                        style={styles.switch}
                         trackColor={{
                             false: Colors.GRAY_MEDIUM,
-                            true: Colors.GREEN,
+                            true: Colors.GREEN_LIGHT,
                         }}
-                        thumbColor={Colors.WHITE}
-                        onValueChange={() => toggleSwitch(0)}
-                        value={enabled[0]}
+                        onThumbColor={Colors.GREEN}
+                        size="lg"
                     />
                 </View>
                 <View style={styles.toggle}>
                     <Text style={styles.switchLabel}>New Jobs</Text>
                     <Switch
-                        style={styles.switch}
                         trackColor={{
                             false: Colors.GRAY_MEDIUM,
-                            true: Colors.GREEN,
+                            true: Colors.GREEN_LIGHT,
                         }}
-                        thumbColor={Colors.WHITE}
-                        onValueChange={() => toggleSwitch(1)}
-                        value={enabled[1]}
+                        onThumbColor={Colors.GREEN}
+                        size="lg"
                     />
                 </View>
                 <View style={styles.toggle}>
                     <Text style={styles.switchLabel}>Application Activity</Text>
                     <Switch
-                        style={styles.switch}
                         trackColor={{
                             false: Colors.GRAY_MEDIUM,
-                            true: Colors.GREEN,
+                            true: Colors.GREEN_LIGHT,
                         }}
-                        thumbColor={Colors.WHITE}
-                        onValueChange={() => toggleSwitch(2)}
-                        value={enabled[2]}
+                        onThumbColor={Colors.GREEN}
+                        size="lg"
                     />
                 </View>
             </View>
@@ -86,7 +72,6 @@ const styles = StyleSheet.create({
         fontSize: 18,
         color: Colors.GREEN,
     },
-    switch: { flex: 1 },
 });
 
 export default NotificationSettings;

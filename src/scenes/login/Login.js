@@ -1,6 +1,6 @@
 import React from 'react';
-import { View, StyleSheet, Text, TextInput } from 'react-native';
-import { Button } from 'react-native-elements';
+import { View, StyleSheet, Text } from 'react-native';
+import { Button, Input } from 'native-base';
 import { Colors } from '../../styles/index';
 
 function Login({ navigation }) {
@@ -40,7 +40,7 @@ function Login({ navigation }) {
                 <Text style={styles.title}>GREENSPACE</Text>
             </View>
             <View style={styles.loginForm}>
-                <TextInput
+                {/* <TextInput
                     placeholder="Email"
                     style={styles.input}
                     placeholderTextColor={Colors.GRAY_MEDIUM}
@@ -54,15 +54,17 @@ function Login({ navigation }) {
                     secureTextEntry={true}
                     onChangeText={password => handlePassword(password)}
                     value={password}
+                /> */}
+                <Input placeholder="Username" style={styles.input} />
+                <Input
+                    placeholder="Password"
+                    type="password"
+                    style={styles.input}
                 />
                 <Text style={styles.link}>Forgot Password?</Text>
-                <Button
-                    title="Sign In"
-                    titleStyle={styles.buttonTitle}
-                    containerStyle={styles.buttonContainer}
-                    buttonStyle={styles.button}
-                    onPress={() => handleLogin()}
-                />
+                <Button style={styles.button} onPress={() => handleLogin()}>
+                    Sign In
+                </Button>
                 <Text
                     onPress={() => navigation.navigate('Register')}
                     style={styles.link}>
@@ -94,23 +96,22 @@ const styles = StyleSheet.create({
         fontWeight: '800',
         color: Colors.GREEN,
     },
-    loginForm: {},
     input: {
         backgroundColor: Colors.GRAY_LIGHT,
         fontSize: 20,
         fontWeight: '500',
         borderRadius: 8,
+        borderWidth: 0,
         elevation: 3,
         marginBottom: 15,
         padding: 10,
     },
     link: { color: Colors.BLACK, textAlign: 'center', fontSize: 14 },
-    buttonContainer: {
+    button: {
         borderRadius: 8,
         marginTop: 10,
         marginBottom: 10,
-    },
-    button: {
+        elevation: 3,
         backgroundColor: Colors.GREEN,
     },
     buttonTitle: { fontSize: 17 },

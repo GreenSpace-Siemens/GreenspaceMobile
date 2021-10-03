@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 import { Colors } from '../../styles/index';
-import Header from '../../components/molecules/header/Header';
+import Header from '../../components/organisms/header/Header';
 
 function Subscription({ navigation }) {
     return (

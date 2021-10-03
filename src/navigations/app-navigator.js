@@ -13,11 +13,9 @@ import { Colors } from '../styles/index';
 // Components
 import About from '../components/organisms/about/About';
 import Applied from '../components/organisms/applied/Applied';
+import Background from '../components/organisms/background/Background';
 import Cover from '../components/organisms/cover/Cover';
-import Education from '../components/organisms/education/Education';
-import Experiences from '../components/organisms/experiences/Experiences';
 import Saved from '../components/organisms/saved/Saved';
-import Skills from '../components/organisms/skills/Skills';
 import TopTabLabel from '../components/atoms/toptablabel/TopTabLabel';
 
 // Scenes
@@ -161,7 +159,7 @@ function EditProfileNavigator({ navigation }) {
                 </Text>
                 <MaterialIcons
                     name="check"
-                    size={45}
+                    size={40}
                     color={Colors.GREEN}
                     style={{ flex: 1 }}
                     onPress={() => navigation.navigate('Profile')}
@@ -206,7 +204,7 @@ function EditProfileNavigator({ navigation }) {
                     />
                     <TopTab.Screen
                         name="Skills"
-                        component={Skills}
+                        component={Background}
                         options={{
                             tabBarLabel: ({ focused }) => {
                                 return (
@@ -217,10 +215,11 @@ function EditProfileNavigator({ navigation }) {
                                 );
                             },
                         }}
+                        initialParams={{ link: 'Add Skill' }}
                     />
                     <TopTab.Screen
                         name="Experiences"
-                        component={Experiences}
+                        component={Background}
                         options={{
                             tabBarLabel: ({ focused }) => {
                                 return (
@@ -231,10 +230,11 @@ function EditProfileNavigator({ navigation }) {
                                 );
                             },
                         }}
+                        initialParams={{ link: 'Add Experience' }}
                     />
                     <TopTab.Screen
                         name="Education"
-                        component={Education}
+                        component={Background}
                         options={{
                             tabBarLabel: ({ focused }) => {
                                 return (
@@ -245,6 +245,7 @@ function EditProfileNavigator({ navigation }) {
                                 );
                             },
                         }}
+                        initialParams={{ link: 'Add Education' }}
                     />
                 </TopTab.Navigator>
             </View>
