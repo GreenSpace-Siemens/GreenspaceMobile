@@ -159,7 +159,7 @@ function EditProfileNavigator({ navigation }) {
                 </Text>
                 <MaterialIcons
                     name="check"
-                    size={45}
+                    size={40}
                     color={Colors.GREEN}
                     style={{ flex: 1 }}
                     onPress={() => navigation.navigate('Profile')}

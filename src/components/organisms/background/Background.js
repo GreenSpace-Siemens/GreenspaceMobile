@@ -22,8 +22,8 @@ function Background({ navigation, route }) {
                 toggleModal={toggleModal}
                 navigation={navigation}
                 title={link}
-                leftButton="back"
-                rightButton="check"
+                leftButton="cancel"
+                rightButton="plus"
             />
         </View>
     );

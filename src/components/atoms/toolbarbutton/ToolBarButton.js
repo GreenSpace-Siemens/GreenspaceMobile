@@ -3,6 +3,7 @@ import { StyleSheet, View } from 'react-native';
 import { Colors } from '../../../styles/index';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Entypo from 'react-native-vector-icons/Entypo';
 
 function ToolBarButton({ navigation, type, toggleModal }) {
@@ -25,10 +26,20 @@ function ToolBarButton({ navigation, type, toggleModal }) {
         />
     );
 
+    const cancelIcon = (
+        <MaterialIcons
+            name="cancel"
+            size={35}
+            color={Colors.RED}
+            style={styles.icon}
+            onPress={() => goBack()}
+        />
+    );
+
     const checkIcon = (
         <MaterialIcons
             name="check"
-            size={45}
+            size={40}
             color={Colors.GREEN}
             style={styles.icon}
             onPress={() => goBack()}
@@ -51,6 +62,16 @@ function ToolBarButton({ navigation, type, toggleModal }) {
             color={Colors.GRAY_DARK}
             style={styles.icon}
             onPress={() => navigation.navigate('EditProfileNavigator')}
+        />
+    );
+
+    const plusIcon = (
+        <MaterialCommunityIcons
+            name="plus"
+            size={45}
+            color={Colors.GREEN}
+            style={styles.icon}
+            onPress={() => goBack()}
         />
     );
 
@@ -85,6 +106,10 @@ function ToolBarButton({ navigation, type, toggleModal }) {
         return threeDotsIcon;
     } else if (type === 'check') {
         return checkIcon;
+    } else if (type === 'plus') {
+        return plusIcon;
+    } else if (type === 'cancel') {
+        return cancelIcon;
     } else {
         return <View style={styles.icon}></View>;
     }

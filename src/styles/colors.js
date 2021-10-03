@@ -8,3 +8,6 @@ export const GREEN_LIGHT = '#B4E4D6';
 export const GRAY_LIGHT = '#EFEFEF';
 export const GRAY_MEDIUM = '#8D8D8D';
 export const GRAY_DARK = '#525B76';
+
+// SECONDARY
+export const RED = '#E02929';
