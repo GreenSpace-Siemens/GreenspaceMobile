@@ -1,10 +1,8 @@
-import { DefaultTheme } from '@react-navigation/native';
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
-import { style } from 'styled-system';
 import ToolBar from '../../molecules/toolbar/ToolBar';
 
-function Header({ navigation, title, leftButton, rightButton }) {
+function Header({ navigation, title, leftButton, rightButton, toggleModal }) {
     return (
         <View style={styles.header}>
             <ToolBar
@@ -12,6 +10,7 @@ function Header({ navigation, title, leftButton, rightButton }) {
                 title={title}
                 leftButton={leftButton}
                 rightButton={rightButton}
+                toggleModal={toggleModal}
             />
         </View>
     );

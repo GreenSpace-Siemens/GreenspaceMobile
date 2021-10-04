@@ -52,6 +52,7 @@ function ToolBarButton({ navigation, type, toggleModal }) {
             color={Colors.GRAY_DARK}
             size={25}
             style={styles.icon}
+            onPress={() => goBack()}
         />
     );
 

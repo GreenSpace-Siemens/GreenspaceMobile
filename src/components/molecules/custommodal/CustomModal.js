@@ -8,6 +8,7 @@ import SwipeLine from '../../atoms/swipeline/SwipeLine';
 import AddEducation from '../addeducation/AddEducation';
 import AddExperience from '../addexperience/AddExperience';
 import AddSkill from '../addskill/AddSkill';
+import NewMessage from '../newmessage/NewMessage';
 
 function CustomModal({
     open,
@@ -16,12 +17,15 @@ function CustomModal({
     title,
     leftButton,
     rightButton,
+    padding,
 }) {
     const form = () => {
         if (title === 'Add Skill') {
             return <AddSkill />;
         } else if (title === 'Add Experience') {
             return <AddExperience />;
+        } else if (title === 'New Message') {
+            return <NewMessage />;
         } else {
             return <AddEducation />;
         }
@@ -50,7 +54,8 @@ function CustomModal({
                         borderBottomLeftRadius: 0,
                         borderBottomRightRadius: 0,
                         backgroundColor: Colors.WHITE,
-                        padding: 10,
+                        paddingTop: 10,
+                        padding: padding ? 10 : 0,
                     }}>
                     <Modal.Header
                         style={{
@@ -60,6 +65,7 @@ function CustomModal({
                             paddingRight: 0,
                             borderBottomWidth: 0,
                             alignItems: 'center',
+                            width: '100%',
                         }}>
                         <SwipeLine />
                         <ToolBar
@@ -70,7 +76,17 @@ function CustomModal({
                             toggleModal={toggleModal}
                         />
                     </Modal.Header>
-                    <Modal.Body>{form()}</Modal.Body>
+                    <Modal.Body
+                        style={{
+                            width: '100%',
+                            maxWidth: '100%',
+                            paddingTop: padding ? 10 : 10,
+                            paddingBottom: padding ? 10 : 0,
+                            paddingLeft: padding ? 10 : 0,
+                            paddingRight: padding ? 10 : 0,
+                        }}>
+                        {form()}
+                    </Modal.Body>
                 </Modal.Content>
             </TouchableOpacity>
         </Modal>
