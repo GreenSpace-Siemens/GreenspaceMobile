@@ -8,6 +8,7 @@ import SwipeLine from '../../atoms/swipeline/SwipeLine';
 import AddEducation from '../addeducation/AddEducation';
 import AddExperience from '../addexperience/AddExperience';
 import AddSkill from '../addskill/AddSkill';
+import NewMessage from '../newmessage/NewMessage';
 
 function CustomModal({
     open,
@@ -22,6 +23,8 @@ function CustomModal({
             return <AddSkill />;
         } else if (title === 'Add Experience') {
             return <AddExperience />;
+        } else if (title === 'New Message') {
+            return <NewMessage />;
         } else {
             return <AddEducation />;
         }
