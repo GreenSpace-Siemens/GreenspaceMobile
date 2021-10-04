@@ -10,7 +10,7 @@ function Notifications({ navigation }) {
                 navigation={navigation}
                 title="Notifications"
                 leftButton="back"
-                rightButton="threedots"
+                rightButton={null}
             />
             <View style={styles.body}>
                 <Text>Body</Text>
