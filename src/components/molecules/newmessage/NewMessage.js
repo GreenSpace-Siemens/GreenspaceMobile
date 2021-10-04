@@ -1,10 +1,29 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
+import { Input } from 'native-base';
+import { Colors } from '../../../styles/index';
+import Chat from '../../organisms/chat/Chat';
 
 function NewMessage() {
     return (
-        <View>
-            <Text>message</Text>
+        <View
+            style={{
+                height: 650,
+                width: '100%',
+                flexDirection: 'column',
+            }}>
+            <Input
+                placeholder="To:"
+                style={{
+                    flex: 1,
+                    borderLeftWidth: 0,
+                    borderRightWidth: 0,
+                    width: '100%',
+                    fontSize: 14,
+                    color: Colors.GREEN,
+                }}
+            />
+            <Chat />
         </View>
     );
 }

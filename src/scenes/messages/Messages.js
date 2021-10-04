@@ -8,7 +8,6 @@ function Messages({ navigation }) {
     const [open, setOpen] = React.useState(false);
 
     const toggleModal = () => {
-        console.log('Invoked');
         setOpen(!open);
     };
 
@@ -31,6 +30,7 @@ function Messages({ navigation }) {
                 title="New Message"
                 leftButton={null}
                 rightButton="cancel"
+                padding={false}
             />
         </View>
     );

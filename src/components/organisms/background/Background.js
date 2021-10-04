@@ -24,6 +24,7 @@ function Background({ navigation, route }) {
                 title={link}
                 leftButton="cancel"
                 rightButton="plus"
+                padding={true}
             />
         </View>
     );
