@@ -7,7 +7,11 @@ import img from './twitter.jpeg';
 function FrontCover({ header, subheader }) {
     return (
         <View style={styles.container}>
-            <ImageBackground source={img} alt="Twitter" style={styles.image}>
+            <ImageBackground
+                source={img}
+                alt="Twitter"
+                style={styles.image}
+                resizeMode="cover">
                 <View style={styles.imageContent}>
                     <Text style={styles.header}>{header}</Text>
                     <Text style={styles.subheader}>{subheader}</Text>
@@ -18,12 +22,11 @@ function FrontCover({ header, subheader }) {
 }
 
 const styles = StyleSheet.create({
-    container: { height: '100%' },
+    container: { borderWidth: 10 },
     image: {
-        height: '100%',
+        // maxHeight: '100%',
         flexDirection: 'column',
         justifyContent: 'flex-end',
-        resizeMode: 'cover',
     },
     imageContent: { padding: 20 },
     header: { color: Colors.WHITE, fontSize: 24, fontWeight: 'bold' },

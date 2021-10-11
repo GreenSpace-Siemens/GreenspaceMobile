@@ -4,7 +4,7 @@ import { Button } from 'react-native-elements';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { Colors } from '../../styles/index';
 
-import CardBody from '../../components/molecules/cardbody/CardBody';
+import PageCard from '../../components/organisms/pagecard/PageCard';
 
 function Home({ navigation }) {
     return (
@@ -24,7 +24,7 @@ function Home({ navigation }) {
                 />
             </View>
             <View style={styles.body}>
-                <CardBody />
+                <PageCard />
             </View>
         </View>
     );
@@ -32,6 +32,7 @@ function Home({ navigation }) {
 
 const styles = StyleSheet.create({
     container: {
+        position: 'relative',
         height: '100%',
         backgroundColor: Colors.WHITE,
     },
