@@ -4,6 +4,8 @@ import { Button } from 'react-native-elements';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { Colors } from '../../styles/index';
 
+import CardBody from '../../components/molecules/cardbody/CardBody';
+
 function Home({ navigation }) {
     return (
         <View style={styles.container}>
@@ -21,6 +23,9 @@ function Home({ navigation }) {
                     onPress={() => navigation.navigate('Notifications')}
                 />
             </View>
+            <View style={styles.body}>
+                <CardBody />
+            </View>
         </View>
     );
 }
@@ -31,12 +36,14 @@ const styles = StyleSheet.create({
         backgroundColor: Colors.WHITE,
     },
     header: {
+        flex: 1,
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-between',
         position: 'relative',
         top: 17,
     },
+    body: { flex: 8, padding: 15 },
     title: {
         flex: 1,
         textAlign: 'right',
