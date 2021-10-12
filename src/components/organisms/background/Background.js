@@ -29,6 +29,7 @@ function Background({ navigation, route }) {
         </View>
     );
 }
+
 const styles = StyleSheet.create({
     container: { height: '100%', backgroundColor: Colors.WHITE, padding: 20 },
     link: { color: Colors.GREEN, fontWeight: 'bold', fontSize: 18 },

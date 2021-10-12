@@ -4,6 +4,8 @@ import { Button } from 'react-native-elements';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { Colors } from '../../styles/index';
 
+import PageCard from '../../components/organisms/pagecard/PageCard';
+
 function Home({ navigation }) {
     return (
         <View style={styles.container}>
@@ -21,22 +23,28 @@ function Home({ navigation }) {
                     onPress={() => navigation.navigate('Notifications')}
                 />
             </View>
+            <View style={styles.body}>
+                <PageCard />
+            </View>
         </View>
     );
 }
 
 const styles = StyleSheet.create({
     container: {
+        position: 'relative',
         height: '100%',
         backgroundColor: Colors.WHITE,
     },
     header: {
+        flex: 1,
         display: 'flex',
         flexDirection: 'row',
         justifyContent: 'space-between',
         position: 'relative',
         top: 17,
     },
+    body: { flex: 8, padding: 15 },
     title: {
         flex: 1,
         textAlign: 'right',

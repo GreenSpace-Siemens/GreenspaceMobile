@@ -1,10 +1,17 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { StyleSheet, View } from 'react-native';
+import { WebView } from 'react-native-webview';
 import { RichEditor, RichToolbar } from 'react-native-pell-rich-editor';
 import { Colors } from '../../../styles/index';
 
 function About({ navigation }) {
     const textRef = React.createRef();
+
+    let [aboutValue, setAboutvalue] = React.useState('');
+
+    const handleAbout = jsx => {
+        setAboutvalue(jsx);
+    };
 
     return (
         <View style={styles.container}>
@@ -15,6 +22,7 @@ function About({ navigation }) {
                 }}
                 initialHeight="85%"
                 placeholder="Enter about description here..."
+                onChange={event => handleAbout(event)}
             />
             <RichToolbar
                 editor={textRef}
