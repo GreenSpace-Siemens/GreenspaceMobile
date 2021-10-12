@@ -16,7 +16,7 @@ function TextSection({ header, aboutValue }) {
 }
 
 const styles = StyleSheet.create({
-    container: { maxHeight: '100%', width: '100%', marginBottom: 10 },
+    container: { marginBottom: 10 },
     header: { fontSize: 18, color: Colors.GRAY_MEDIUM },
     body: { backgroundColor: 'transparent' },
 });

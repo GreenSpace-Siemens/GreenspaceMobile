@@ -22,7 +22,7 @@ function FrontCover({ header, subheader }) {
 }
 
 const styles = StyleSheet.create({
-    container: { flex: 1, minHeight: 566 },
+    container: { flex: 1 },
     image: {
         flex: 1,
         flexDirection: 'column',

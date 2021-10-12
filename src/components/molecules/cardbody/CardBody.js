@@ -20,7 +20,6 @@ function CardBody() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        minHeight: 100,
         backgroundColor: Colors.GREEN_LIGHT,
         padding: 20,
     },
