@@ -13,17 +13,14 @@ function CardBody() {
                 aboutValue="asdasdasdfasdfasgasgesdsdsdssdsdsdsdsdsdsdsdsdsdssdsdssdsdssdsdrsdgwergasdasdasdasd"
             />
             <ListSection header="Skills" />
-            <TextSection
-                header="About"
-                aboutValue="asdasdasdfasdfasgasgesdsdsdssdsdsdsdsdsdsdsdsdsdssdsdssdsdssdsdrsdgwergasdasdasdasd"
-            />
-            <ListSection header="Skills" />
         </View>
     );
 }
 
 const styles = StyleSheet.create({
     container: {
+        flex: 1,
+        minHeight: 100,
         backgroundColor: Colors.GREEN_LIGHT,
         padding: 20,
     },

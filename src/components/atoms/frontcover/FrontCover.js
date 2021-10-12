@@ -22,9 +22,9 @@ function FrontCover({ header, subheader }) {
 }
 
 const styles = StyleSheet.create({
-    container: { borderWidth: 10 },
+    container: { flex: 1, minHeight: 566 },
     image: {
-        // maxHeight: '100%',
+        flex: 1,
         flexDirection: 'column',
         justifyContent: 'flex-end',
     },
