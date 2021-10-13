@@ -12,10 +12,10 @@ import { Colors } from '../styles/index';
 
 // Components
 import About from '../components/organisms/about/About';
-import Applied from '../components/organisms/applied/Applied';
+import AppliedJobs from '../components/molecules/appliedjobs/AppliedJobs';
 import Background from '../components/organisms/background/Background';
 import Cover from '../components/organisms/cover/Cover';
-import Saved from '../components/organisms/saved/Saved';
+import SavedJobs from '../components/molecules/savedjobs/SavedJobs';
 import TopTabLabel from '../components/atoms/toptablabel/TopTabLabel';
 
 // Scenes
@@ -76,7 +76,7 @@ function SavedNavigator({ navigation }) {
                     }}>
                     <TopTab.Screen
                         name="Saved"
-                        component={Saved}
+                        component={SavedJobs}
                         options={{
                             tabBarLabel: ({ focused }) => {
                                 return (
@@ -90,7 +90,7 @@ function SavedNavigator({ navigation }) {
                     />
                     <TopTab.Screen
                         name="Applied"
-                        component={Applied}
+                        component={AppliedJobs}
                         options={{
                             tabBarLabel: ({ focused }) => {
                                 return (

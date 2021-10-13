@@ -1,17 +1,8 @@
 import React from 'react';
-import { View, StyleSheet, Text } from 'react-native';
-import Header from '../../components/organisms/header/Header';
-import { Colors } from '../../styles/index';
-import CustomModal from '../../components/molecules/custommodal/CustomModal';
-import SwipeList from '../../components/molecules/swipelist/SwipeList';
+import { ScrollView } from 'native-base';
+import SwipeItem from '../../atoms/swipeitem/SwipeItem';
 
-function Messages({ navigation }) {
-    const [open, setOpen] = React.useState(false);
-
-    const toggleModal = () => {
-        setOpen(!open);
-    };
-
+function SavedJobs() {
     const data = [
         {
             id: 1,
@@ -76,38 +67,19 @@ function Messages({ navigation }) {
     ];
 
     return (
-        <View style={styles.container}>
-            <Header
-                navigation={navigation}
-                title="Messages"
-                leftButton={null}
-                rightButton="compose"
-                toggleModal={toggleModal}
-            />
-            <View style={styles.body}>
-                <SwipeList data={data} />
-            </View>
-            <CustomModal
-                open={open}
-                toggleModal={toggleModal}
-                navigation={navigation}
-                title="New Message"
-                leftButton={null}
-                rightButton="cancel"
-                padding={false}
-            />
-        </View>
+        <ScrollView style={{ height: '100%', backgroundColor: '#ffffff' }}>
+            {data.map(({ id, avatar, header, subheader }) => {
+                return (
+                    <SwipeItem
+                        key={id}
+                        avatar={avatar}
+                        header={header}
+                        subheader={subheader}
+                    />
+                );
+            })}
+        </ScrollView>
     );
 }
 
-const styles = StyleSheet.create({
-    container: { height: '100%', backgroundColor: Colors.WHITE },
-    body: {
-        flex: 9,
-        flexGrow: 9,
-        borderTopWidth: 0.5,
-        borderTopColor: Colors.GRAY_DARK,
-    },
-});
-
-export default Messages;
+export default SavedJobs;

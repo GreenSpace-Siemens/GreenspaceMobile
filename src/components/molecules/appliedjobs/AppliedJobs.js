@@ -1,113 +1,96 @@
 import React from 'react';
-import { View, StyleSheet, Text } from 'react-native';
-import Header from '../../components/organisms/header/Header';
-import { Colors } from '../../styles/index';
-import CustomModal from '../../components/molecules/custommodal/CustomModal';
-import SwipeList from '../../components/molecules/swipelist/SwipeList';
+import { ScrollView } from 'native-base';
+import SwipeItem from '../../atoms/swipeitem/SwipeItem';
 
-function Messages({ navigation }) {
-    const [open, setOpen] = React.useState(false);
-
-    const toggleModal = () => {
-        setOpen(!open);
-    };
-
+function AppliedJobs() {
     const data = [
         {
             id: 1,
             avatar: 'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
             header: 'Header Name',
             subheader: 'This is a subheader',
+            status: 'Application viewed',
         },
         {
             id: 2,
             avatar: 'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
             header: 'Header Name',
             subheader: 'This is a subheader',
+            status: 'Application viewed',
         },
         {
             id: 3,
             avatar: 'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
             header: 'Header Name',
             subheader: 'This is a subheader',
+            status: 'Application viewed',
         },
         {
             id: 4,
             avatar: 'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
             header: 'Header Name',
             subheader: 'This is a subheader',
+            status: 'Application viewed',
         },
         {
             id: 5,
             avatar: 'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
             header: 'Header Name',
             subheader: 'This is a subheader',
+            status: 'Application viewed',
         },
         {
             id: 6,
             avatar: 'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
             header: 'Header Name',
             subheader: 'This is a subheader',
+            status: 'Application viewed',
         },
         {
             id: 7,
             avatar: 'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
             header: 'Header Name',
             subheader: 'This is a subheader',
+            status: 'Application viewed',
         },
         {
             id: 8,
             avatar: 'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
             header: 'Header Name',
             subheader: 'This is a subheader',
+            status: 'Application viewed',
         },
         {
             id: 9,
             avatar: 'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
             header: 'Header Name',
             subheader: 'This is a subheader',
+            status: 'Application viewed',
         },
         {
             id: 10,
             avatar: 'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
             header: 'Header Name',
             subheader: 'This is a subheader',
+            status: 'Application viewed',
         },
     ];
 
     return (
-        <View style={styles.container}>
-            <Header
-                navigation={navigation}
-                title="Messages"
-                leftButton={null}
-                rightButton="compose"
-                toggleModal={toggleModal}
-            />
-            <View style={styles.body}>
-                <SwipeList data={data} />
-            </View>
-            <CustomModal
-                open={open}
-                toggleModal={toggleModal}
-                navigation={navigation}
-                title="New Message"
-                leftButton={null}
-                rightButton="cancel"
-                padding={false}
-            />
-        </View>
+        <ScrollView style={{ height: '100%', backgroundColor: '#ffffff' }}>
+            {data.map(({ id, avatar, header, subheader, status }) => {
+                return (
+                    <SwipeItem
+                        key={id}
+                        avatar={avatar}
+                        header={header}
+                        subheader={subheader}
+                        status={status}
+                    />
+                );
+            })}
+        </ScrollView>
     );
 }
 
-const styles = StyleSheet.create({
-    container: { height: '100%', backgroundColor: Colors.WHITE },
-    body: {
-        flex: 9,
-        flexGrow: 9,
-        borderTopWidth: 0.5,
-        borderTopColor: Colors.GRAY_DARK,
-    },
-});
-
-export default Messages;
+export default AppliedJobs;
