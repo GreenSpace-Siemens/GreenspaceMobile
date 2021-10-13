@@ -3,13 +3,16 @@ import { StyleSheet, Text, View } from 'react-native';
 import { Avatar } from 'native-base';
 import { Colors } from '../../../styles/index';
 
-function SwipeItem({ avatar, header, subheader }) {
+function ListItem({ avatar, header, subheader, status }) {
     return (
         <View style={styles.container}>
             <Avatar source={{ uri: avatar }} />
             <View style={styles.text}>
                 <Text style={styles.header}>{header}</Text>
                 <Text style={styles.subheader}>{subheader}</Text>
+                {status !== undefined ? (
+                    <Text style={styles.status}>{status}</Text>
+                ) : null}
             </View>
         </View>
     );
@@ -26,6 +29,7 @@ const styles = StyleSheet.create({
     text: { marginLeft: 13 },
     header: { fontSize: 17 },
     subheader: { fontSize: 17, color: Colors.GRAY_MEDIUM },
+    status: { color: Colors.GREEN },
 });
 
-export default SwipeItem;
+export default ListItem;
