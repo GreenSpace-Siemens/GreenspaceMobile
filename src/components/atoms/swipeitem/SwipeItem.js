@@ -1,0 +1,31 @@
+import React from 'react';
+import { StyleSheet, Text, View } from 'react-native';
+import { Avatar } from 'native-base';
+import { Colors } from '../../../styles/index';
+
+function SwipeItem({ avatar, header, subheader }) {
+    return (
+        <View style={styles.container}>
+            <Avatar source={{ uri: avatar }} />
+            <View style={styles.text}>
+                <Text style={styles.header}>{header}</Text>
+                <Text style={styles.subheader}>{subheader}</Text>
+            </View>
+        </View>
+    );
+}
+
+const styles = StyleSheet.create({
+    container: {
+        flexDirection: 'row',
+        backgroundColor: Colors.WHITE,
+        borderBottomWidth: 1,
+        borderColor: Colors.GRAY_LIGHT,
+        padding: 13,
+    },
+    text: { marginLeft: 13 },
+    header: { fontSize: 17 },
+    subheader: { fontSize: 17, color: Colors.GRAY_MEDIUM },
+});
+
+export default SwipeItem;

@@ -19,6 +19,7 @@ function Header({ navigation, title, leftButton, rightButton, toggleModal }) {
 const styles = StyleSheet.create({
     header: {
         flex: 1,
+        flexGrow: 1,
         flexDirection: 'row',
         alignItems: 'center',
     },
