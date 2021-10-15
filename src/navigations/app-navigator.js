@@ -31,6 +31,7 @@ import Profile from '../scenes/profile/Profile';
 import Search from '../scenes/search/Search';
 import Settings from '../scenes/settings/Settings';
 import Subscription from '../scenes/subscription/Subscription';
+import { height } from 'styled-system';
 
 const BottomTab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -263,9 +264,10 @@ function AppNavigator({ navigation }) {
                     tabBarStyle: {
                         elevation: 0,
                         borderTopWidth: 0,
-                        paddingBottom: 10,
+                        paddingBottom: 0,
                     },
                     tabBarShowLabel: false,
+                    tabBarActiveBackgroundColor: Colors.GRAY_LIGHT,
                 }}>
                 <BottomTab.Screen
                     name="HomeNavigator"

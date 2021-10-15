@@ -2,19 +2,20 @@ import React from 'react';
 import { ImageBackground, StyleSheet, Text, View } from 'react-native';
 import { Colors } from '../../../styles/index';
 
-import img from './twitter.jpeg';
-
-function FrontCover({ header, subheader }) {
+function FrontCover({ header, subheader, imgsrc, height, location }) {
     return (
-        <View style={styles.container}>
+        <View style={[styles.container, { height: height }]}>
             <ImageBackground
-                source={img}
+                source={imgsrc}
                 alt="Twitter"
                 style={styles.image}
                 resizeMode="cover">
                 <View style={styles.imageContent}>
                     <Text style={styles.header}>{header}</Text>
                     <Text style={styles.subheader}>{subheader}</Text>
+                    {location !== undefined ? (
+                        <Text style={styles.subheader}>{location}</Text>
+                    ) : null}
                 </View>
             </ImageBackground>
         </View>
@@ -25,6 +26,7 @@ const styles = StyleSheet.create({
     container: { flex: 1 },
     image: {
         flex: 1,
+
         flexDirection: 'column',
         justifyContent: 'flex-end',
     },
