@@ -5,7 +5,11 @@ import { View, Text } from 'react-native';
 // import { ScrollView } from 'native-base';
 
 function MessageBody() {
-    return <View style={{ flex: 16 }}>{/* <Text>Body</Text> */}</View>;
+    return (
+        <View style={{ flex: 16 }}>
+            <Text>Body</Text>
+        </View>
+    );
 }
 
 export default MessageBody;

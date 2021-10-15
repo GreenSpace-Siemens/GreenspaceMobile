@@ -6,8 +6,6 @@ import { Colors } from '../../../styles/index';
 import SwipeItem from '../../atoms/swipeitem/SwipeItem';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
-// TODO: Fix forwardRef() warning
-
 function SwipeList({ data }) {
     const [listData, setListData] = React.useState(data);
 
@@ -19,7 +17,6 @@ function SwipeList({ data }) {
 
     const renderItem = ({ item }) => (
         <SwipeItem
-            ref={item.id}
             avatar={item.avatar}
             header={item.header}
             subheader={item.subheader}
