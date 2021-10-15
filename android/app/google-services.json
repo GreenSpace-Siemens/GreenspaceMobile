@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "847427935071",
+    "project_id": "reacttest-160d1",
+    "storage_bucket": "reacttest-160d1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:847427935071:android:c4e418f3bdbcbc9a7134ea",
+        "android_client_info": {
+          "package_name": "com.greenspacemobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "847427935071-pk3kmeo2lno0medf43kt9347qqibtbap.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB9ozut6_tPjAB2_bTWM2FCZ17xfMgR5lg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "847427935071-pk3kmeo2lno0medf43kt9347qqibtbap.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "847427935071-0vuipvmpdi5q9j7gmceaooaho39fiu0s.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "org.reactjs.native.example.GreenspaceMobile"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
