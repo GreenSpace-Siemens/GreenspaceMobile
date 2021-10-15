@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import { Box, ScrollView } from 'native-base';
 import FrontCover from '../../atoms/frontcover/FrontCover';
 import CardBody from '../../molecules/cardbody/CardBody';
@@ -7,8 +7,10 @@ import CardBody from '../../molecules/cardbody/CardBody';
 function PageCard() {
     return (
         <ScrollView
-            style={{ flex: 1 }}
-            _contentContainerStyle={{ flexGrow: 1 }}>
+            contentContainerStyle={{ flexGrow: 1 }}
+            onLayout={event => {
+                console.log(event.nativeEvent.layout);
+            }}>
             <FrontCover header="Software Engineer II" subheader="Twitter" />
             <CardBody />
         </ScrollView>

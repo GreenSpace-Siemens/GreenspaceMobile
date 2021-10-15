@@ -13,6 +13,26 @@ function CardBody() {
                 aboutValue="asdasdasdfasdfasgasgesdsdsdssdsdsdsdsdsdsdsdsdsdssdsdssdsdssdsdrsdgwergasdasdasdasd"
             />
             <ListSection header="Skills" />
+            <TextSection
+                header="About"
+                aboutValue="asdasdasdfasdfasgasgesdsdsdssdsdsdsdsdsdsdsdsdsdssdsdssdsdssdsdrsdgwergasdasdasdasd"
+            />
+            <ListSection header="Skills" />
+            <TextSection
+                header="About"
+                aboutValue="asdasdasdfasdfasgasgesdsdsdssdsdsdsdsdsdsdsdsdsdssdsdssdsdssdsdrsdgwergasdasdasdasd"
+            />
+            <ListSection header="Skills" />
+            <TextSection
+                header="About"
+                aboutValue="asdasdasdfasdfasgasgesdsdsdssdsdsdsdsdsdsdsdsdsdssdsdssdsdssdsdrsdgwergasdasdasdasd"
+            />
+            <ListSection header="Skills" />
+            <TextSection
+                header="About"
+                aboutValue="asdasdasdfasdfasgasgesdsdsdssdsdsdsdsdsdsdsdsdsdssdsdssdsdssdsdrsdgwergasdasdasdasd"
+            />
+            <ListSection header="Skills" />
         </View>
     );
 }

@@ -5,7 +5,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import { Colors } from '../../styles/index';
 
 // NOTE: Still working on it.
-// import PageCard from '../../components/organisms/pagecard/PageCard';
+import PageCard from '../../components/organisms/pagecard/PageCard';
 
 function Home({ navigation }) {
     return (
@@ -24,7 +24,9 @@ function Home({ navigation }) {
                     onPress={() => navigation.navigate('Notifications')}
                 />
             </View>
-            <View style={styles.body}></View>
+            <View style={styles.body}>
+                <PageCard />
+            </View>
         </View>
     );
 }
