@@ -3,8 +3,8 @@ import { View, StyleSheet, Text } from 'react-native';
 import { Button } from 'react-native-elements';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { Colors } from '../../styles/index';
+import Swiper from 'react-native-deck-swiper';
 
-// NOTE: Still working on it.
 import PageCard from '../../components/organisms/pagecard/PageCard';
 
 function Home({ navigation }) {
@@ -25,7 +25,17 @@ function Home({ navigation }) {
                 />
             </View>
             <View style={styles.body}>
-                <PageCard />
+                <Swiper
+                    cards={[1, 2, 3, 4, 5]}
+                    renderCard={card => {
+                        return <PageCard />;
+                    }}
+                    backgroundColor="#ffffff"
+                    cardVerticalMargin={0}
+                    verticalSwipe={false}
+                    horizontalThreshold={100}
+                    cardStyle={{ height: '97%' }}
+                />
             </View>
         </View>
     );
@@ -45,7 +55,7 @@ const styles = StyleSheet.create({
         position: 'relative',
         top: 17,
     },
-    body: { flex: 8, padding: 15 },
+    body: { flex: 8, padding: 0 },
     title: {
         flex: 1,
         textAlign: 'right',
