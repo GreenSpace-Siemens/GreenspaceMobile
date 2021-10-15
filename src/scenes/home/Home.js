@@ -5,9 +5,18 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import { Colors } from '../../styles/index';
 import Swiper from 'react-native-deck-swiper';
 
+import { jobs } from '../../database/Database';
 import PageCard from '../../components/organisms/pagecard/PageCard';
 
 function Home({ navigation }) {
+    const saveJob = jobID => {
+        console.log(`Saved Job! with ID: ${jobID}`);
+    };
+
+    const deleteJob = jobID => {
+        console.log(`Not interested in job with ID: ${jobID}`);
+    };
+
     return (
         <View style={styles.container}>
             <View style={styles.header}>
@@ -26,15 +35,24 @@ function Home({ navigation }) {
             </View>
             <View style={styles.body}>
                 <Swiper
-                    cards={[1, 2, 3, 4, 5]}
-                    renderCard={card => {
-                        return <PageCard />;
+                    cards={jobs}
+                    renderCard={job => {
+                        return (
+                            <PageCard
+                                header={job.title}
+                                subheader={job.company}
+                                imgsrc={job.picture}
+                                location={job.location}
+                            />
+                        );
                     }}
-                    backgroundColor="#ffffff"
+                    backgroundColor={Colors.WHITE}
                     cardVerticalMargin={0}
                     verticalSwipe={false}
                     horizontalThreshold={100}
                     cardStyle={{ height: '97%' }}
+                    onSwipedRight={jobID => saveJob(jobID)}
+                    onSwipedLeft={jobID => deleteJob(jobID)}
                 />
             </View>
         </View>

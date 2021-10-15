@@ -16,7 +16,13 @@ function Profile({ navigation }) {
                 rightButton="settings"
             />
             <View style={styles.body}>
-                <PageCard />
+                <PageCard
+                    header={`${profile.firstName} ${profile.lastName}`}
+                    subheader={`${profile.occupation} at ${profile.company}`}
+                    imgsrc={profile.picture}
+                    education={profile.education}
+                    location={profile.location}
+                />
             </View>
         </View>
     );

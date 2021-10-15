@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { Colors } from '../../../styles/index';
 
-function Education() {
+function Education({ school, degreeType, major, gradDate, gpa }) {
     return (
         <View style={styles.container}>
             <View style={styles.degree}>

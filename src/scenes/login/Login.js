@@ -24,8 +24,8 @@ function Login({ navigation }) {
         };
 
         // For debugging purposes
-        console.log(`Username: ${username}`);
-        console.log(`Password: ${password}`);
+        // console.log(`Username: ${username}`);
+        // console.log(`Password: ${password}`);
 
         navigation.navigate('App', user);
 
@@ -40,21 +40,6 @@ function Login({ navigation }) {
                 <Text style={styles.title}>GREENSPACE</Text>
             </View>
             <View style={styles.loginForm}>
-                {/* <TextInput
-                    placeholder="Email"
-                    style={styles.input}
-                    placeholderTextColor={Colors.GRAY_MEDIUM}
-                    onChangeText={username => handleUsername(username)}
-                    value={username}
-                />
-                <TextInput
-                    placeholder="Password"
-                    style={styles.input}
-                    placeholderTextColor={Colors.GRAY_MEDIUM}
-                    secureTextEntry={true}
-                    onChangeText={password => handlePassword(password)}
-                    value={password}
-                /> */}
                 <Input placeholder="Username" style={styles.input} />
                 <Input
                     placeholder="Password"
