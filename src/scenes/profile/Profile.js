@@ -10,18 +10,18 @@ import PageCard from '../../components/organisms/pagecard/PageCard';
 
 import auth from '@react-native-firebase/auth';
 
-
 function Profile({ navigation }) {
-
     const handleSignOut = () => {
-      auth().signOut().then(() => {
-        navigation.navigate('Login');
-        console.log('User signed out!')
-      })
-      .catch(error => {
-        console.error(error);
-      });
-    }
+        auth()
+            .signOut()
+            .then(() => {
+                navigation.navigate('Login');
+                console.log('User signed out!');
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    };
 
     return (
         <View style={styles.container}>
@@ -32,7 +32,6 @@ function Profile({ navigation }) {
                 rightButton="settings"
             />
             <View style={styles.body}>
-
                 <PageCard
                     header={`${profile.firstName} ${profile.lastName}`}
                     subheader={`${profile.occupation} at ${profile.company}`}
@@ -40,7 +39,6 @@ function Profile({ navigation }) {
                     education={profile.education}
                     location={profile.location}
                 />
-                <Text>Body</Text>
                 <Button style={styles.button} onPress={() => handleSignOut()}>
                     Sign out
                 </Button>
