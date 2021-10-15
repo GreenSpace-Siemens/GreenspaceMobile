@@ -5,7 +5,7 @@ import { Colors } from '../../../styles/index';
 import TextSection from '../../atoms/textsection/TextSection';
 import ListSection from '../listsection/ListSection';
 
-function CardBody() {
+function PageCardBody() {
     return (
         <View style={styles.container}>
             <TextSection
@@ -25,4 +25,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default CardBody;
+export default PageCardBody;

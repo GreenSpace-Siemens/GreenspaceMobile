@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { Box, ScrollView } from 'native-base';
 import FrontCover from '../../atoms/frontcover/FrontCover';
-import CardBody from '../../molecules/cardbody/CardBody';
+import PageCardBody from '../../molecules/pagecardbody/PageCardBody';
 
 function PageCard() {
     const [height, setHeight] = React.useState(0);
@@ -18,7 +18,7 @@ function PageCard() {
                 subheader="Twitter"
                 height={height}
             />
-            <CardBody />
+            <PageCardBody />
         </ScrollView>
     );
 }
