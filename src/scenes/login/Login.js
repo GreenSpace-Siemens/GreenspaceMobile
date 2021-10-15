@@ -2,6 +2,7 @@ import React from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 import { Button, Input } from 'native-base';
 import { Colors } from '../../styles/index';
+import auth from '@react-native-firebase/auth';
 
 function Login({ navigation }) {
     // Username input handler
@@ -27,7 +28,20 @@ function Login({ navigation }) {
         // console.log(`Username: ${username}`);
         // console.log(`Password: ${password}`);
 
-        navigation.navigate('App', user);
+        auth().signInWithEmailAndPassword(username, password)
+        .then(() => {
+          navigation.navigate('App', user);
+        })
+        .catch(error => {
+          if (error.code === 'auth/wrong-password') {
+            console.log('That password is wrong!');
+          }
+
+          if (error.code === 'auth/invalid-email') {
+            console.log('That email address is invalid!');
+          }
+          console.error(error);
+        });
 
         // Clears form inputs on submission
         setUsername(null);
@@ -40,10 +54,17 @@ function Login({ navigation }) {
                 <Text style={styles.title}>GREENSPACE</Text>
             </View>
             <View style={styles.loginForm}>
-                <Input placeholder="Username" style={styles.input} />
                 <Input
+                    onChangeText={(text) => setUsername(text)}
+                    placeholder="Username"
+                    style={styles.input}
+                    autoCapitalize='none'
+                />
+                <Input
+                    onChangeText={(text) => setPassword(text)}
                     placeholder="Password"
                     type="password"
+                    autoCapitalize='none'
                     style={styles.input}
                 />
                 <Text style={styles.link}>Forgot Password?</Text>
