@@ -4,9 +4,9 @@ import { Colors } from '../../../styles/index';
 
 import img from './twitter.jpeg';
 
-function FrontCover({ header, subheader }) {
+function FrontCover({ header, subheader, height }) {
     return (
-        <View style={styles.container}>
+        <View style={[styles.container, { height: height }]}>
             <ImageBackground
                 source={img}
                 alt="Twitter"
@@ -22,9 +22,10 @@ function FrontCover({ header, subheader }) {
 }
 
 const styles = StyleSheet.create({
-    container: { flex: 1, height: 568 },
+    container: { flex: 1 },
     image: {
         flex: 1,
+
         flexDirection: 'column',
         justifyContent: 'flex-end',
     },

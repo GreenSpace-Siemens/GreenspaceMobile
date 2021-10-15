@@ -5,24 +5,26 @@ import FrontCover from '../../atoms/frontcover/FrontCover';
 import CardBody from '../../molecules/cardbody/CardBody';
 
 function PageCard() {
+    const [height, setHeight] = React.useState(0);
+
     return (
         <ScrollView
-            contentContainerStyle={{ flexGrow: 1 }}
+            contentContainerStyle={styles.card}
             onLayout={event => {
-                console.log(event.nativeEvent.layout);
+                setHeight(event.nativeEvent.layout.height);
             }}>
-            <FrontCover header="Software Engineer II" subheader="Twitter" />
+            <FrontCover
+                header="Software Engineer II"
+                subheader="Twitter"
+                height={height}
+            />
             <CardBody />
         </ScrollView>
     );
 }
 
 const styles = StyleSheet.create({
-    card: {
-        height: '100%',
-        borderRadius: 20,
-        flexDirection: 'column',
-    },
+    card: { flexGrow: 1, borderRadius: 20 },
 });
 
 export default PageCard;
