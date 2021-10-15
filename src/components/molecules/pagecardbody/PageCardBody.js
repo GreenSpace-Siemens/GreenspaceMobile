@@ -2,7 +2,7 @@ import React from 'react';
 import { Dimensions, StyleSheet, Text, View } from 'react-native';
 import { Colors } from '../../../styles/index';
 
-import TextSection from '../../atoms/textsection/TextSection';
+import TextSection from '../textsection/TextSection';
 import ListSection from '../listsection/ListSection';
 
 function PageCardBody() {
