@@ -4,10 +4,10 @@ import { Colors } from '../../../styles/index';
 
 import Section from '../section/Section';
 
-function PageCardBody({}) {
+function PageCardBody({ skills }) {
     return (
         <View style={styles.container}>
-            <Section />
+            <Section header="Skills" skills={skills} />
         </View>
     );
 }

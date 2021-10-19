@@ -36,7 +36,7 @@ function Profile({ navigation }) {
                     header={`${profile.firstName} ${profile.lastName}`}
                     subheader={`${profile.occupation} at ${profile.company}`}
                     imgsrc={profile.picture}
-                    education={profile.education}
+                    skills={profile.skills}
                     location={profile.location}
                 />
                 <Button style={styles.button} onPress={() => handleSignOut()}>
