@@ -12,7 +12,7 @@ function Section({ header }) {
             <Text style={styles.header}>{header}</Text>
             <View style={styles.skills}>
                 {profile.skills.map(skill => {
-                    return <ListItem skill={skill} />;
+                    return <ListItem key={skill} skill={skill} />;
                 })}
             </View>
         </View>

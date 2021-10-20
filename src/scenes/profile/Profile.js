@@ -8,7 +8,8 @@ import { profile } from '../../database/Database';
 
 import PageCard from '../../components/organisms/pagecard/PageCard';
 
-import auth from '@react-native-firebase/auth';
+// Sign out auth moved to Account page.
+// import auth from '@react-native-firebase/auth';
 
 function Profile({ navigation }) {
     const {
@@ -21,17 +22,18 @@ function Profile({ navigation }) {
         skills,
     } = profile;
 
-    const handleSignOut = () => {
-        auth()
-            .signOut()
-            .then(() => {
-                navigation.navigate('Login');
-                console.log('User signed out!');
-            })
-            .catch(error => {
-                console.error(error);
-            });
-    };
+    // Sign out moved to account
+    // const handleSignOut = () => {
+    //     auth()
+    //         .signOut()
+    //         .then(() => {
+    //             navigation.navigate('Login');
+    //             console.log('User signed out!');
+    //         })
+    //         .catch(error => {
+    //             console.error(error);
+    //         });
+    // };
 
     return (
         <View style={styles.container}>
@@ -49,9 +51,10 @@ function Profile({ navigation }) {
                     skills={skills}
                     location={location}
                 />
+                {/* Sign out moved to Account Page. 
                 <Button style={styles.button} onPress={() => handleSignOut()}>
                     Sign out
-                </Button>
+                </Button> */}
             </View>
         </View>
     );
