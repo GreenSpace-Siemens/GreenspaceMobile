@@ -218,6 +218,8 @@ function EditProfileNavigator({ navigation }) {
                         }}
                         initialParams={{ link: 'Add Skill' }}
                     />
+                    {/* NOTE: Removing Education and Experiences
+                    
                     <TopTab.Screen
                         name="Experiences"
                         component={Background}
@@ -247,7 +249,7 @@ function EditProfileNavigator({ navigation }) {
                             },
                         }}
                         initialParams={{ link: 'Add Education' }}
-                    />
+                    /> */}
                 </TopTab.Navigator>
             </View>
         </View>

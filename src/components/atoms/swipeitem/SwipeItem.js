@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { Avatar } from 'native-base';
 import { Colors } from '../../../styles/index';
 
-function ListItem({ avatar, header, subheader, status }) {
+function SwipeItem({ avatar, header, subheader, status }) {
     return (
         <View style={styles.container}>
             <Avatar source={{ uri: avatar }} />
@@ -32,4 +32,4 @@ const styles = StyleSheet.create({
     status: { color: Colors.GREEN },
 });
 
-export default ListItem;
+export default SwipeItem;
