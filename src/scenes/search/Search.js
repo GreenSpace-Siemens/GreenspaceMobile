@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Text } from 'react-native';
 import { Input } from 'native-base';
 import { Colors } from '../../styles/index';
 
@@ -13,7 +13,9 @@ function Search() {
                     style={styles.input}
                 />
             </View>
-            <View style={styles.resultsContainer}></View>
+            <View style={styles.resultsContainer}>
+                <Text style={styles.text}>Search Engine Coming Soon!</Text>
+            </View>
         </View>
     );
 }
@@ -36,7 +38,16 @@ const styles = StyleSheet.create({
         paddingBottom: 6,
         paddingLeft: 30,
     },
-    resultsContainer: { flex: 9 },
+    resultsContainer: {
+        flex: 9,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    text: {
+        color: Colors.GREEN,
+        fontSize: 20,
+        fontWeight: 'bold',
+    },
 });
 
 export default Search;

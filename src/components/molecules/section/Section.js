@@ -7,6 +7,12 @@ import ListItem from '../../atoms/listitem/ListItem';
 import { profile } from '../../../database/Database';
 
 function Section({ header }) {
+    React.useEffect(() => {
+        console.log('====================================');
+        console.log('Change');
+        console.log(profile.skills);
+        console.log('====================================');
+    }, [profile.skills]);
     return (
         <View style={styles.container}>
             <Text style={styles.header}>{header}</Text>

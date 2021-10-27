@@ -6,13 +6,13 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Entypo from 'react-native-vector-icons/Entypo';
 
-function ToolBarButton({ navigation, type, toggleModal }) {
-    // Temporary
+function ToolBarButton({ navigation, type, toggleModal, skill }) {
+    // NOTE: Temporary
     const goBack = () => {
         if (toggleModal === undefined) {
             navigation.goBack();
         } else {
-            toggleModal();
+            toggleModal(skill);
         }
     };
 

@@ -28,24 +28,25 @@ function Login({ navigation }) {
         // console.log(`Username: ${username}`);
         // console.log(`Password: ${password}`);
 
-        auth().signInWithEmailAndPassword(username, password)
-        .then(() => {
-          navigation.navigate('App', user);
-        })
-        .catch(error => {
-          if (error.code === 'auth/wrong-password') {
-            console.log('That password is wrong!');
-          }
+        auth()
+            .signInWithEmailAndPassword(username, password)
+            .then(() => {
+                navigation.navigate('App', user);
+            })
+            .catch(error => {
+                if (error.code === 'auth/wrong-password') {
+                    console.log('That password is wrong!');
+                }
 
-          if (error.code === 'auth/invalid-email') {
-            console.log('That email address is invalid!');
-          }
-          console.error(error);
-        });
+                if (error.code === 'auth/invalid-email') {
+                    console.log('That email address is invalid!');
+                }
+                console.error(error);
+            });
 
         // Clears form inputs on submission
-        setUsername(null);
-        setPassword(null);
+        // setUsername(null);
+        // setPassword(null);
     };
 
     return (
@@ -55,16 +56,16 @@ function Login({ navigation }) {
             </View>
             <View style={styles.loginForm}>
                 <Input
-                    onChangeText={(text) => setUsername(text)}
+                    onChangeText={text => setUsername(text)}
                     placeholder="Username"
                     style={styles.input}
-                    autoCapitalize='none'
+                    autoCapitalize="none"
                 />
                 <Input
-                    onChangeText={(text) => setPassword(text)}
+                    onChangeText={text => setPassword(text)}
                     placeholder="Password"
                     type="password"
-                    autoCapitalize='none'
+                    autoCapitalize="none"
                     style={styles.input}
                 />
                 <Text style={styles.link}>Forgot Password?</Text>

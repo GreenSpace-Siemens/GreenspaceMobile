@@ -18,10 +18,13 @@ function CustomModal({
     leftButton,
     rightButton,
     padding,
+    addSkill,
 }) {
+    const [skill, setSkill] = React.useState(null);
+
     const form = () => {
         if (title === 'Add Skill') {
-            return <AddSkill />;
+            return <AddSkill addSkill={addSkill} setSkill={setSkill} />;
         } else if (title === 'Add Experience') {
             return <AddExperience />;
         } else if (title === 'New Message') {
@@ -74,6 +77,7 @@ function CustomModal({
                             leftButton={leftButton}
                             rightButton={rightButton}
                             toggleModal={toggleModal}
+                            skill={skill}
                         />
                     </Modal.Header>
                     <Modal.Body

@@ -1,79 +1,16 @@
 import React from 'react';
-import { View, StyleSheet, Text } from 'react-native';
+import { View, StyleSheet, Text, Button } from 'react-native';
 import Header from '../../components/organisms/header/Header';
 import { Colors } from '../../styles/index';
 import CustomModal from '../../components/molecules/custommodal/CustomModal';
 import SwipeList from '../../components/molecules/swipelist/SwipeList';
 
-function Messages({ navigation }) {
+function Messages({ navigation, route }) {
     const [open, setOpen] = React.useState(false);
 
     const toggleModal = () => {
         setOpen(!open);
     };
-
-    const data = [
-        {
-            id: 1,
-            avatar: 'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-            header: 'Header Name',
-            subheader: 'This is a subheader',
-        },
-        {
-            id: 2,
-            avatar: 'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-            header: 'Header Name',
-            subheader: 'This is a subheader',
-        },
-        {
-            id: 3,
-            avatar: 'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-            header: 'Header Name',
-            subheader: 'This is a subheader',
-        },
-        {
-            id: 4,
-            avatar: 'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-            header: 'Header Name',
-            subheader: 'This is a subheader',
-        },
-        {
-            id: 5,
-            avatar: 'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-            header: 'Header Name',
-            subheader: 'This is a subheader',
-        },
-        {
-            id: 6,
-            avatar: 'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-            header: 'Header Name',
-            subheader: 'This is a subheader',
-        },
-        {
-            id: 7,
-            avatar: 'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-            header: 'Header Name',
-            subheader: 'This is a subheader',
-        },
-        {
-            id: 8,
-            avatar: 'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-            header: 'Header Name',
-            subheader: 'This is a subheader',
-        },
-        {
-            id: 9,
-            avatar: 'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-            header: 'Header Name',
-            subheader: 'This is a subheader',
-        },
-        {
-            id: 10,
-            avatar: 'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-            header: 'Header Name',
-            subheader: 'This is a subheader',
-        },
-    ];
 
     return (
         <View style={styles.container}>
@@ -85,7 +22,7 @@ function Messages({ navigation }) {
                 toggleModal={toggleModal}
             />
             <View style={styles.body}>
-                <SwipeList data={data} />
+                <Text style={styles.text}>Messages Coming Soon!</Text>
             </View>
             <CustomModal
                 open={open}
@@ -107,6 +44,13 @@ const styles = StyleSheet.create({
         flexGrow: 9,
         borderTopWidth: 0.5,
         borderTopColor: Colors.GRAY_DARK,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    text: {
+        color: Colors.GREEN,
+        fontSize: 20,
+        fontWeight: 'bold',
     },
 });
 
