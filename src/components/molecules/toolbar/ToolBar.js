@@ -3,7 +3,14 @@ import { StyleSheet, View, Text } from 'react-native';
 import { Colors } from '../../../styles/index';
 import ToolBarButton from '../../atoms/toolbarbutton/ToolBarButton';
 
-function ToolBar({ navigation, title, leftButton, rightButton, toggleModal }) {
+function ToolBar({
+    navigation,
+    title,
+    leftButton,
+    rightButton,
+    toggleModal,
+    skill,
+}) {
     return (
         <View style={styles.toolbar}>
             <ToolBarButton
@@ -16,6 +23,7 @@ function ToolBar({ navigation, title, leftButton, rightButton, toggleModal }) {
                 navigation={navigation}
                 type={rightButton}
                 toggleModal={toggleModal}
+                skill={skill}
             />
         </View>
     );

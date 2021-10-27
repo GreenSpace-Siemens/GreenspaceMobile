@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { Colors } from '../../../styles/index';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
-function Skill({ islast, skill }) {
+function Skill({ islast, skill, deleteSkill }) {
     return (
         <View
             style={[styles.container, { borderBottomWidth: !islast ? 1 : 0 }]}>
@@ -13,6 +13,7 @@ function Skill({ islast, skill }) {
                 name="delete"
                 color={Colors.RED}
                 style={styles.icon}
+                onPress={() => deleteSkill(skill)}
             />
         </View>
     );
