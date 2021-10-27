@@ -16,11 +16,6 @@ function RootNavigator() {
                 screenOptions={{ headerShown: false }}>
                 <Stack.Screen name="Auth" component={AuthNavigator} />
                 <Stack.Screen name="App" component={AppNavigator} />
-                <Stack.Group
-                    screenOptions={{
-                        animation: 'fade_from_bottom',
-                        presentation: 'transparentModal',
-                    }}></Stack.Group>
             </Stack.Navigator>
         </NavigationContainer>
     );

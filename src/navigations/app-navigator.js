@@ -1,6 +1,6 @@
 // * Dashboard, Home, Messages, Saved, Profile, EditProfile
 import React from 'react';
-import { View, StyleSheet, Text } from 'react-native';
+import { View, StyleSheet, Text, Button } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -31,7 +31,6 @@ import Profile from '../scenes/profile/Profile';
 import Search from '../scenes/search/Search';
 import Settings from '../scenes/settings/Settings';
 import Subscription from '../scenes/subscription/Subscription';
-import { height } from 'styled-system';
 
 const BottomTab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -52,7 +51,7 @@ function HomeNavigator({ navigation }) {
     );
 }
 
-function MessageNavigator({ navigation }) {
+function MessageNavigator({ navigation, route }) {
     return (
         <Stack.Navigator
             initialRouteName="Messages"
@@ -258,7 +257,10 @@ function EditProfileNavigator({ navigation }) {
 
 function AppNavigator({ navigation }) {
     return (
-        <View style={{ height: '100%' }}>
+        <View
+            style={{
+                height: '100%',
+            }}>
             <BottomTab.Navigator
                 initialRouteName="HomeNavigator"
                 screenOptions={{
