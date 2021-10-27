@@ -7,7 +7,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import Entypo from 'react-native-vector-icons/Entypo';
 
 function ToolBarButton({ navigation, type, toggleModal, skill }) {
-    // Temporary
+    // NOTE: Temporary
     const goBack = () => {
         if (toggleModal === undefined) {
             navigation.goBack();
