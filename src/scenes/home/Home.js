@@ -10,6 +10,7 @@ import img from './twitter.jpeg';
 
 import PageCard from '../../components/organisms/pagecard/PageCard';
 import firestore from '@react-native-firebase/firestore';
+import auth from '@react-native-firebase/auth';
 
 function Home({ navigation }) {
     const [jobs, setJobs] = React.useState(null);
@@ -19,10 +20,10 @@ function Home({ navigation }) {
             .get()
             .then(snapshot => {
                 let queries = [];
-                snapshot.forEach(docSnap => {
+                snapshot.forEach((docSnap, i) => {
                     const data = docSnap.data();
-
                     const job = {
+                        ref: docSnap.ref.path,
                         title: data.title,
                         company: data.company,
                         location: data.location,
@@ -39,8 +40,18 @@ function Home({ navigation }) {
         fetchJobs();
     }, []);
 
-    const saveJob = jobID => {
+    const saveJob = async jobID => {
         console.log(`Saved Job! with ID: ${jobID}`);
+
+        const userID = auth().currentUser.uid;
+        await firestore()
+            .collection('Users')
+            .doc(userID)
+            .update({
+                'favorites.saved': firestore.FieldValue.arrayUnion({
+                    job: jobs[jobID].ref,
+                }),
+            });
     };
 
     const deleteJob = jobID => {
