@@ -20,7 +20,7 @@ function Home({ navigation }) {
             .get()
             .then(snapshot => {
                 let queries = [];
-                snapshot.forEach((docSnap, i) => {
+                snapshot.forEach(docSnap => {
                     const data = docSnap.data();
                     const job = {
                         ref: docSnap.ref.path,
