@@ -40,23 +40,6 @@ function Home({ navigation }) {
 
     const fetchJobs = async () => {
         await firestore().collection('Jobs').onSnapshot(onResult, onError);
-        // .get()
-        // .then(snapshot => {
-        //     let queries = [];
-        //     snapshot.forEach(docSnap => {
-        //         const data = docSnap.data();
-        //         const job = {
-        //             ref: docSnap.ref.path,
-        //             title: data.title,
-        //             company: data.company,
-        //             location: data.location,
-        //         };
-
-        //         queries.push(job);
-        //     });
-
-        //     setJobs(queries);
-        // });
     };
 
     React.useEffect(() => {
