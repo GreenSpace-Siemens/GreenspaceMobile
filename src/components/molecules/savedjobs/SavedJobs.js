@@ -10,15 +10,13 @@ import firestore from '@react-native-firebase/firestore';
 function SavedJobs() {
     const [saved, setSaved] = React.useState(null);
 
-    const fetchSavedJobs = async () => {
-        const userID = auth().currentUser.uid;
-        const user = await firestore().collection('Users').doc(userID).get();
-        const userData = user.data();
+    const onResult = async QuerySnapshot => {
+        const userData = QuerySnapshot.data();
 
         const initJobs = [];
         for (let i = 0; i < userData.favorites.saved.length; i++) {
-            let ref = userData.favorites.saved[i].job.slice(5);
-            const job = await firestore().collection('Jobs').doc(ref).get();
+            const jobRef = userData.favorites.saved[i].job.slice(5);
+            const job = await firestore().collection('Jobs').doc(jobRef).get();
             const jobData = job.data();
 
             const nextJob = {
@@ -32,6 +30,18 @@ function SavedJobs() {
         }
 
         setSaved(initJobs);
+    };
+
+    const onError = error => {
+        console.log(error);
+    };
+
+    const fetchSavedJobs = async () => {
+        const userID = auth().currentUser.uid;
+        await firestore()
+            .collection('Users')
+            .doc(userID)
+            .onSnapshot(onResult, onError);
     };
 
     React.useEffect(() => {
