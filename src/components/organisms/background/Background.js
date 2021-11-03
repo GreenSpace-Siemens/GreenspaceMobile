@@ -84,12 +84,6 @@ function Background({ navigation, route }) {
                         return (
                             <Skill
                                 key={i}
-                                id={i}
-                                islast={
-                                    i + 1 >= profile.skills.length
-                                        ? true
-                                        : false
-                                }
                                 skill={skill}
                                 deleteSkill={deleteSkill}
                             />

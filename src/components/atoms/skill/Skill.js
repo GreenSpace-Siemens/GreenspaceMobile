@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { Colors } from '../../../styles/index';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
-function Skill({ islast, skill, deleteSkill }) {
+function Skill({ skill, deleteSkill }) {
     return (
         <View style={styles.container}>
             <Text style={styles.text}>{skill}</Text>
