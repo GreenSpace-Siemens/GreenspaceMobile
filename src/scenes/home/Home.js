@@ -95,6 +95,7 @@ function Home({ navigation }) {
                                     imgsrc={img}
                                     location={job.location}
                                     description={job.description}
+                                    type="job"
                                 />
                             );
                         }}

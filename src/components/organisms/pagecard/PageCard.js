@@ -4,7 +4,7 @@ import { Box, ScrollView } from 'native-base';
 import FrontCover from '../../atoms/frontcover/FrontCover';
 import PageCardBody from '../../molecules/pagecardbody/PageCardBody';
 
-function PageCard({ header, subheader, imgsrc, location, description }) {
+function PageCard({ header, subheader, imgsrc, location, description, type }) {
     const [height, setHeight] = React.useState(0);
 
     return (
@@ -19,6 +19,7 @@ function PageCard({ header, subheader, imgsrc, location, description }) {
                 imgsrc={imgsrc}
                 height={height}
                 location={location}
+                type={type}
             />
             <PageCardBody description={description} />
         </ScrollView>

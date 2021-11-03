@@ -2,14 +2,25 @@ import React from 'react';
 import { ImageBackground, StyleSheet, Text, View } from 'react-native';
 import { Colors } from '../../../styles/index';
 
-function FrontCover({ header, subheader, imgsrc, height, location }) {
+function FrontCover({ header, subheader, imgsrc, height, location, type }) {
     return (
         <View style={[styles.container, { height: height }]}>
             <ImageBackground
                 source={imgsrc}
                 alt="Twitter"
-                style={styles.image}
+                style={[
+                    styles.image,
+                    {
+                        justifyContent:
+                            type === 'job' ? 'space-between' : 'flex-end',
+                    },
+                ]}
                 resizeMode="cover">
+                {type === 'job' ? (
+                    <View style={styles.score}>
+                        <Text style={styles.scoreText}>0%</Text>
+                    </View>
+                ) : null}
                 <View style={styles.imageContent}>
                     <Text style={styles.header}>{header}</Text>
                     <Text style={styles.subheader}>{subheader}</Text>
@@ -28,7 +39,21 @@ const styles = StyleSheet.create({
         flex: 1,
 
         flexDirection: 'column',
-        justifyContent: 'flex-end',
+    },
+    score: {
+        backgroundColor: Colors.WHITE,
+        opacity: 0.7,
+        width: 60,
+        height: 60,
+        borderBottomLeftRadius: 18,
+        justifyContent: 'center',
+        alignItems: 'center',
+        alignSelf: 'flex-end',
+    },
+    scoreText: {
+        fontSize: 30,
+        fontWeight: 'bold',
+        color: Colors.GRAY_VERY_DARK,
     },
     imageContent: { padding: 20 },
     header: { color: Colors.WHITE, fontSize: 24, fontWeight: 'bold' },
