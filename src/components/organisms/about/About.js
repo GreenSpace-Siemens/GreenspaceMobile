@@ -4,6 +4,10 @@ import { WebView } from 'react-native-webview';
 import { RichEditor, RichToolbar } from 'react-native-pell-rich-editor';
 import { Colors } from '../../../styles/index';
 
+// Firebase
+import auth from '@react-native-firebase/auth';
+import firestore from '@react-native-firebase/firestore';
+
 function About({ navigation }) {
     const textRef = React.createRef();
 
