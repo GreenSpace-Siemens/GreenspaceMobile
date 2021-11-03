@@ -1,39 +1,40 @@
 import React from 'react';
-import { View, StyleSheet, Text } from 'react-native';
+import { ActivityIndicator, View, StyleSheet, Text } from 'react-native';
 import { Button, Input } from 'native-base';
 import Header from '../../components/organisms/header/Header';
 import { Colors } from '../../styles/index';
 
 import { profile } from '../../database/Database';
-
 import PageCard from '../../components/organisms/pagecard/PageCard';
 
-// Sign out auth moved to Account page.
-// import auth from '@react-native-firebase/auth';
+import auth from '@react-native-firebase/auth';
+import firestore from '@react-native-firebase/firestore';
 
 function Profile({ navigation }) {
-    const {
-        firstName,
-        lastName,
-        occupation,
-        company,
-        location,
-        picture,
-        skills,
-    } = profile;
+    const { picture } = profile;
 
-    // Sign out moved to account
-    // const handleSignOut = () => {
-    //     auth()
-    //         .signOut()
-    //         .then(() => {
-    //             navigation.navigate('Login');
-    //             console.log('User signed out!');
-    //         })
-    //         .catch(error => {
-    //             console.error(error);
-    //         });
-    // };
+    const [user, setUser] = React.useState(null);
+    const onResult = QuerySnapshot => {
+        const userData = QuerySnapshot.data();
+        setUser(userData);
+    };
+
+    const onError = error => {
+        console.error(error);
+    };
+
+    const fetchUserData = async () => {
+        const userID = auth().currentUser.uid;
+        await firestore()
+            .collection('Users')
+            .doc(userID)
+            .onSnapshot(onResult, onError);
+    };
+
+    React.useEffect(() => {
+        fetchUserData();
+        console.log(user);
+    }, []);
 
     return (
         <View style={styles.container}>
@@ -44,17 +45,17 @@ function Profile({ navigation }) {
                 rightButton="settings"
             />
             <View style={styles.body}>
-                <PageCard
-                    header={`${firstName} ${lastName}`}
-                    subheader={`${occupation} at ${company}`}
-                    imgsrc={picture}
-                    skills={skills}
-                    location={location}
-                />
-                {/* Sign out moved to Account Page. 
-                <Button style={styles.button} onPress={() => handleSignOut()}>
-                    Sign out
-                </Button> */}
+                {user === null ? (
+                    <ActivityIndicator size={60} color={Colors.GREEN} />
+                ) : (
+                    <PageCard
+                        header={`${user.name.firstName} ${user.name.lastName}`}
+                        subheader={`${user.occupation.title} at ${user.occupation.company}`}
+                        imgsrc={picture}
+                        location={user.occupation.location}
+                        description={user.description}
+                    />
+                )}
             </View>
         </View>
     );
@@ -62,7 +63,11 @@ function Profile({ navigation }) {
 
 const styles = StyleSheet.create({
     container: { height: '100%', backgroundColor: Colors.WHITE },
-    body: { flex: 9, padding: 15 },
+    body: {
+        flex: 9,
+        padding: 15,
+        justifyContent: 'center',
+    },
 });
 
 export default Profile;

@@ -26,6 +26,7 @@ function Home({ navigation }) {
                 title: data.title,
                 company: data.company,
                 location: data.location,
+                description: data.description,
             };
 
             queries.push(job);
@@ -93,6 +94,7 @@ function Home({ navigation }) {
                                     subheader={job.company}
                                     imgsrc={img}
                                     location={job.location}
+                                    description={job.description}
                                 />
                             );
                         }}
