@@ -1,83 +1,77 @@
 import React from 'react';
-import { ScrollView } from 'native-base';
+import { ActivityIndicator } from 'react-native';
+import { ScrollView, View } from 'native-base';
 import SwipeItem from '../../atoms/swipeitem/SwipeItem';
+import { Colors } from '../../../styles/index';
+
+import auth from '@react-native-firebase/auth';
+import firestore from '@react-native-firebase/firestore';
 
 function SavedJobs() {
-    const data = [
-        {
-            id: 1,
-            avatar: 'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-            header: 'Header Name',
-            subheader: 'This is a subheader',
-        },
-        {
-            id: 2,
-            avatar: 'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-            header: 'Header Name',
-            subheader: 'This is a subheader',
-        },
-        {
-            id: 3,
-            avatar: 'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-            header: 'Header Name',
-            subheader: 'This is a subheader',
-        },
-        {
-            id: 4,
-            avatar: 'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-            header: 'Header Name',
-            subheader: 'This is a subheader',
-        },
-        {
-            id: 5,
-            avatar: 'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-            header: 'Header Name',
-            subheader: 'This is a subheader',
-        },
-        {
-            id: 6,
-            avatar: 'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-            header: 'Header Name',
-            subheader: 'This is a subheader',
-        },
-        {
-            id: 7,
-            avatar: 'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-            header: 'Header Name',
-            subheader: 'This is a subheader',
-        },
-        {
-            id: 8,
-            avatar: 'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-            header: 'Header Name',
-            subheader: 'This is a subheader',
-        },
-        {
-            id: 9,
-            avatar: 'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-            header: 'Header Name',
-            subheader: 'This is a subheader',
-        },
-        {
-            id: 10,
-            avatar: 'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
-            header: 'Header Name',
-            subheader: 'This is a subheader',
-        },
-    ];
+    const [saved, setSaved] = React.useState(null);
+
+    const onResult = async QuerySnapshot => {
+        const userData = QuerySnapshot.data();
+
+        const initJobs = [];
+        for (let i = 0; i < userData.favorites.saved.length; i++) {
+            const jobRef = userData.favorites.saved[i].job.slice(5);
+            const job = await firestore().collection('Jobs').doc(jobRef).get();
+            const jobData = job.data();
+
+            const nextJob = {
+                id: i,
+                avatar: 'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
+                header: `${jobData.title}`,
+                subheader: `${jobData.company}\n${jobData.location}`,
+            };
+
+            initJobs.push(nextJob);
+        }
+
+        setSaved(initJobs);
+    };
+
+    const onError = error => {
+        console.log(error);
+    };
+
+    const fetchSavedJobs = async () => {
+        const userID = auth().currentUser.uid;
+        await firestore()
+            .collection('Users')
+            .doc(userID)
+            .onSnapshot(onResult, onError);
+    };
+
+    React.useEffect(() => {
+        fetchSavedJobs();
+    }, []);
 
     return (
-        <ScrollView style={{ height: '100%', backgroundColor: '#ffffff' }}>
-            {data.map(({ id, avatar, header, subheader }) => {
-                return (
-                    <SwipeItem
-                        key={id}
-                        avatar={avatar}
-                        header={header}
-                        subheader={subheader}
-                    />
-                );
-            })}
+        <ScrollView
+            style={{
+                height: '100%',
+                backgroundColor: '#ffffff',
+            }}>
+            {saved === null ? (
+                <ActivityIndicator
+                    size={60}
+                    color={Colors.GREEN}
+                    style={{ marginTop: 240 }}
+                />
+            ) : (
+                saved.map(({ id, avatar, header, subheader }) => {
+                    return (
+                        <SwipeItem
+                            key={id}
+                            avatar={avatar}
+                            header={header}
+                            subheader={subheader}
+                        />
+                    );
+                })
+            )}
         </ScrollView>
     );
 }

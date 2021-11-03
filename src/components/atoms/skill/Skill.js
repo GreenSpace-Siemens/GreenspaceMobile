@@ -3,10 +3,9 @@ import { StyleSheet, Text, View } from 'react-native';
 import { Colors } from '../../../styles/index';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
-function Skill({ islast, skill, deleteSkill }) {
+function Skill({ skill, deleteSkill }) {
     return (
-        <View
-            style={[styles.container, { borderBottomWidth: !islast ? 1 : 0 }]}>
+        <View style={styles.container}>
             <Text style={styles.text}>{skill}</Text>
             <MaterialIcons
                 size={25}
@@ -21,7 +20,8 @@ function Skill({ islast, skill, deleteSkill }) {
 
 const styles = StyleSheet.create({
     container: {
-        borderBottomColor: Colors.GRAY_LIGHT,
+        borderTopWidth: 1,
+        borderTopColor: Colors.GRAY_LIGHT,
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',

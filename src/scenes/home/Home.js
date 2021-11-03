@@ -1,16 +1,64 @@
 import React from 'react';
-import { View, StyleSheet, Text } from 'react-native';
+import { ActivityIndicator, View, StyleSheet, Text } from 'react-native';
 import { Button } from 'react-native-elements';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { Colors } from '../../styles/index';
 import Swiper from 'react-native-deck-swiper';
 
-import { jobs } from '../../database/Database';
+// This is dummy image
+import img from './twitter.jpeg';
+
 import PageCard from '../../components/organisms/pagecard/PageCard';
+import firestore from '@react-native-firebase/firestore';
+import auth from '@react-native-firebase/auth';
 
 function Home({ navigation }) {
-    const saveJob = jobID => {
+    const [jobs, setJobs] = React.useState(null);
+    const onResult = QuerySnapshot => {
+        const queries = [];
+
+        console.log('Total Jobs: ' + QuerySnapshot.size);
+
+        QuerySnapshot.forEach(docSnap => {
+            const data = docSnap.data();
+            const job = {
+                ref: docSnap.ref.path,
+                title: data.title,
+                company: data.company,
+                location: data.location,
+                description: data.description,
+            };
+
+            queries.push(job);
+        });
+
+        setJobs(queries);
+    };
+
+    const onError = error => {
+        console.error(error);
+    };
+
+    const fetchJobs = async () => {
+        await firestore().collection('Jobs').onSnapshot(onResult, onError);
+    };
+
+    React.useEffect(() => {
+        fetchJobs();
+    }, []);
+
+    const saveJob = async jobID => {
         console.log(`Saved Job! with ID: ${jobID}`);
+
+        const userID = auth().currentUser.uid;
+        await firestore()
+            .collection('Users')
+            .doc(userID)
+            .update({
+                'favorites.saved': firestore.FieldValue.arrayUnion({
+                    job: jobs[jobID].ref,
+                }),
+            });
     };
 
     const deleteJob = jobID => {
@@ -34,26 +82,31 @@ function Home({ navigation }) {
                 />
             </View>
             <View style={styles.body}>
-                <Swiper
-                    cards={jobs}
-                    renderCard={job => {
-                        return (
-                            <PageCard
-                                header={job.title}
-                                subheader={job.company}
-                                imgsrc={job.picture}
-                                location={job.location}
-                            />
-                        );
-                    }}
-                    backgroundColor={Colors.WHITE}
-                    cardVerticalMargin={0}
-                    verticalSwipe={false}
-                    horizontalThreshold={100}
-                    cardStyle={{ height: '97%' }}
-                    onSwipedRight={jobID => saveJob(jobID)}
-                    onSwipedLeft={jobID => deleteJob(jobID)}
-                />
+                {jobs === null ? (
+                    <ActivityIndicator size={60} color={Colors.GREEN} />
+                ) : (
+                    <Swiper
+                        cards={jobs}
+                        renderCard={job => {
+                            return (
+                                <PageCard
+                                    header={job.title}
+                                    subheader={job.company}
+                                    imgsrc={img}
+                                    location={job.location}
+                                    description={job.description}
+                                />
+                            );
+                        }}
+                        backgroundColor={Colors.WHITE}
+                        cardVerticalMargin={0}
+                        verticalSwipe={false}
+                        horizontalThreshold={100}
+                        cardStyle={{ height: '97%' }}
+                        onSwipedRight={jobID => saveJob(jobID)}
+                        onSwipedLeft={jobID => deleteJob(jobID)}
+                    />
+                )}
             </View>
         </View>
     );
@@ -73,7 +126,12 @@ const styles = StyleSheet.create({
         position: 'relative',
         top: 17,
     },
-    body: { flex: 8, padding: 0 },
+    body: {
+        flex: 8,
+        padding: 0,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
     title: {
         flex: 1,
         textAlign: 'right',

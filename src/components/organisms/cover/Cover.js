@@ -8,8 +8,48 @@ import img from './profile-pic.jpg';
 
 import { launchImageLibrary } from 'react-native-image-picker';
 
+// Firebase
+import auth from '@react-native-firebase/auth';
+import firestore from '@react-native-firebase/firestore';
+
 function Cover({ navigation }) {
+    const [cover, setCover] = React.useState(null);
+
+    const onResult = QuerySnapshot => {
+        const userData = QuerySnapshot.data();
+
+        const initCover = {
+            firstName: userData.name.firstName,
+            lastName: userData.name.lastName,
+            occupation: userData.occupation.title,
+            company: userData.occupation.company,
+            location: userData.occupation.location,
+        };
+
+        setCover(initCover);
+    };
+
+    const onError = error => {
+        console.error(error);
+    };
+
+    const fetchCoverData = async () => {
+        const userID = auth().currentUser.uid;
+        await firestore()
+            .collection('Users')
+            .doc(userID)
+            .onSnapshot(onResult, onError);
+    };
+
+    React.useEffect(() => {
+        fetchCoverData();
+        return () => {
+            setCover(null);
+        };
+    }, []);
+
     const [photo, setPhoto] = React.useState(img);
+
     return (
         <View style={styles.container}>
             <Text style={styles.label}>Cover Photo</Text>
@@ -32,15 +72,35 @@ function Cover({ navigation }) {
                     size={190}
                 />
             </View>
-            <TextInput style={styles.input} />
+            <TextInput
+                style={styles.input}
+                placeholder={cover !== null ? cover.firstName : null}
+                placeholderTextColor={Colors.GREEN}
+            />
             <Text style={styles.label}>First Name</Text>
-            <TextInput style={styles.input} />
+            <TextInput
+                style={styles.input}
+                placeholder={cover !== null ? cover.lastName : null}
+                placeholderTextColor={Colors.GREEN}
+            />
             <Text style={styles.label}>Last Name</Text>
-            <TextInput style={styles.input} />
+            <TextInput
+                style={styles.input}
+                placeholder={cover !== null ? cover.occupation : null}
+                placeholderTextColor={Colors.GREEN}
+            />
             <Text style={styles.label}>Occupation</Text>
-            <TextInput style={styles.input} />
+            <TextInput
+                style={styles.input}
+                placeholder={cover !== null ? cover.company : null}
+                placeholderTextColor={Colors.GREEN}
+            />
             <Text style={styles.label}>Company</Text>
-            <TextInput style={styles.input} />
+            <TextInput
+                style={styles.input}
+                placeholder={cover !== null ? cover.location : null}
+                placeholderTextColor={Colors.GREEN}
+            />
             <Text style={styles.label}>Location</Text>
         </View>
     );

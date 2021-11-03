@@ -4,10 +4,19 @@ import { Colors } from '../../../styles/index';
 
 import Section from '../section/Section';
 
-function PageCardBody({ skills }) {
+function PageCardBody({ skills, description }) {
     return (
         <View style={styles.container}>
-            <Section header="Skills" skills={skills} />
+            {Object.keys(description).map(key => {
+                return (
+                    <Section
+                        key={key}
+                        type={typeof description[key]}
+                        header={key}
+                        body={description[key]}
+                    />
+                );
+            })}
         </View>
     );
 }
