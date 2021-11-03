@@ -56,10 +56,13 @@ function Background({ navigation, route }) {
         });
     };
 
-    const addSkill = skill => {
+    const addSkill = async skill => {
         const modSkills = [...skills];
         modSkills.push(skill);
-        setSkills(modSkills);
+
+        await firestore().collection('Users').doc(userID).update({
+            'description.Skills': modSkills,
+        });
     };
 
     const [open, setOpen] = React.useState(false);
