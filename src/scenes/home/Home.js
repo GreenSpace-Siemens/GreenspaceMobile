@@ -64,6 +64,7 @@ function Home({ navigation }) {
 
             fetchJobs();
         }
+
         fetchUserType();
     }, []);
 
