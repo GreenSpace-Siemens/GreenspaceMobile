@@ -5,6 +5,7 @@ import FrontCover from '../../atoms/frontcover/FrontCover';
 import PageCardBody from '../../molecules/pagecardbody/PageCardBody';
 
 function PageCard({
+    jobRef,
     header,
     subheader,
     imgsrc,

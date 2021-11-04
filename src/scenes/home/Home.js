@@ -111,6 +111,7 @@ function Home({ navigation }) {
                         renderCard={job => {
                             return (
                                 <PageCard
+                                    jobRef={job.ref}
                                     header={job.title}
                                     subheader={job.company}
                                     imgsrc={img}
