@@ -3,7 +3,8 @@ import { View, StyleSheet, TextInput } from 'react-native';
 import { Colors } from '../../styles/index';
 import Header from '../../components/organisms/header/Header';
 
-function Email({ navigation }) {
+function Email({ navigation, route }) {
+    const [email, setEmail] = React.useState(route.params.email);
     return (
         <View style={styles.container}>
             <Header
@@ -14,9 +15,11 @@ function Email({ navigation }) {
             />
             <View style={styles.body}>
                 <TextInput
-                    placeholder="Enter or Update email"
+                    placeholder="Update email"
                     style={styles.input}
                     placeholderTextColor={Colors.GRAY_MEDIUM}
+                    value={email}
+                    onChangeText={text => setEmail(text)}
                 />
             </View>
         </View>

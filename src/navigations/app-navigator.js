@@ -21,6 +21,7 @@ import TopTabLabel from '../components/atoms/toptablabel/TopTabLabel';
 // Scenes
 import Account from '../scenes/account/Account';
 import Email from '../scenes/email/Email';
+import Page from '../scenes/page/Page';
 import Home from '../scenes/home/Home';
 import Messages from '../scenes/messages/Messages';
 import Notifications from '../scenes/notifications/Notifications';
@@ -47,6 +48,7 @@ function HomeNavigator({ navigation }) {
             }}>
             <Stack.Screen name="Home" component={Home} />
             <Stack.Screen name="Notifications" component={Notifications} />
+            <Stack.Screen name="Page" component={Page} />
         </Stack.Navigator>
     );
 }
@@ -57,11 +59,27 @@ function MessageNavigator({ navigation, route }) {
             initialRouteName="Messages"
             screenOptions={{ headerShown: false }}>
             <Stack.Screen name="Messages" component={Messages} />
+            <Stack.Screen name="Page" component={Page} />
         </Stack.Navigator>
     );
 }
 
-function SavedNavigator({ navigation }) {
+function SearchNavigator({ navigation }) {
+    return (
+        <Stack.Navigator
+            initialRouteName="Home"
+            screenOptions={{
+                headerShown: false,
+                animation: 'slide_from_right',
+                presentation: 'transparentModal',
+            }}>
+            <Stack.Screen name="Search" component={Search} />
+            <Stack.Screen name="Page" component={Page} />
+        </Stack.Navigator>
+    );
+}
+
+function SavedTabs({ navigation }) {
     return (
         <View style={styles.container}>
             <View style={styles.header}>
@@ -72,7 +90,9 @@ function SavedNavigator({ navigation }) {
                     initialRouteName="Saved"
                     screenOptions={{
                         tabBarPressColor: Colors.WHITE,
-                        tabBarIndicatorStyle: { backgroundColor: Colors.GREEN },
+                        tabBarIndicatorStyle: {
+                            backgroundColor: Colors.GREEN,
+                        },
                     }}>
                     <TopTab.Screen
                         name="Saved"
@@ -108,6 +128,21 @@ function SavedNavigator({ navigation }) {
     );
 }
 
+function SavedNavigator({ navigation }) {
+    return (
+        <Stack.Navigator
+            initialRouteName="SavedTabs"
+            screenOptions={{
+                headerShown: false,
+                animation: 'slide_from_right',
+                presentation: 'transparentModal',
+            }}>
+            <Stack.Screen name="SavedTabs" component={SavedTabs} />
+            <Stack.Screen name="Page" component={Page} />
+        </Stack.Navigator>
+    );
+}
+
 function ProfileNavigator({ navigation }) {
     return (
         <Stack.Navigator
@@ -132,6 +167,7 @@ function ProfileNavigator({ navigation }) {
             <Stack.Screen name="Email" component={Email} />
             <Stack.Screen name="Phone" component={Phone} />
             <Stack.Screen name="Password" component={Password} />
+            <Stack.Screen name="Page" component={Page} />
         </Stack.Navigator>
     );
 }
@@ -300,8 +336,8 @@ function AppNavigator({ navigation }) {
                     }}
                 />
                 <BottomTab.Screen
-                    name="Search"
-                    component={Search}
+                    name="SearchNavigator"
+                    component={SearchNavigator}
                     options={{
                         tabBarIcon: () => (
                             <FontAwesome

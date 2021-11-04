@@ -13,20 +13,35 @@ import firestore from '@react-native-firebase/firestore';
 import auth from '@react-native-firebase/auth';
 
 function Home({ navigation }) {
+    const [userType, setUserType] = React.useState(null);
+
+    const fetchUserType = async () => {
+        const userID = auth().currentUser.uid;
+        await firestore()
+            .collection('Users')
+            .doc(userID)
+            .get()
+            .then(snapshot => {
+                const data = snapshot.data();
+                setUserType(data.userType);
+            });
+    };
+
     const [jobs, setJobs] = React.useState(null);
     const onResult = QuerySnapshot => {
         const queries = [];
 
-        console.log('Total Jobs: ' + QuerySnapshot.size);
-
         QuerySnapshot.forEach(docSnap => {
             const data = docSnap.data();
+
             const job = {
                 ref: docSnap.ref.path,
                 title: data.title,
                 company: data.company,
                 location: data.location,
                 description: data.description,
+                date: data.time_stamp,
+                link: data.link,
             };
 
             queries.push(job);
@@ -39,12 +54,17 @@ function Home({ navigation }) {
         console.error(error);
     };
 
-    const fetchJobs = async () => {
-        await firestore().collection('Jobs').onSnapshot(onResult, onError);
-    };
-
     React.useEffect(() => {
-        fetchJobs();
+        if (userType !== 0) {
+            const fetchJobs = async () => {
+                await firestore()
+                    .collection('Jobs')
+                    .onSnapshot(onResult, onError);
+            };
+
+            fetchJobs();
+        }
+        fetchUserType();
     }, []);
 
     const saveJob = async jobID => {
@@ -82,9 +102,9 @@ function Home({ navigation }) {
                 />
             </View>
             <View style={styles.body}>
-                {jobs === null ? (
+                {userType === null || jobs === null ? (
                     <ActivityIndicator size={60} color={Colors.GREEN} />
-                ) : (
+                ) : userType === 0 ? (
                     <Swiper
                         cards={jobs}
                         renderCard={job => {
@@ -95,6 +115,9 @@ function Home({ navigation }) {
                                     imgsrc={img}
                                     location={job.location}
                                     description={job.description}
+                                    date={job.date}
+                                    link={job.link}
+                                    type="job"
                                 />
                             );
                         }}
@@ -106,7 +129,7 @@ function Home({ navigation }) {
                         onSwipedRight={jobID => saveJob(jobID)}
                         onSwipedLeft={jobID => deleteJob(jobID)}
                     />
-                )}
+                ) : null}
             </View>
         </View>
     );

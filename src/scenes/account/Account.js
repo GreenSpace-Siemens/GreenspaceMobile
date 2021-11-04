@@ -7,6 +7,10 @@ import Header from '../../components/organisms/header/Header';
 import auth from '@react-native-firebase/auth';
 
 function Account({ navigation }) {
+    const userCredentials = {
+        email: auth().currentUser.email,
+    };
+
     const handleSignOut = () => {
         auth()
             .signOut()
@@ -35,13 +39,17 @@ function Account({ navigation }) {
                             <View style={styles.buttonTitle}>
                                 <Text style={styles.buttonLabel}>Email</Text>
                                 <Text style={styles.buttonSubLabel}>
-                                    johndoe@siemens.com {'>'}
+                                    {userCredentials.email} {'>'}
                                 </Text>
                             </View>
                         }
                         containerStyle={styles.buttonContainer}
                         buttonStyle={styles.button}
-                        onPress={() => navigation.navigate('Email')}
+                        onPress={() =>
+                            navigation.navigate('Email', {
+                                email: userCredentials.email,
+                            })
+                        }
                     />
                     <Button
                         title={
