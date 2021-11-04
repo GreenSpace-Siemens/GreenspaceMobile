@@ -11,6 +11,7 @@ function PageCard({
     location,
     description,
     date,
+    link,
     type,
 }) {
     const [height, setHeight] = React.useState(0);
@@ -30,7 +31,12 @@ function PageCard({
                 date={date}
                 type={type}
             />
-            <PageCardBody description={description} date={date} type={type} />
+            <PageCardBody
+                description={description}
+                date={date}
+                type={type}
+                link={link}
+            />
         </ScrollView>
     );
 }

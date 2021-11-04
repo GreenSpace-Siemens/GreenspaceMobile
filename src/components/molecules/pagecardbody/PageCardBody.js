@@ -1,12 +1,13 @@
 import React from 'react';
-import { Dimensions, StyleSheet, Text, View } from 'react-native';
+import { Alert, Linking, StyleSheet, Text, View } from 'react-native';
+import { Button } from 'native-base';
 import { Colors } from '../../../styles/index';
 
 import Section from '../section/Section';
 
 import firestore from '@react-native-firebase/firestore';
 
-function PageCardBody({ description, date, type }) {
+function PageCardBody({ description, date, type, link }) {
     const calcTime = () => {
         const now = firestore.Timestamp.now().toDate();
         const today = {
@@ -50,10 +51,27 @@ function PageCardBody({ description, date, type }) {
         }
     };
 
+    const openApplication = async () => {
+        const supported = await Linking.canOpenURL(link);
+
+        if (supported) {
+            await Linking.openURL(link);
+        } else {
+            Alert.alert(`Unable to open this URL: ${link}`);
+        }
+    };
+
     return (
         <View style={styles.container}>
             {type === 'job' ? (
-                <Text style={styles.time}>Posted {calcTime(date)} ago</Text>
+                <View style={styles.header}>
+                    <Button
+                        style={styles.button}
+                        onPress={() => openApplication()}>
+                        Apply
+                    </Button>
+                    <Text style={styles.time}>Posted {calcTime(date)} ago</Text>
+                </View>
             ) : null}
 
             {Object.keys(description).map(key => {
@@ -80,6 +98,17 @@ const styles = StyleSheet.create({
         textAlign: 'right',
         fontWeight: 'bold',
         color: Colors.GRAY_VERY_DARK,
+    },
+    header: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        marginBottom: 10,
+    },
+    button: {
+        backgroundColor: Colors.GRAY_DARK,
+        paddingTop: 5,
+        paddingBottom: 5,
     },
 });
 
