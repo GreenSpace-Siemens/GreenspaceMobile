@@ -14,9 +14,9 @@ import auth from '@react-native-firebase/auth';
 
 function Home({ navigation }) {
     const [userType, setUserType] = React.useState(null);
+    const userID = auth().currentUser.uid;
 
     const fetchUserType = async () => {
-        const userID = auth().currentUser.uid;
         await firestore()
             .collection('Users')
             .doc(userID)
@@ -27,8 +27,21 @@ function Home({ navigation }) {
             });
     };
 
+    const contains = (saved, query) => {
+        const queryRef = query.ref;
+
+        for (let i = 0; i < saved.length; i++) {
+            const savedRef = saved[i].job;
+            if (queryRef === savedRef) {
+                return true;
+            }
+        }
+
+        return false;
+    };
+
     const [jobs, setJobs] = React.useState(null);
-    const onResult = QuerySnapshot => {
+    const onResult = async QuerySnapshot => {
         const queries = [];
 
         QuerySnapshot.forEach(docSnap => {
@@ -47,7 +60,17 @@ function Home({ navigation }) {
             queries.push(job);
         });
 
-        setJobs(queries);
+        const user = await firestore().collection('Users').doc(userID).get();
+        const userData = user.data();
+
+        const saved = [
+            ...userData.favorites.applied,
+            ...userData.favorites.saved,
+        ];
+
+        let diff = queries.filter(query => !contains(saved, query));
+
+        setJobs(diff);
     };
 
     const onError = error => {
@@ -105,7 +128,7 @@ function Home({ navigation }) {
             <View style={styles.body}>
                 {userType === null || jobs === null ? (
                     <ActivityIndicator size={60} color={Colors.GREEN} />
-                ) : userType === 0 ? (
+                ) : userType === 0 && jobs.length > 0 ? (
                     <Swiper
                         cards={jobs}
                         renderCard={job => {
