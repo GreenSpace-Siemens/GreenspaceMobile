@@ -23,17 +23,15 @@ function Profile({ navigation }) {
         console.error(error);
     };
 
-    const fetchUserData = async () => {
-        const userID = auth().currentUser.uid;
-        await firestore()
-            .collection('Users')
-            .doc(userID)
-            .onSnapshot(onResult, onError);
-    };
-
     React.useEffect(() => {
+        const fetchUserData = async () => {
+            const userID = auth().currentUser.uid;
+            await firestore()
+                .collection('Users')
+                .doc(userID)
+                .onSnapshot(onResult, onError);
+        };
         fetchUserData();
-        console.log(user);
     }, []);
 
     return (

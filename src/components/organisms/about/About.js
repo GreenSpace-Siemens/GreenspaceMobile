@@ -22,15 +22,15 @@ function About({ navigation }) {
         console.error(error);
     };
 
-    const fetchAbout = async () => {
-        const userID = auth().currentUser.uid;
-        await firestore()
-            .collection('Users')
-            .doc(userID)
-            .onSnapshot(onResult, onError);
-    };
-
     React.useEffect(() => {
+        const fetchAbout = async () => {
+            const userID = auth().currentUser.uid;
+            await firestore()
+                .collection('Users')
+                .doc(userID)
+                .onSnapshot(onResult, onError);
+        };
+
         fetchAbout();
     }, []);
 

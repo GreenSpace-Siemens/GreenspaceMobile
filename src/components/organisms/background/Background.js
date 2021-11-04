@@ -34,14 +34,14 @@ function Background({ navigation, route }) {
         console.error(error);
     };
 
-    const fetchSkills = async () => {
-        await firestore()
-            .collection('Users')
-            .doc(userID)
-            .onSnapshot(onResult, onError);
-    };
-
     React.useEffect(() => {
+        const fetchSkills = async () => {
+            await firestore()
+                .collection('Users')
+                .doc(userID)
+                .onSnapshot(onResult, onError);
+        };
+
         fetchSkills();
     }, []);
 

@@ -54,12 +54,14 @@ function Home({ navigation }) {
         console.error(error);
     };
 
-    const fetchJobs = async () => {
-        await firestore().collection('Jobs').onSnapshot(onResult, onError);
-    };
-
     React.useEffect(() => {
         if (userType !== 0) {
+            const fetchJobs = async () => {
+                await firestore()
+                    .collection('Jobs')
+                    .onSnapshot(onResult, onError);
+            };
+
             fetchJobs();
         }
         fetchUserType();
@@ -100,7 +102,7 @@ function Home({ navigation }) {
                 />
             </View>
             <View style={styles.body}>
-                {userType === null && jobs === null ? (
+                {userType === null || jobs === null ? (
                     <ActivityIndicator size={60} color={Colors.GREEN} />
                 ) : userType === 0 ? (
                     <Swiper

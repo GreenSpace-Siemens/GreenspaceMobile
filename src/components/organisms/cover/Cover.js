@@ -33,16 +33,17 @@ function Cover({ navigation }) {
         console.error(error);
     };
 
-    const fetchCoverData = async () => {
-        const userID = auth().currentUser.uid;
-        await firestore()
-            .collection('Users')
-            .doc(userID)
-            .onSnapshot(onResult, onError);
-    };
-
     React.useEffect(() => {
+        const fetchCoverData = async () => {
+            const userID = auth().currentUser.uid;
+            await firestore()
+                .collection('Users')
+                .doc(userID)
+                .onSnapshot(onResult, onError);
+        };
+
         fetchCoverData();
+
         return () => {
             setCover(null);
         };

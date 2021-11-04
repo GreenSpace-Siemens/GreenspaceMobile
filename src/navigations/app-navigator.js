@@ -21,6 +21,7 @@ import TopTabLabel from '../components/atoms/toptablabel/TopTabLabel';
 // Scenes
 import Account from '../scenes/account/Account';
 import Email from '../scenes/email/Email';
+import Page from '../scenes/page/Page';
 import Home from '../scenes/home/Home';
 import Messages from '../scenes/messages/Messages';
 import Notifications from '../scenes/notifications/Notifications';
@@ -47,6 +48,7 @@ function HomeNavigator({ navigation }) {
             }}>
             <Stack.Screen name="Home" component={Home} />
             <Stack.Screen name="Notifications" component={Notifications} />
+            <Stack.Screen name="Page" component={Page} />
         </Stack.Navigator>
     );
 }
@@ -57,7 +59,57 @@ function MessageNavigator({ navigation, route }) {
             initialRouteName="Messages"
             screenOptions={{ headerShown: false }}>
             <Stack.Screen name="Messages" component={Messages} />
+            <Stack.Screen name="Page" component={Page} />
         </Stack.Navigator>
+    );
+}
+
+function SearchNavigator({ navigation }) {
+    return (
+        <Stack.Navigator
+            initialRouteName="Home"
+            screenOptions={{
+                headerShown: false,
+                animation: 'slide_from_right',
+                presentation: 'transparentModal',
+            }}>
+            <Stack.Screen name="Search" component={Search} />
+            <Stack.Screen name="Page" component={Page} />
+        </Stack.Navigator>
+    );
+}
+
+function SavedTabs({ navigation }) {
+    return (
+        <TopTab.Navigator
+            initialRouteName="Saved"
+            screenOptions={{
+                tabBarPressColor: Colors.WHITE,
+                tabBarIndicatorStyle: {
+                    backgroundColor: Colors.GREEN,
+                },
+            }}>
+            <TopTab.Screen
+                name="Saved"
+                component={SavedJobs}
+                options={{
+                    tabBarLabel: ({ focused }) => {
+                        return <TopTabLabel focused={focused} label={'Jobs'} />;
+                    },
+                }}
+            />
+            <TopTab.Screen
+                name="Applied"
+                component={AppliedJobs}
+                options={{
+                    tabBarLabel: ({ focused }) => {
+                        return (
+                            <TopTabLabel focused={focused} label={'Applied'} />
+                        );
+                    },
+                }}
+            />
+        </TopTab.Navigator>
     );
 }
 
@@ -68,41 +120,16 @@ function SavedNavigator({ navigation }) {
                 <Text style={styles.title}>Saved</Text>
             </View>
             <View style={styles.body}>
-                <TopTab.Navigator
-                    initialRouteName="Saved"
+                <Stack.Navigator
+                    initialRouteName="SavedTabs"
                     screenOptions={{
-                        tabBarPressColor: Colors.WHITE,
-                        tabBarIndicatorStyle: { backgroundColor: Colors.GREEN },
+                        headerShown: false,
+                        animation: 'slide_from_right',
+                        presentation: 'transparentModal',
                     }}>
-                    <TopTab.Screen
-                        name="Saved"
-                        component={SavedJobs}
-                        options={{
-                            tabBarLabel: ({ focused }) => {
-                                return (
-                                    <TopTabLabel
-                                        focused={focused}
-                                        label={'Jobs'}
-                                    />
-                                );
-                            },
-                        }}
-                    />
-                    <TopTab.Screen
-                        name="Applied"
-                        component={AppliedJobs}
-                        options={{
-                            tabBarLabel: ({ focused }) => {
-                                return (
-                                    <TopTabLabel
-                                        focused={focused}
-                                        label={'Applied'}
-                                    />
-                                );
-                            },
-                        }}
-                    />
-                </TopTab.Navigator>
+                    <Stack.Screen name="SavedTabs" component={SavedTabs} />
+                    <Stack.Screen name="Page" component={Page} />
+                </Stack.Navigator>
             </View>
         </View>
     );
@@ -132,6 +159,7 @@ function ProfileNavigator({ navigation }) {
             <Stack.Screen name="Email" component={Email} />
             <Stack.Screen name="Phone" component={Phone} />
             <Stack.Screen name="Password" component={Password} />
+            <Stack.Screen name="Page" component={Page} />
         </Stack.Navigator>
     );
 }
@@ -300,8 +328,8 @@ function AppNavigator({ navigation }) {
                     }}
                 />
                 <BottomTab.Screen
-                    name="Search"
-                    component={Search}
+                    name="SearchNavigator"
+                    component={SearchNavigator}
                     options={{
                         tabBarIcon: () => (
                             <FontAwesome

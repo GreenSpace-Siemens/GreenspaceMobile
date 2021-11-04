@@ -7,7 +7,7 @@ import { Colors } from '../../../styles/index';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 
-function SavedJobs() {
+function SavedJobs({ navigation }) {
     const [saved, setSaved] = React.useState(null);
 
     const onResult = async QuerySnapshot => {
@@ -36,15 +36,15 @@ function SavedJobs() {
         console.log(error);
     };
 
-    const fetchSavedJobs = async () => {
-        const userID = auth().currentUser.uid;
-        await firestore()
-            .collection('Users')
-            .doc(userID)
-            .onSnapshot(onResult, onError);
-    };
-
     React.useEffect(() => {
+        const fetchSavedJobs = async () => {
+            const userID = auth().currentUser.uid;
+            await firestore()
+                .collection('Users')
+                .doc(userID)
+                .onSnapshot(onResult, onError);
+        };
+
         fetchSavedJobs();
     }, []);
 
