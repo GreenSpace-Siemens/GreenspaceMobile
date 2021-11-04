@@ -1,20 +1,34 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import { Avatar } from 'native-base';
+import { Avatar, Pressable } from 'native-base';
 import { Colors } from '../../../styles/index';
 
-function SwipeItem({ avatar, header, subheader, status }) {
+function SwipeItem({
+    jobRef,
+    type,
+    avatar,
+    header,
+    subheader,
+    status,
+    navigation,
+}) {
+    const goToPage = () => {
+        navigation.navigate('Page', { jobRef: jobRef, type: type });
+    };
+
     return (
-        <View style={styles.container}>
-            <Avatar source={{ uri: avatar }} />
-            <View style={styles.text}>
-                <Text style={styles.header}>{header}</Text>
-                <Text style={styles.subheader}>{subheader}</Text>
-                {status !== undefined ? (
-                    <Text style={styles.status}>{status}</Text>
-                ) : null}
+        <Pressable onPress={() => goToPage()}>
+            <View style={styles.container}>
+                <Avatar source={{ uri: avatar }} />
+                <View style={styles.text}>
+                    <Text style={styles.header}>{header}</Text>
+                    <Text style={styles.subheader}>{subheader}</Text>
+                    {status !== undefined ? (
+                        <Text style={styles.status}>{status}</Text>
+                    ) : null}
+                </View>
             </View>
-        </View>
+        </Pressable>
     );
 }
 

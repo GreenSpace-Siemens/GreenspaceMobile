@@ -14,19 +14,21 @@ function SavedJobs({ navigation }) {
         const userData = QuerySnapshot.data();
 
         const initJobs = [];
+
         for (let i = 0; i < userData.favorites.saved.length; i++) {
             const jobRef = userData.favorites.saved[i].job.slice(5);
             const job = await firestore().collection('Jobs').doc(jobRef).get();
             const jobData = job.data();
 
-            const nextJob = {
+            const jobDisplay = {
                 id: i,
+                ref: jobRef,
                 avatar: 'https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500',
                 header: `${jobData.title}`,
                 subheader: `${jobData.company}\n${jobData.location}`,
             };
 
-            initJobs.push(nextJob);
+            initJobs.push(jobDisplay);
         }
 
         setSaved(initJobs);
@@ -61,13 +63,16 @@ function SavedJobs({ navigation }) {
                     style={{ marginTop: 240 }}
                 />
             ) : (
-                saved.map(({ id, avatar, header, subheader }) => {
+                saved.map(({ id, ref, avatar, header, subheader }) => {
                     return (
                         <SwipeItem
                             key={id}
+                            jobRef={ref}
+                            type="Jobs"
                             avatar={avatar}
                             header={header}
                             subheader={subheader}
+                            navigation={navigation}
                         />
                     );
                 })

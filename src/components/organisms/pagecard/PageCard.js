@@ -19,6 +19,7 @@ function PageCard({
     return (
         <ScrollView
             contentContainerStyle={styles.card}
+            style={styles.container}
             onLayout={event => {
                 setHeight(event.nativeEvent.layout.height);
             }}>
@@ -42,6 +43,7 @@ function PageCard({
 }
 
 const styles = StyleSheet.create({
+    container: { width: '100%' },
     card: { flexGrow: 1 },
 });
 
