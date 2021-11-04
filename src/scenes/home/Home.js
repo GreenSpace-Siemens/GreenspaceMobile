@@ -17,16 +17,18 @@ function Home({ navigation }) {
     const onResult = QuerySnapshot => {
         const queries = [];
 
-        console.log('Total Jobs: ' + QuerySnapshot.size);
+        // console.log('Total Jobs: ' + QuerySnapshot.size);
 
         QuerySnapshot.forEach(docSnap => {
             const data = docSnap.data();
+
             const job = {
                 ref: docSnap.ref.path,
                 title: data.title,
                 company: data.company,
                 location: data.location,
                 description: data.description,
+                date: data['time_stamp'],
             };
 
             queries.push(job);
@@ -95,6 +97,7 @@ function Home({ navigation }) {
                                     imgsrc={img}
                                     location={job.location}
                                     description={job.description}
+                                    date={job.date}
                                     type="job"
                                 />
                             );
