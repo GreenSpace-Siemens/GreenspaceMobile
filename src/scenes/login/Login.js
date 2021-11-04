@@ -7,15 +7,9 @@ import auth from '@react-native-firebase/auth';
 function Login({ navigation }) {
     // Username input handler
     const [username, setUsername] = React.useState(null);
-    const handleUsername = username => {
-        setUsername(username);
-    };
 
     // Password input handler
     const [password, setPassword] = React.useState(null);
-    const handlePassword = password => {
-        setPassword(password);
-    };
 
     // Submits login credentials
     const handleLogin = () => {
