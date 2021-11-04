@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, Text } from 'react-native';
+import { Alert, View, StyleSheet, Text } from 'react-native';
 import { Button, Input } from 'native-base';
 import { Colors } from '../../styles/index';
 import auth from '@react-native-firebase/auth';
@@ -24,10 +24,6 @@ function Login({ navigation }) {
             password: password,
         };
 
-        // For debugging purposes
-        // console.log(`Username: ${username}`);
-        // console.log(`Password: ${password}`);
-
         auth()
             .signInWithEmailAndPassword(username, password)
             .then(() => {
@@ -36,12 +32,13 @@ function Login({ navigation }) {
             .catch(error => {
                 if (error.code === 'auth/wrong-password') {
                     console.log('That password is wrong!');
+                    Alert.alert('The password is invalid.');
                 }
 
                 if (error.code === 'auth/invalid-email') {
                     console.log('That email address is invalid!');
+                    Alert.alert('The email is invalid.');
                 }
-                console.error(error);
             });
 
         // Clears form inputs on submission
