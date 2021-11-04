@@ -6,7 +6,7 @@ import Section from '../section/Section';
 
 import firestore from '@react-native-firebase/firestore';
 
-function PageCardBody({ skills, description, date, type }) {
+function PageCardBody({ description, date, type }) {
     const calcTime = () => {
         const now = firestore.Timestamp.now().toDate();
         const today = {
