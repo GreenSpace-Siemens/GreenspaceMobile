@@ -12,6 +12,8 @@ import PageCard from '../../components/organisms/pagecard/PageCard';
 import firestore from '@react-native-firebase/firestore';
 import auth from '@react-native-firebase/auth';
 
+
+
 function Home({ navigation }) {
     const [userType, setUserType] = React.useState(null);
     const userID = auth().currentUser.uid;
@@ -109,6 +111,10 @@ function Home({ navigation }) {
         console.log(`Not interested in job with ID: ${jobID}`);
     };
 
+    const printUsers = () => {
+      navigation.navigate('Notifications');
+    }
+
     return (
         <View style={styles.container}>
             <View style={styles.header}>
@@ -122,7 +128,7 @@ function Home({ navigation }) {
                         />
                     }
                     buttonStyle={styles.button}
-                    onPress={() => navigation.navigate('Notifications')}
+                    onPress={() => printUsers()}
                 />
             </View>
             <View style={styles.body}>

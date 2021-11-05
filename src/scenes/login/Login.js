@@ -3,6 +3,7 @@ import { Alert, View, StyleSheet, Text } from 'react-native';
 import { Button, Input } from 'native-base';
 import { Colors } from '../../styles/index';
 import auth from '@react-native-firebase/auth';
+import firestore from '@react-native-firebase/firestore';
 
 function Login({ navigation }) {
     // Username input handler
@@ -11,6 +12,20 @@ function Login({ navigation }) {
     // Password input handler
     const [password, setPassword] = React.useState(null);
 
+    const handleNavigation = profileCreationLevel => {
+      switch (profileCreationLevel) {
+        case 0:
+          navigation.navigate('SkillBuilder');
+          break;
+        case 1:
+          navigation.navigate('Discipline');
+          break;
+        default:
+          navigation.navigate('App', user);
+          break;
+      }
+    };
+
     // Submits login credentials
     const handleLogin = () => {
         const user = {
@@ -18,16 +33,22 @@ function Login({ navigation }) {
             password: password,
         };
 
-        auth()
-            .signInWithEmailAndPassword(username, password)
-            .then(() => {
-                navigation.navigate('App', user);
-            })
-            .catch(error => {
-                if (error.code === 'auth/wrong-password') {
-                    console.log('That password is wrong!');
-                    Alert.alert('The password is invalid.');
-                }
+        //auth().signInWithEmailAndPassword(username, password)
+        auth().signInWithEmailAndPassword('nolandonley14@gmail.com', 'buddie09')
+        .then(() => {
+          const user = auth().currentUser;
+          const users = firestore().collection('Users').doc(user.uid);
+          firestore().collection('Users').doc(user.uid).get().then(
+            documentSnapshot => {
+              handleNavigation(documentSnapshot['_data']['profileCreationLevel'])
+            }
+          )
+        })
+        .catch(error => {
+          if (error.code === 'auth/wrong-password') {
+            console.log('That password is wrong!');
+            Alert.alert('The password is invalid.');
+          }
 
                 if (error.code === 'auth/invalid-email') {
                     console.log('That email address is invalid!');
@@ -95,7 +116,8 @@ const styles = StyleSheet.create({
         color: Colors.GREEN,
     },
     input: {
-        backgroundColor: Colors.GRAY_LIGHT,
+        backgroundColor: Colors.TRANSPARENT,
+        borderBottomWidth: 2,
         fontSize: 20,
         fontWeight: '500',
         borderRadius: 8,
