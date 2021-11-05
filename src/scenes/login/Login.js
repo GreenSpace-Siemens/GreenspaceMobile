@@ -3,6 +3,7 @@ import { View, StyleSheet, Text } from 'react-native';
 import { Button, Input } from 'native-base';
 import { Colors } from '../../styles/index';
 import auth from '@react-native-firebase/auth';
+import firestore from '@react-native-firebase/firestore';
 
 function Login({ navigation }) {
     // Username input handler
@@ -17,6 +18,20 @@ function Login({ navigation }) {
         setPassword(password);
     };
 
+    const handleNavigation = profileCreationLevel => {
+      switch (profileCreationLevel) {
+        case 0:
+          navigation.navigate('SkillBuilder');
+          break;
+        case 1:
+          navigation.navigate('Discipline');
+          break;
+        default:
+          navigation.navigate('App', user);
+          break;
+      }
+    };
+
     // Submits login credentials
     const handleLogin = () => {
         const user = {
@@ -24,13 +39,16 @@ function Login({ navigation }) {
             password: password,
         };
 
-        // For debugging purposes
-        // console.log(`Username: ${username}`);
-        // console.log(`Password: ${password}`);
-
-        auth().signInWithEmailAndPassword(username, password)
+        //auth().signInWithEmailAndPassword(username, password)
+        auth().signInWithEmailAndPassword('nolandonley14@gmail.com', 'buddie09')
         .then(() => {
-          navigation.navigate('App', user);
+          const user = auth().currentUser;
+          const users = firestore().collection('Users').doc(user.uid);
+          firestore().collection('Users').doc(user.uid).get().then(
+            documentSnapshot => {
+              handleNavigation(documentSnapshot['_data']['profileCreationLevel'])
+            }
+          )
         })
         .catch(error => {
           if (error.code === 'auth/wrong-password') {
@@ -43,9 +61,6 @@ function Login({ navigation }) {
           console.error(error);
         });
 
-        // Clears form inputs on submission
-        setUsername(null);
-        setPassword(null);
     };
 
     return (
@@ -103,7 +118,8 @@ const styles = StyleSheet.create({
         color: Colors.GREEN,
     },
     input: {
-        backgroundColor: Colors.GRAY_LIGHT,
+        backgroundColor: Colors.TRANSPARENT,
+        borderBottomWidth: 2,
         fontSize: 20,
         fontWeight: '500',
         borderRadius: 8,

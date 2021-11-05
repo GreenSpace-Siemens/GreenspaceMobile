@@ -8,7 +8,10 @@ import Swiper from 'react-native-deck-swiper';
 import { jobs } from '../../database/Database';
 import PageCard from '../../components/organisms/pagecard/PageCard';
 
+
+
 function Home({ navigation }) {
+
     const saveJob = jobID => {
         console.log(`Saved Job! with ID: ${jobID}`);
     };
@@ -16,6 +19,10 @@ function Home({ navigation }) {
     const deleteJob = jobID => {
         console.log(`Not interested in job with ID: ${jobID}`);
     };
+
+    const printUsers = () => {
+      navigation.navigate('Notifications');
+    }
 
     return (
         <View style={styles.container}>
@@ -30,7 +37,7 @@ function Home({ navigation }) {
                         />
                     }
                     buttonStyle={styles.button}
-                    onPress={() => navigation.navigate('Notifications')}
+                    onPress={() => printUsers()}
                 />
             </View>
             <View style={styles.body}>

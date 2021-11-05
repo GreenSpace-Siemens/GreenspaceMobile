@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState,useEffect} from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 import { Button, Input } from 'native-base';
 import Header from '../../components/organisms/header/Header';
@@ -9,8 +9,30 @@ import { profile } from '../../database/Database';
 import PageCard from '../../components/organisms/pagecard/PageCard';
 
 import auth from '@react-native-firebase/auth';
+import firestore from '@react-native-firebase/firestore';
 
 function Profile({ navigation }) {
+
+  const [firstName, setFirstName] = React.useState(null);
+  const [lastName, setLastName] = React.useState(null);
+  const [occupation, setOccupation] = React.useState(null);
+  const [company, setCompany] = React.useState(null);
+  const [city, setCity] = React.useState(null);
+
+  const fetchData = async() => {
+    const userID = auth().currentUser.uid;
+    const user = firestore().collection('Users').doc(userID);
+    const userData = await user.get();
+    setFirstName(userData['_data']['name']['firstName']);
+    setLastName(userData['_data']['name']['lastName']);
+    setOccupation(userData['_data']['occupation']['title']);
+    setCompany(userData['_data']['occupation']['company']);
+    setCity(userData['_data']['occupation']['location']);
+  }
+  useEffect(() => {
+    fetchData();
+  }, [])
+
     const handleSignOut = () => {
         auth()
             .signOut()
@@ -33,11 +55,11 @@ function Profile({ navigation }) {
             />
             <View style={styles.body}>
                 <PageCard
-                    header={`${profile.firstName} ${profile.lastName}`}
-                    subheader={`${profile.occupation} at ${profile.company}`}
+                    header={firstName + ' ' + lastName}
+                    subheader={occupation + ' at ' + company}
                     imgsrc={profile.picture}
                     education={profile.education}
-                    location={profile.location}
+                    location={city}
                 />
                 <Button style={styles.button} onPress={() => handleSignOut()}>
                     Sign out
