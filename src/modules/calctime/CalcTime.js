@@ -1,11 +1,17 @@
 import firestore from '@react-native-firebase/firestore';
 
 function CalcTime(date) {
+    const dayOfYear = date => {
+        return Math.floor(
+            (date - new Date(date.getFullYear(), 0, 0)) / 1000 / 60 / 60 / 24,
+        );
+    };
+
     const now = firestore.Timestamp.now().toDate();
     const today = {
         year: now.getFullYear(),
         month: now.getMonth(),
-        day: now.getDay(),
+        day: dayOfYear(now),
         hours: now.getHours(),
         minutes: now.getMinutes(),
         seconds: now.getSeconds(),
@@ -15,7 +21,7 @@ function CalcTime(date) {
     const posting = {
         year: postingDate.getFullYear(),
         month: postingDate.getMonth(),
-        day: postingDate.getDay(),
+        day: dayOfYear(postingDate),
         hours: postingDate.getHours(),
         minutes: postingDate.getMinutes(),
         seconds: postingDate.getSeconds(),

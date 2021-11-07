@@ -33,21 +33,23 @@ function Login({ navigation }) {
             password: password,
         };
 
-        //auth().signInWithEmailAndPassword(username, password)
         auth()
-            .signInWithEmailAndPassword('nolandonley14@gmail.com', 'buddie09')
+            .signInWithEmailAndPassword(username, password)
+            // auth()
+            // .signInWithEmailAndPassword('nolandonley14@gmail.com', 'buddie09')
             .then(() => {
-                const user = auth().currentUser;
-                const users = firestore().collection('Users').doc(user.uid);
-                firestore()
-                    .collection('Users')
-                    .doc(user.uid)
-                    .get()
-                    .then(documentSnapshot => {
-                        handleNavigation(
-                            documentSnapshot['_data']['profileCreationLevel'],
-                        );
-                    });
+                // const user = auth().currentUser;
+                // const users = firestore().collection('Users').doc(user.uid);
+                // firestore()
+                //     .collection('Users')
+                //     .doc(user.uid)
+                //     .get()
+                //     .then(documentSnapshot => {
+                //         handleNavigation(
+                //             documentSnapshot['_data']['profileCreationLevel'],
+                //         );
+                //     });
+                navigation.navigate('App');
             })
             .catch(error => {
                 if (error.code === 'auth/wrong-password') {
