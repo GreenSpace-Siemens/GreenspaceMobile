@@ -89,7 +89,7 @@ function Register({ navigation }) {
                     InputLeftElement={
                         <MaterialIcons
                             name="person"
-                            size={20}
+                            size={22}
                             color={Colors.GREEN}
                         />
                     }
@@ -104,7 +104,7 @@ function Register({ navigation }) {
                     InputLeftElement={
                         <MaterialIcons
                             name="person"
-                            size={20}
+                            size={22}
                             color={Colors.GREEN}
                         />
                     }
@@ -120,7 +120,7 @@ function Register({ navigation }) {
                     InputLeftElement={
                         <MaterialIcons
                             name="mail"
-                            size={20}
+                            size={22}
                             color={Colors.GREEN}
                         />
                     }
@@ -136,7 +136,7 @@ function Register({ navigation }) {
                     InputLeftElement={
                         <MaterialIcons
                             name="lock"
-                            size={20}
+                            size={22}
                             color={Colors.GREEN}
                         />
                     }
@@ -152,7 +152,7 @@ function Register({ navigation }) {
                     InputLeftElement={
                         <MaterialIcons
                             name="lock"
-                            size={20}
+                            size={22}
                             color={Colors.GREEN}
                         />
                     }

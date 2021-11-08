@@ -89,7 +89,7 @@ function Login({ navigation }) {
                     InputLeftElement={
                         <MaterialIcons
                             name="person"
-                            size={20}
+                            size={22}
                             color={Colors.GREEN}
                         />
                     }
@@ -104,8 +104,8 @@ function Login({ navigation }) {
                     placeholderTextColor={Colors.GRAY_MEDIUM}
                     InputLeftElement={
                         <MaterialIcons
-                            name="person"
-                            size={20}
+                            name="lock"
+                            size={22}
                             color={Colors.GREEN}
                         />
                     }
