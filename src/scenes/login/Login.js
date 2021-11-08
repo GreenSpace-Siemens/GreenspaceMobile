@@ -28,10 +28,15 @@ function Login({ navigation }) {
 
     // Submits login credentials
     const handleLogin = () => {
-        const user = {
-            username: username,
-            password: password,
-        };
+        if (
+            username === null ||
+            password === null ||
+            username === '' ||
+            password === ''
+        ) {
+            Alert.alert('Missing email and/or password');
+            return;
+        }
 
         auth()
             .signInWithEmailAndPassword(username, password)
@@ -73,7 +78,7 @@ function Login({ navigation }) {
             <View style={styles.header}>
                 <Text style={styles.title}>GREENSPACE</Text>
             </View>
-            <View style={styles.loginForm}>
+            <View>
                 <Input
                     onChangeText={text => setUsername(text)}
                     placeholder="Username"
@@ -89,7 +94,7 @@ function Login({ navigation }) {
                 />
                 <Text style={styles.link}>Forgot Password?</Text>
                 <Button style={styles.button} onPress={() => handleLogin()}>
-                    Sign In
+                    SIGN IN
                 </Button>
                 <Text
                     onPress={() => navigation.navigate('Register')}
@@ -123,17 +128,21 @@ const styles = StyleSheet.create({
         color: Colors.GREEN,
     },
     input: {
-        backgroundColor: Colors.GRAY_LIGHT,
-        borderBottomWidth: 2,
         fontSize: 20,
         fontWeight: '500',
         borderRadius: 8,
         borderWidth: 0,
-        elevation: 3,
+        borderBottomWidth: 1,
+        borderBottomColor: Colors.GRAY_MEDIUM,
         marginBottom: 15,
         padding: 10,
     },
-    link: { color: Colors.BLACK, textAlign: 'center', fontSize: 14 },
+    link: {
+        color: Colors.GRAY_VERY_DARK,
+        textAlign: 'center',
+        fontSize: 16,
+        fontWeight: '500',
+    },
     button: {
         borderRadius: 8,
         marginTop: 10,

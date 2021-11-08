@@ -1,10 +1,10 @@
 import React from 'react';
-import { View, StyleSheet, Text } from 'react-native';
+import { View, StyleSheet, Text, Alert } from 'react-native';
 import { Button, Input } from 'native-base';
 import { Colors } from '../../styles/index';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
-import DatePicker from 'react-native-date-picker';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 function Register({ navigation }) {
     // Username input handler
@@ -13,6 +13,7 @@ function Register({ navigation }) {
     const [email, setEmail] = React.useState(null);
     const [password, setPassword] = React.useState(null);
     const [confirmPass, setConfirmPass] = React.useState(null);
+
     const [part1comp, setPart1Comp] = React.useState(false);
     const [date, setDate] = React.useState(new Date());
     const [open, setOpen] = React.useState(false);
@@ -34,6 +35,23 @@ function Register({ navigation }) {
 
     const navigateToSkillBuilder = () => {
         navigation.navigate('SkillBuilder');
+    };
+
+    const createAccount = async () => {
+        if (
+            firstName == null ||
+            lastName === null ||
+            email === null ||
+            password === null ||
+            confirmPass === null ||
+            firstName == '' ||
+            lastName === '' ||
+            email === '' ||
+            password === '' ||
+            confirmPass === ''
+        ) {
+            Alert.alert('Missing fields');
+        }
     };
 
     const moveToPart2 = () => {
@@ -59,95 +77,85 @@ function Register({ navigation }) {
 
     return (
         <View style={styles.container}>
-            {part1comp != true && (
+            <View>
+                <Text style={styles.title}>CREATE AN ACCOUNT</Text>
+            </View>
+            <View>
                 <View>
-                    <View style={styles.header}>
-                        <Text style={styles.title}>Join Greenspace</Text>
-                    </View>
-                    <View style={styles.registerPart1}>
-                        <Input
-                            onChangeText={text => setEmail(text)}
-                            placeholder="Email"
-                            style={styles.input}
-                            autoCapitalize="none"
-                        />
-                        <Input
-                            onChangeText={text => setPassword(text)}
-                            placeholder="Password"
-                            type="password"
-                            style={styles.input}
-                        />
-                        <Input
-                            onChangeText={text => setConfirmPass(text)}
-                            placeholder="Confirm Password"
-                            type="password"
-                            style={styles.input}
-                        />
-                        <Button
-                            style={styles.button}
-                            onPress={() => moveToPart2()}>
-                            Continue
-                        </Button>
-                        <View style={styles.signInRow}>
-                            <Text>Already have an account? </Text>
-                            <Text
-                                onPress={() => navigation.navigate('Login')}
-                                style={styles.link}>
-                                Sign In
-                            </Text>
-                        </View>
-                    </View>
+                    <MaterialIcons name="person" />
+                    <Input
+                        onChangeText={text => setFirstName(text)}
+                        placeholder="First Name"
+                        style={styles.input}
+                        placeholderTextColor={Colors.GRAY_MEDIUM}
+                    />
                 </View>
-            )}
-            {part1comp == true && (
-                <>
-                    <View style={styles.header}>
-                        <Text style={styles.title}>Welcome to Greenspace</Text>
-                    </View>
-                    <View style={styles.registerPart1}>
-                        <Input
-                            onChangeText={text => setFirstName(text)}
-                            placeholder="First Name"
-                            style={styles.input}
-                        />
-                        <Input
-                            onChangeText={text => setLastName(text)}
-                            placeholder="Last Name"
-                            style={styles.input}
-                        />
-                        <Text style={styles.link} onPress={() => setOpen(true)}>
-                            {dateText}
-                        </Text>
-                        <DatePicker
-                            modal
-                            open={open}
-                            date={date}
-                            mode="date"
-                            title="Select Birthday"
-                            onConfirm={date => {
-                                setOpen(false);
-                                setDate(date);
-                                setDateText(date.toDateString().slice(4));
-                            }}
-                            onCancel={() => {
-                                setOpen(false);
-                            }}
-                        />
-                        <Button
-                            style={styles.button}
-                            onPress={() => createUserObject()}>
-                            Resume Builder ->
-                        </Button>
-                        <View style={styles.signInRow}>
-                            <Text
-                                onPress={() => navigation.navigate('Login')}
-                                style={styles.link}>
-                                Cancel
-                            </Text>
-                        </View>
-                    </View>
-                </>
-            )}
+                <View>
+                    <MaterialIcons name="person" />
+                    <Input
+                        onChangeText={text => setLastName(text)}
+                        placeholder="Last Name"
+                        style={styles.input}
+                        placeholderTextColor={Colors.GRAY_MEDIUM}
+                    />
+                </View>
+                <View>
+                    <MaterialIcons name="mail" />
+                    <Input
+                        onChangeText={text => setEmail(text)}
+                        placeholder="Email"
+                        style={styles.input}
+                        placeholderTextColor={Colors.GRAY_MEDIUM}
+                        autoCapitalize="none"
+                    />
+                </View>
+                <View>
+                    <Input
+                        onChangeText={text => setPassword(text)}
+                        placeholder="Password"
+                        type="password"
+                        style={[styles.input]}
+                        placeholderTextColor={Colors.GRAY_MEDIUM}
+                    />
+                </View>
+                <View>
+                    <Input
+                        onChangeText={text => setConfirmPass(text)}
+                        placeholder="Confirm Password"
+                        type="password"
+                        style={[styles.input]}
+                        placeholderTextColor={Colors.GRAY_MEDIUM}
+                    />
+                </View>
+                <Button style={styles.button} onPress={() => createAccount()}>
+                    CONTINUE
+                </Button>
+                <View>
+                    <Text
+                        onPress={() => navigation.goBack()}
+                        style={styles.link}>
+                        Already have an account?
+                    </Text>
+                </View>
+                {/* <Text style={styles.link} onPress={() => setOpen(true)}>
+                    {dateText}
+                </Text> */}
+                {/* <DatePicker
+                    modal
+                    open={open}
+                    date={date}
+                    mode="date"
+                    title="Select Birthday"
+                    onConfirm={date => {
+                        setOpen(false);
+                        setDate(date);
+                        setDateText(date.toDateString().slice(4));
+                    }}
+                    onCancel={() => {
+                        setOpen(false);
+                    }}
+                /> */}
+            </View>
         </View>
     );
 }
@@ -158,29 +166,25 @@ const styles = StyleSheet.create({
         backgroundColor: Colors.WHITE,
         display: 'flex',
         flexDirection: 'column',
-        justifyContent: 'space-evenly',
-        paddingTop: 150,
-        paddingBottom: 300,
+        justifyContent: 'space-between',
+        paddingTop: 100,
+        paddingBottom: 100,
         paddingLeft: 40,
         paddingRight: 40,
     },
-    header: {
-        backgroundColor: Colors.WHITE,
-    },
     title: {
-        textAlign: 'left',
-        fontSize: 25,
-        fontWeight: '600',
+        textAlign: 'center',
+        fontSize: 30,
+        fontWeight: '800',
         color: Colors.GREEN,
     },
     input: {
-        backgroundColor: Colors.GRAY_LIGHT,
-        borderBottomWidth: 2,
         fontSize: 20,
         fontWeight: '500',
         borderRadius: 8,
         borderWidth: 0,
-        elevation: 3,
+        borderBottomWidth: 1,
+        borderBottomColor: Colors.GRAY_MEDIUM,
         marginBottom: 15,
         padding: 10,
     },
@@ -189,15 +193,18 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
     },
-    link: { color: Colors.GREEN, textAlign: 'center', fontSize: 14 },
+    link: {
+        color: Colors.GRAY_VERY_DARK,
+        textAlign: 'center',
+        fontSize: 16,
+        fontWeight: '500',
+    },
     button: {
         borderRadius: 8,
         marginTop: 10,
         marginBottom: 10,
-        elevation: 3,
         backgroundColor: Colors.GREEN,
     },
-    buttonTitle: { fontSize: 17 },
 });
 
 export default Register;
