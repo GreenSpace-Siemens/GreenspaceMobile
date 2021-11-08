@@ -4,6 +4,7 @@ import { Button, Input } from 'native-base';
 import { Colors } from '../../styles/index';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 function Login({ navigation }) {
     // Username input handler
@@ -78,12 +79,21 @@ function Login({ navigation }) {
             <View style={styles.header}>
                 <Text style={styles.title}>GREENSPACE</Text>
             </View>
-            <View>
+            <View style={styles.body}>
                 <Input
                     onChangeText={text => setUsername(text)}
                     placeholder="Username"
-                    style={styles.input}
                     autoCapitalize="none"
+                    style={styles.input}
+                    placeholderTextColor={Colors.GRAY_MEDIUM}
+                    InputLeftElement={
+                        <MaterialIcons
+                            name="person"
+                            size={20}
+                            color={Colors.GREEN}
+                        />
+                    }
+                    variant="underlined"
                 />
                 <Input
                     onChangeText={text => setPassword(text)}
@@ -91,8 +101,17 @@ function Login({ navigation }) {
                     type="password"
                     autoCapitalize="none"
                     style={styles.input}
+                    placeholderTextColor={Colors.GRAY_MEDIUM}
+                    InputLeftElement={
+                        <MaterialIcons
+                            name="person"
+                            size={20}
+                            color={Colors.GREEN}
+                        />
+                    }
+                    variant="underlined"
                 />
-                <Text style={styles.link}>Forgot Password?</Text>
+
                 <Button style={styles.button} onPress={() => handleLogin()}>
                     SIGN IN
                 </Button>
@@ -121,6 +140,11 @@ const styles = StyleSheet.create({
     header: {
         backgroundColor: Colors.WHITE,
     },
+    body: {
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        height: '60%',
+    },
     title: {
         textAlign: 'center',
         fontSize: 40,
@@ -131,11 +155,7 @@ const styles = StyleSheet.create({
         fontSize: 20,
         fontWeight: '500',
         borderRadius: 8,
-        borderWidth: 0,
-        borderBottomWidth: 1,
         borderBottomColor: Colors.GRAY_MEDIUM,
-        marginBottom: 15,
-        padding: 10,
     },
     link: {
         color: Colors.GRAY_VERY_DARK,

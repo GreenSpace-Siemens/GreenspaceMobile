@@ -80,53 +80,85 @@ function Register({ navigation }) {
             <View>
                 <Text style={styles.title}>CREATE AN ACCOUNT</Text>
             </View>
-            <View>
-                <View>
-                    <MaterialIcons name="person" />
-                    <Input
-                        onChangeText={text => setFirstName(text)}
-                        placeholder="First Name"
-                        style={styles.input}
-                        placeholderTextColor={Colors.GRAY_MEDIUM}
-                    />
-                </View>
-                <View>
-                    <MaterialIcons name="person" />
-                    <Input
-                        onChangeText={text => setLastName(text)}
-                        placeholder="Last Name"
-                        style={styles.input}
-                        placeholderTextColor={Colors.GRAY_MEDIUM}
-                    />
-                </View>
-                <View>
-                    <MaterialIcons name="mail" />
-                    <Input
-                        onChangeText={text => setEmail(text)}
-                        placeholder="Email"
-                        style={styles.input}
-                        placeholderTextColor={Colors.GRAY_MEDIUM}
-                        autoCapitalize="none"
-                    />
-                </View>
-                <View>
-                    <Input
-                        onChangeText={text => setPassword(text)}
-                        placeholder="Password"
-                        type="password"
-                        style={[styles.input]}
-                        placeholderTextColor={Colors.GRAY_MEDIUM}
-                    />
-                </View>
-                <View>
-                    <Input
-                        onChangeText={text => setConfirmPass(text)}
-                        placeholder="Confirm Password"
-                        type="password"
-                        style={[styles.input]}
-                        placeholderTextColor={Colors.GRAY_MEDIUM}
-                    />
-                </View>
+            <View style={styles.body}>
+                <Input
+                    onChangeText={text => setFirstName(text)}
+                    placeholder="First Name"
+                    style={styles.input}
+                    placeholderTextColor={Colors.GRAY_MEDIUM}
+                    InputLeftElement={
+                        <MaterialIcons
+                            name="person"
+                            size={20}
+                            color={Colors.GREEN}
+                        />
+                    }
+                    variant="underlined"
+                />
+
+                <Input
+                    onChangeText={text => setLastName(text)}
+                    placeholder="Last Name"
+                    style={styles.input}
+                    placeholderTextColor={Colors.GRAY_MEDIUM}
+                    InputLeftElement={
+                        <MaterialIcons
+                            name="person"
+                            size={20}
+                            color={Colors.GREEN}
+                        />
+                    }
+                    variant="underlined"
+                />
+
+                <Input
+                    onChangeText={text => setEmail(text)}
+                    placeholder="Email"
+                    style={styles.input}
+                    placeholderTextColor={Colors.GRAY_MEDIUM}
+                    autoCapitalize="none"
+                    InputLeftElement={
+                        <MaterialIcons
+                            name="mail"
+                            size={20}
+                            color={Colors.GREEN}
+                        />
+                    }
+                    variant="underlined"
+                />
+
+                <Input
+                    onChangeText={text => setPassword(text)}
+                    placeholder="Password"
+                    type="password"
+                    style={[styles.input]}
+                    placeholderTextColor={Colors.GRAY_MEDIUM}
+                    InputLeftElement={
+                        <MaterialIcons
+                            name="lock"
+                            size={20}
+                            color={Colors.GREEN}
+                        />
+                    }
+                    variant="underlined"
+                />
+
+                <Input
+                    onChangeText={text => setConfirmPass(text)}
+                    placeholder="Confirm Password"
+                    type="password"
+                    style={[styles.input]}
+                    placeholderTextColor={Colors.GRAY_MEDIUM}
+                    InputLeftElement={
+                        <MaterialIcons
+                            name="lock"
+                            size={20}
+                            color={Colors.GREEN}
+                        />
+                    }
+                    variant="underlined"
+                />
+
                 <Button style={styles.button} onPress={() => createAccount()}>
                     CONTINUE
                 </Button>
@@ -172,6 +204,11 @@ const styles = StyleSheet.create({
         paddingLeft: 40,
         paddingRight: 40,
     },
+    body: {
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        height: '70%',
+    },
     title: {
         textAlign: 'center',
         fontSize: 30,
@@ -182,11 +219,7 @@ const styles = StyleSheet.create({
         fontSize: 20,
         fontWeight: '500',
         borderRadius: 8,
-        borderWidth: 0,
-        borderBottomWidth: 1,
         borderBottomColor: Colors.GRAY_MEDIUM,
-        marginBottom: 15,
-        padding: 10,
     },
     signInRow: {
         display: 'flex',
