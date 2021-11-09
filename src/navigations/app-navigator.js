@@ -156,6 +156,7 @@ function ProfileNavigator({ navigation }) {
             <Stack.Screen
                 name="EditProfileNavigator"
                 component={EditProfileNavigator}
+                initialParams={{ test: 1 }}
             />
             <Stack.Screen name="Settings" component={Settings} />
             <Stack.Screen name="Account" component={Account} />
@@ -173,7 +174,6 @@ function ProfileNavigator({ navigation }) {
 }
 
 function EditProfileNavigator({ navigation, route }) {
-    console.log(route);
     return (
         <View style={styles.container}>
             <View style={styles.header}>

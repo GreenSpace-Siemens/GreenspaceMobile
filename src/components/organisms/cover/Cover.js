@@ -44,6 +44,8 @@ function Cover({ navigation }) {
 
         fetchCoverData();
 
+        console.log(cover);
+
         return () => {
             setCover(null);
         };

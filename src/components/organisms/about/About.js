@@ -32,6 +32,9 @@ function About({ navigation }) {
         };
 
         fetchAbout();
+        return () => {
+            setAboutvalue(null);
+        };
     }, []);
 
     const handleAbout = jsx => {

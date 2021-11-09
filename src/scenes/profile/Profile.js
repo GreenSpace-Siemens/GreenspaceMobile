@@ -10,8 +10,7 @@ import PageCard from '../../components/organisms/pagecard/PageCard';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 
-function Profile({ navigation, route }) {
-    console.log(route);
+function Profile({ navigation }) {
     const { picture } = profile;
 
     const [user, setUser] = React.useState(null);
