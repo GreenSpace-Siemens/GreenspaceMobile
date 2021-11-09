@@ -29,7 +29,7 @@ function Register({ navigation }) {
                 occupation: { company: null, location: null, title: null },
                 postings: [],
                 favorites: { applied: [], saved: [] },
-                description: { 'About Me': null, Skills: [] },
+                description: { 'About Me': '', Skills: [] },
                 profileCreationLevel: 0,
                 userType: 0,
             })
@@ -41,6 +41,8 @@ function Register({ navigation }) {
     const navigateToSkillBuilder = () => {
         // NOTE: Will go back to skill tree builder when it's ready
         // navigation.navigate('SkillBuilder');
+
+        // This is temporary
         navigation.navigate('App');
     };
 

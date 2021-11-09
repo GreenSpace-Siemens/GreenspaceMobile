@@ -43,6 +43,10 @@ function Background({ navigation, route }) {
         };
 
         fetchSkills();
+
+        return () => {
+            setSkills(null);
+        };
     }, []);
 
     const deleteSkill = async skill => {
