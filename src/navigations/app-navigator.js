@@ -172,7 +172,8 @@ function ProfileNavigator({ navigation }) {
     );
 }
 
-function EditProfileNavigator({ navigation }) {
+function EditProfileNavigator({ navigation, route }) {
+    console.log(route);
     return (
         <View style={styles.container}>
             <View style={styles.header}>
