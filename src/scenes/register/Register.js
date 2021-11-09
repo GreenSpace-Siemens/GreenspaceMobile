@@ -2,9 +2,10 @@ import React from 'react';
 import { View, StyleSheet, Text, Alert } from 'react-native';
 import { Button, Input } from 'native-base';
 import { Colors } from '../../styles/index';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 function Register({ navigation }) {
     // Username input handler
@@ -19,14 +20,18 @@ function Register({ navigation }) {
     const [open, setOpen] = React.useState(false);
     const [dateText, setDateText] = React.useState(null);
 
-    const createUserObject = () => {
-        firestore()
+    const createUserObject = async () => {
+        await firestore()
             .collection('Users')
             .doc(auth().currentUser.uid)
             .set({
                 name: { firstName: firstName, lastName: lastName },
-                birthday: date,
+                occupation: { company: null, location: null, title: null },
+                postings: [],
+                favorites: { applied: [], saved: [] },
+                description: { 'About Me': null, Skills: [] },
                 profileCreationLevel: 0,
+                userType: 0,
             })
             .then(() => {
                 navigateToSkillBuilder();
@@ -34,7 +39,9 @@ function Register({ navigation }) {
     };
 
     const navigateToSkillBuilder = () => {
-        navigation.navigate('SkillBuilder');
+        // NOTE: Will go back to skill tree builder when it's ready
+        // navigation.navigate('SkillBuilder');
+        navigation.navigate('App');
     };
 
     const createAccount = async () => {
@@ -51,7 +58,34 @@ function Register({ navigation }) {
             confirmPass === ''
         ) {
             Alert.alert('Missing fields');
+            return;
         }
+
+        if (password !== confirmPass) {
+            Alert.alert('Passwords do not match');
+            return;
+        }
+
+        await auth()
+            .createUserWithEmailAndPassword(email, password)
+            .then(() => {
+                console.log('Created!');
+                createUserObject();
+            })
+            .catch(error => {
+                if (error.code === 'auth/email-already-in-use') {
+                    console.log('That email address is already in use!');
+                    Alert.alert(`${email} is already in use!`);
+                }
+
+                if (error.code === 'auth/invalid-email') {
+                    console.log('That email address is invalid!');
+                }
+
+                if (error.code === 'auth/weak-password') {
+                    Alert.alert('Password should be at least 6 characters.');
+                }
+            });
     };
 
     const moveToPart2 = () => {

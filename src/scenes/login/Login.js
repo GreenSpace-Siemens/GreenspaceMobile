@@ -2,9 +2,9 @@ import React from 'react';
 import { Alert, View, StyleSheet, Text } from 'react-native';
 import { Button, Input } from 'native-base';
 import { Colors } from '../../styles/index';
-import auth from '@react-native-firebase/auth';
-import firestore from '@react-native-firebase/firestore';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+
+import auth from '@react-native-firebase/auth';
 
 function Login({ navigation }) {
     // Username input handler

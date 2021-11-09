@@ -10,9 +10,11 @@ function Section({ type, header, body }) {
     const renderList = () => {
         return (
             <View style={styles.skills}>
-                {Object.keys(body).map(key => {
-                    return <ListItem key={key} skill={body[key]} />;
-                })}
+                {body !== null
+                    ? Object.keys(body).map(key => {
+                          return <ListItem key={key} skill={body[key]} />;
+                      })
+                    : null}
             </View>
         );
     };

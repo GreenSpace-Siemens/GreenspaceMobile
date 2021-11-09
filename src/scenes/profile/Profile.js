@@ -48,7 +48,12 @@ function Profile({ navigation }) {
                 ) : (
                     <PageCard
                         header={`${user.name.firstName} ${user.name.lastName}`}
-                        subheader={`${user.occupation.title} at ${user.occupation.company}`}
+                        subheader={
+                            user.occupation.title !== null &&
+                            user.occupation.company !== null
+                                ? `${user.occupation.title} at ${user.occupation.company}`
+                                : null
+                        }
                         imgsrc={picture}
                         location={user.occupation.location}
                         description={user.description}
