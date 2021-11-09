@@ -41,9 +41,9 @@ const styles = StyleSheet.create({
         padding: 13,
     },
     text: { marginLeft: 13 },
-    header: { fontSize: 17 },
-    subheader: { fontSize: 17, color: Colors.GRAY_MEDIUM },
-    status: { color: Colors.GREEN },
+    header: { fontSize: 17, flex: 1, width: 300 },
+    subheader: { fontSize: 17, color: Colors.GRAY_MEDIUM, width: 300 },
+    status: { color: Colors.GREEN, width: 300 },
 });
 
 export default SwipeItem;
