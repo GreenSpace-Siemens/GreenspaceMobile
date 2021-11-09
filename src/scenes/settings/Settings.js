@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
     body: {
         flex: 9,
         borderTopWidth: 0.5,
-        borderTopColor: Colors.GRAY_DARK,
+        borderTopColor: Colors.GRAY_LIGHT,
     },
     link: {
         color: Colors.GREEN,

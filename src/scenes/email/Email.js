@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         justifyContent: 'flex-start',
         borderTopWidth: 0.5,
-        borderTopColor: Colors.GRAY_DARK,
+        borderTopColor: Colors.GRAY_LIGHT,
     },
     input: {
         backgroundColor: Colors.WHITE,
