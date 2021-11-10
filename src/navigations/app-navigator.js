@@ -8,7 +8,14 @@ import Entypo from 'react-native-vector-icons/Entypo';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+
+// Custom helper modules
 import { Colors } from '../styles/index';
+import { Provider } from '../modules/context/Context';
+
+// Firebase
+import auth from '@react-native-firebase/auth';
+import firestore from '@react-native-firebase/firestore';
 
 // Components
 import About from '../components/organisms/about/About';
@@ -174,6 +181,44 @@ function ProfileNavigator({ navigation }) {
 }
 
 function EditProfileNavigator({ navigation, route }) {
+    const [firstName, setFirstName] = React.useState(null);
+    const [lastName, setLastName] = React.useState(null);
+    const [occupation, setOccupation] = React.useState(null);
+    const [company, setCompany] = React.useState(null);
+    const [location, setLocation] = React.useState(null);
+    const [changes, setChanges] = React.useState(false);
+
+    const states = {
+        firstName: firstName,
+        setFirstName: setFirstName,
+        lastName: lastName,
+        setLastName: setLastName,
+        occupation: occupation,
+        setOccupation: setOccupation,
+        company: company,
+        setCompany: setCompany,
+        location: location,
+        setLocation: setLocation,
+        setChanges: setChanges,
+    };
+
+    const saveChanges = async () => {
+        if (changes === true) {
+            await firestore()
+                .collection('Users')
+                .doc(auth().currentUser.uid)
+                .update({
+                    'name.firstName': firstName,
+                    'name.lastName': lastName,
+                    'occupation.title': occupation,
+                    'occupation.location': location,
+                    'occupation.company': company,
+                });
+        }
+
+        navigation.navigate('Profile');
+    };
+
     return (
         <View style={styles.container}>
             <View style={styles.header}>
@@ -198,63 +243,66 @@ function EditProfileNavigator({ navigation, route }) {
                     name="check"
                     size={40}
                     color={Colors.GREEN}
-                    style={{ flex: 1 }}
-                    onPress={() => navigation.navigate('Profile')}
+                    style={{
+                        flex: 1,
+                    }}
+                    onPress={() => saveChanges()}
                 />
             </View>
-            <View style={styles.body}>
-                <TopTab.Navigator
-                    initialRouteName="Cover"
-                    screenOptions={{
-                        tabBarPressColor: Colors.WHITE,
-                        tabBarIndicatorStyle: {
-                            backgroundColor: Colors.GREEN,
-                        },
-                    }}>
-                    <TopTab.Screen
-                        name="Cover"
-                        component={Cover}
-                        options={{
-                            tabBarLabel: ({ focused }) => {
-                                return (
-                                    <TopTabLabel
-                                        focused={focused}
-                                        label={'Cover'}
-                                    />
-                                );
+            <Provider value={states}>
+                <View style={styles.body}>
+                    <TopTab.Navigator
+                        initialRouteName="Cover"
+                        screenOptions={{
+                            tabBarPressColor: Colors.WHITE,
+                            tabBarIndicatorStyle: {
+                                backgroundColor: Colors.GREEN,
                             },
-                        }}
-                    />
-                    <TopTab.Screen
-                        name="About"
-                        component={About}
-                        options={{
-                            tabBarLabel: ({ focused }) => {
-                                return (
-                                    <TopTabLabel
-                                        focused={focused}
-                                        label={'About'}
-                                    />
-                                );
-                            },
-                        }}
-                    />
-                    <TopTab.Screen
-                        name="Skills"
-                        component={Background}
-                        options={{
-                            tabBarLabel: ({ focused }) => {
-                                return (
-                                    <TopTabLabel
-                                        focused={focused}
-                                        label={'Skills'}
-                                    />
-                                );
-                            },
-                        }}
-                        initialParams={{ link: 'Add Skill' }}
-                    />
-                    {/* NOTE: Removing Education and Experiences
+                        }}>
+                        <TopTab.Screen
+                            name="Cover"
+                            component={Cover}
+                            options={{
+                                tabBarLabel: ({ focused }) => {
+                                    return (
+                                        <TopTabLabel
+                                            focused={focused}
+                                            label={'Cover'}
+                                        />
+                                    );
+                                },
+                            }}
+                        />
+                        <TopTab.Screen
+                            name="About"
+                            component={About}
+                            options={{
+                                tabBarLabel: ({ focused }) => {
+                                    return (
+                                        <TopTabLabel
+                                            focused={focused}
+                                            label={'About'}
+                                        />
+                                    );
+                                },
+                            }}
+                        />
+                        <TopTab.Screen
+                            name="Skills"
+                            component={Background}
+                            options={{
+                                tabBarLabel: ({ focused }) => {
+                                    return (
+                                        <TopTabLabel
+                                            focused={focused}
+                                            label={'Skills'}
+                                        />
+                                    );
+                                },
+                            }}
+                            initialParams={{ link: 'Add Skill' }}
+                        />
+                        {/* NOTE: Removing Education and Experiences
                     
                     <TopTab.Screen
                         name="Experiences"
@@ -286,8 +334,9 @@ function EditProfileNavigator({ navigation, route }) {
                         }}
                         initialParams={{ link: 'Add Education' }}
                     /> */}
-                </TopTab.Navigator>
-            </View>
+                    </TopTab.Navigator>
+                </View>
+            </Provider>
         </View>
     );
 }
