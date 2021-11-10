@@ -2,8 +2,9 @@ import React from 'react';
 import { Alert, View, StyleSheet, Text } from 'react-native';
 import { Button, Input } from 'native-base';
 import { Colors } from '../../styles/index';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+
 import auth from '@react-native-firebase/auth';
-import firestore from '@react-native-firebase/firestore';
 
 function Login({ navigation }) {
     // Username input handler
@@ -13,42 +14,54 @@ function Login({ navigation }) {
     const [password, setPassword] = React.useState(null);
 
     const handleNavigation = profileCreationLevel => {
-      switch (profileCreationLevel) {
-        case 0:
-          navigation.navigate('SkillBuilder');
-          break;
-        case 1:
-          navigation.navigate('Discipline');
-          break;
-        default:
-          navigation.navigate('App', user);
-          break;
-      }
+        switch (profileCreationLevel) {
+            case 0:
+                navigation.navigate('SkillBuilder');
+                break;
+            case 1:
+                navigation.navigate('Discipline');
+                break;
+            default:
+                navigation.navigate('App', user);
+                break;
+        }
     };
 
     // Submits login credentials
     const handleLogin = () => {
-        const user = {
-            username: username,
-            password: password,
-        };
+        if (
+            username === null ||
+            password === null ||
+            username === '' ||
+            password === ''
+        ) {
+            Alert.alert('Missing email and/or password');
+            return;
+        }
 
-        //auth().signInWithEmailAndPassword(username, password)
-        auth().signInWithEmailAndPassword('nolandonley14@gmail.com', 'buddie09')
-        .then(() => {
-          const user = auth().currentUser;
-          const users = firestore().collection('Users').doc(user.uid);
-          firestore().collection('Users').doc(user.uid).get().then(
-            documentSnapshot => {
-              handleNavigation(documentSnapshot['_data']['profileCreationLevel'])
-            }
-          )
-        })
-        .catch(error => {
-          if (error.code === 'auth/wrong-password') {
-            console.log('That password is wrong!');
-            Alert.alert('The password is invalid.');
-          }
+        auth()
+            .signInWithEmailAndPassword(username, password)
+            // auth()
+            // .signInWithEmailAndPassword('nolandonley14@gmail.com', 'buddie09')
+            .then(() => {
+                // const user = auth().currentUser;
+                // const users = firestore().collection('Users').doc(user.uid);
+                // firestore()
+                //     .collection('Users')
+                //     .doc(user.uid)
+                //     .get()
+                //     .then(documentSnapshot => {
+                //         handleNavigation(
+                //             documentSnapshot['_data']['profileCreationLevel'],
+                //         );
+                //     });
+                navigation.navigate('App');
+            })
+            .catch(error => {
+                if (error.code === 'auth/wrong-password') {
+                    console.log('That password is wrong!');
+                    Alert.alert('The password is invalid.');
+                }
 
                 if (error.code === 'auth/invalid-email') {
                     console.log('That email address is invalid!');
@@ -66,12 +79,21 @@ function Login({ navigation }) {
             <View style={styles.header}>
                 <Text style={styles.title}>GREENSPACE</Text>
             </View>
-            <View style={styles.loginForm}>
+            <View style={styles.body}>
                 <Input
                     onChangeText={text => setUsername(text)}
                     placeholder="Username"
-                    style={styles.input}
                     autoCapitalize="none"
+                    style={styles.input}
+                    placeholderTextColor={Colors.GRAY_MEDIUM}
+                    InputLeftElement={
+                        <MaterialIcons
+                            name="person"
+                            size={22}
+                            color={Colors.GREEN}
+                        />
+                    }
+                    variant="underlined"
                 />
                 <Input
                     onChangeText={text => setPassword(text)}
@@ -79,10 +101,19 @@ function Login({ navigation }) {
                     type="password"
                     autoCapitalize="none"
                     style={styles.input}
+                    placeholderTextColor={Colors.GRAY_MEDIUM}
+                    InputLeftElement={
+                        <MaterialIcons
+                            name="lock"
+                            size={22}
+                            color={Colors.GREEN}
+                        />
+                    }
+                    variant="underlined"
                 />
-                <Text style={styles.link}>Forgot Password?</Text>
+
                 <Button style={styles.button} onPress={() => handleLogin()}>
-                    Sign In
+                    SIGN IN
                 </Button>
                 <Text
                     onPress={() => navigation.navigate('Register')}
@@ -109,6 +140,11 @@ const styles = StyleSheet.create({
     header: {
         backgroundColor: Colors.WHITE,
     },
+    body: {
+        flexDirection: 'column',
+        justifyContent: 'space-between',
+        height: '60%',
+    },
     title: {
         textAlign: 'center',
         fontSize: 40,
@@ -116,17 +152,17 @@ const styles = StyleSheet.create({
         color: Colors.GREEN,
     },
     input: {
-        backgroundColor: Colors.TRANSPARENT,
-        borderBottomWidth: 2,
         fontSize: 20,
         fontWeight: '500',
         borderRadius: 8,
-        borderWidth: 0,
-        elevation: 3,
-        marginBottom: 15,
-        padding: 10,
+        borderBottomColor: Colors.GRAY_MEDIUM,
     },
-    link: { color: Colors.BLACK, textAlign: 'center', fontSize: 14 },
+    link: {
+        color: Colors.GRAY_VERY_DARK,
+        textAlign: 'center',
+        fontSize: 16,
+        fontWeight: '500',
+    },
     button: {
         borderRadius: 8,
         marginTop: 10,

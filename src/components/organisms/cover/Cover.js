@@ -12,21 +12,33 @@ import { launchImageLibrary } from 'react-native-image-picker';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 
+import Context from '../../../modules/context/Context';
+
 function Cover({ navigation }) {
-    const [cover, setCover] = React.useState(null);
+    const {
+        firstName,
+        setFirstName,
+        lastName,
+        setLastName,
+        occupation,
+        setOccupation,
+        company,
+        setCompany,
+        location,
+        setLocation,
+        setChanges,
+    } = React.useContext(Context);
+
+    const [photo, setPhoto] = React.useState(img);
 
     const onResult = QuerySnapshot => {
         const userData = QuerySnapshot.data();
 
-        const initCover = {
-            firstName: userData.name.firstName,
-            lastName: userData.name.lastName,
-            occupation: userData.occupation.title,
-            company: userData.occupation.company,
-            location: userData.occupation.location,
-        };
-
-        setCover(initCover);
+        setFirstName(userData.name.firstName);
+        setLastName(userData.name.lastName);
+        setOccupation(userData.occupation.title);
+        setCompany(userData.occupation.company);
+        setLocation(userData.occupation.location);
     };
 
     const onError = error => {
@@ -45,11 +57,14 @@ function Cover({ navigation }) {
         fetchCoverData();
 
         return () => {
-            setCover(null);
+            setFirstName(null);
+            setLastName(null);
+            setOccupation(null);
+            setCompany(null);
+            setLocation(null);
+            setChanges(false);
         };
     }, []);
-
-    const [photo, setPhoto] = React.useState(img);
 
     return (
         <View style={styles.container}>
@@ -73,34 +88,55 @@ function Cover({ navigation }) {
                     size={190}
                 />
             </View>
+
             <TextInput
                 style={styles.input}
-                placeholder={cover !== null ? cover.firstName : null}
+                value={firstName !== null ? firstName : null}
                 placeholderTextColor={Colors.GREEN}
+                onChangeText={text => {
+                    setFirstName(text);
+                    setChanges(true);
+                }}
             />
             <Text style={styles.label}>First Name</Text>
             <TextInput
                 style={styles.input}
-                placeholder={cover !== null ? cover.lastName : null}
+                value={lastName !== null ? lastName : null}
                 placeholderTextColor={Colors.GREEN}
+                onChangeText={text => {
+                    setLastName(text);
+                    setChanges(true);
+                }}
             />
             <Text style={styles.label}>Last Name</Text>
             <TextInput
                 style={styles.input}
-                placeholder={cover !== null ? cover.occupation : null}
+                value={occupation !== null ? occupation : null}
                 placeholderTextColor={Colors.GREEN}
+                onChangeText={text => {
+                    setOccupation(text);
+                    setChanges(true);
+                }}
             />
             <Text style={styles.label}>Occupation</Text>
             <TextInput
                 style={styles.input}
-                placeholder={cover !== null ? cover.company : null}
+                value={company !== null ? company : null}
                 placeholderTextColor={Colors.GREEN}
+                onChangeText={text => {
+                    setCompany(text);
+                    setChanges(true);
+                }}
             />
             <Text style={styles.label}>Company</Text>
             <TextInput
                 style={styles.input}
-                placeholder={cover !== null ? cover.location : null}
+                value={location !== null ? location : null}
                 placeholderTextColor={Colors.GREEN}
+                onChangeText={text => {
+                    setLocation(text);
+                    setChanges(true);
+                }}
             />
             <Text style={styles.label}>Location</Text>
         </View>

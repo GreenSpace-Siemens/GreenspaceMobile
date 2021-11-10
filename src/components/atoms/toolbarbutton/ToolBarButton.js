@@ -11,7 +11,7 @@ function ToolBarButton({ navigation, type, toggleModal, skill }) {
     const goBack = () => {
         if (toggleModal === undefined) {
             navigation.goBack();
-        } else {
+        } else if (skill !== null) {
             toggleModal(skill);
         }
     };

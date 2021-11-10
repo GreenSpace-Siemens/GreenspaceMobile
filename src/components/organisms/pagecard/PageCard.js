@@ -33,6 +33,7 @@ function PageCard({
                 date={date}
                 type={type}
             />
+
             <PageCardBody
                 description={description}
                 date={date}

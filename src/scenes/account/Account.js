@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         justifyContent: 'space-between',
         borderTopWidth: 0.5,
-        borderTopColor: Colors.GRAY_DARK,
+        borderTopColor: Colors.GRAY_LIGHT,
     },
     accountInformation: { padding: 8 },
     subtitle: {

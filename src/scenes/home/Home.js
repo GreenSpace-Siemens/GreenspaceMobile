@@ -12,8 +12,6 @@ import PageCard from '../../components/organisms/pagecard/PageCard';
 import firestore from '@react-native-firebase/firestore';
 import auth from '@react-native-firebase/auth';
 
-
-
 function Home({ navigation }) {
     const [userType, setUserType] = React.useState(null);
     const userID = auth().currentUser.uid;
@@ -112,8 +110,8 @@ function Home({ navigation }) {
     };
 
     const printUsers = () => {
-      navigation.navigate('Notifications');
-    }
+        navigation.navigate('Notifications');
+    };
 
     return (
         <View style={styles.container}>
