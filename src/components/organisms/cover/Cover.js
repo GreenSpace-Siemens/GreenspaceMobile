@@ -62,6 +62,7 @@ function Cover({ navigation }) {
             setOccupation(null);
             setCompany(null);
             setLocation(null);
+            setChanges(false);
         };
     }, []);
 

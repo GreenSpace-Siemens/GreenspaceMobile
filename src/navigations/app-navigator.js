@@ -180,13 +180,15 @@ function ProfileNavigator({ navigation }) {
     );
 }
 
-function EditProfileNavigator({ navigation, route }) {
+function EditProfileNavigator({ navigation }) {
     const [firstName, setFirstName] = React.useState(null);
     const [lastName, setLastName] = React.useState(null);
     const [occupation, setOccupation] = React.useState(null);
     const [company, setCompany] = React.useState(null);
     const [location, setLocation] = React.useState(null);
     const [changes, setChanges] = React.useState(false);
+
+    const [about, setAbout] = React.useState(null);
 
     const states = {
         firstName: firstName,
@@ -200,6 +202,8 @@ function EditProfileNavigator({ navigation, route }) {
         location: location,
         setLocation: setLocation,
         setChanges: setChanges,
+        about: about,
+        setAbout: setAbout,
     };
 
     const saveChanges = async () => {
@@ -213,6 +217,7 @@ function EditProfileNavigator({ navigation, route }) {
                     'occupation.title': occupation,
                     'occupation.location': location,
                     'occupation.company': company,
+                    'description.About Me': about,
                 });
         }
 

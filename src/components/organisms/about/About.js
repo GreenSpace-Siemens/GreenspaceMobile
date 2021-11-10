@@ -8,14 +8,16 @@ import { Colors } from '../../../styles/index';
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 
+import Context from '../../../modules/context/Context';
+
 function About({ navigation }) {
     const textRef = React.createRef();
 
-    let [aboutValue, setAboutvalue] = React.useState(null);
+    const { about, setAbout, setChanges } = React.useContext(Context);
 
     const onResult = QuerySnapshot => {
         const userData = QuerySnapshot.data();
-        setAboutvalue(userData.description['About Me']);
+        setAbout(userData.description['About Me']);
     };
 
     const onError = error => {
@@ -33,17 +35,13 @@ function About({ navigation }) {
 
         fetchAbout();
         return () => {
-            setAboutvalue(null);
+            setAbout(null);
         };
     }, []);
 
-    const handleAbout = jsx => {
-        setAboutvalue(jsx);
-    };
-
     return (
         <View style={styles.container}>
-            {aboutValue === null ? (
+            {about === null || textRef === null ? (
                 <ActivityIndicator size={60} color={Colors.GREEN} />
             ) : (
                 <View style={styles.body}>
@@ -52,10 +50,13 @@ function About({ navigation }) {
                         editorStyle={{
                             color: Colors.GRAY_DARK,
                         }}
-                        initialContentHTML={aboutValue}
+                        initialContentHTML={about}
                         initialHeight="85%"
                         placeholder="Enter about description here..."
-                        onChange={event => handleAbout(event)}
+                        onChange={event => {
+                            setAbout(event);
+                            setChanges(true);
+                        }}
                     />
                     <RichToolbar
                         editor={textRef}
