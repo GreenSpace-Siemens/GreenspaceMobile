@@ -1,12 +1,9 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { Colors } from '../../../styles/index';
-import WebView from 'react-native-webview';
+import RenderHtml from 'react-native-render-html';
 
 import ListItem from '../../atoms/listitem/ListItem';
-
-import { profile } from '../../../database/Database';
-import { width } from 'styled-system';
 
 function Section({ type, header, body }) {
     const renderList = () => {
@@ -24,8 +21,14 @@ function Section({ type, header, body }) {
     const renderText = () => {
         return (
             <View>
-                <Text style={styles.text}>{body}</Text>
+                <RenderHtml
+                    contentWidth={312}
+                    source={{
+                        html: `<div style="margin: 0px; font-size: 17px; color: ${Colors.GRAY_VERY_DARK};">${body}</div>`,
+                    }}
+                />
             </View>
+            // <Text style={styles.text}>{body}</Text>
         );
     };
 
