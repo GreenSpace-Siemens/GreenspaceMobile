@@ -44,6 +44,7 @@ function PageCard({
     );
 }
 
+// Hello
 const styles = StyleSheet.create({
     container: { width: '100%' },
     card: { flexGrow: 1 },
