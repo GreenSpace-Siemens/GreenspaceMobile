@@ -1,8 +1,10 @@
 import React from 'react';
-import { View, StyleSheet, Text, Alert } from 'react-native';
-import { Button, Input } from 'native-base';
+import { View, StyleSheet, Text, Alert, Pressable } from 'react-native';
+import { Button, Input, Radio } from 'native-base';
 import { Colors } from '../../styles/index';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+
+import DateTimePicker from '@react-native-community/datetimepicker';
 
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
@@ -14,6 +16,7 @@ function Register({ navigation }) {
     const [email, setEmail] = React.useState(null);
     const [password, setPassword] = React.useState(null);
     const [confirmPass, setConfirmPass] = React.useState(null);
+    const [userType, setUserType] = React.useState(0);
 
     const [part1comp, setPart1Comp] = React.useState(false);
     const [date, setDate] = React.useState(new Date());
@@ -31,7 +34,7 @@ function Register({ navigation }) {
                 favorites: { applied: [], saved: [] },
                 description: { 'About Me': '', Skills: [] },
                 profileCreationLevel: 0,
-                userType: 0,
+                userType: userType,
             })
             .then(() => {
                 navigateToSkillBuilder();
@@ -109,6 +112,10 @@ function Register({ navigation }) {
                 }
                 console.error(error);
             });
+    };
+
+    const onChange = (event, selectedDate) => {
+        console.log('Submit');
     };
 
     return (
@@ -195,6 +202,50 @@ function Register({ navigation }) {
                     variant="underlined"
                 />
 
+                <Radio.Group
+                    defaultValue="1"
+                    style={styles.radioGroup}
+                    onChange={value => setUserType(value - 1)}>
+                    <View style={styles.radio}>
+                        <Radio value="1">Job Seeker</Radio>
+                    </View>
+                    <View style={styles.radio}>
+                        <Radio value="2">Employer</Radio>
+                    </View>
+                </Radio.Group>
+
+                {/* 
+                Cross Platform date picker.
+                <Pressable
+                    onPress={() => {
+                        setOpen(!open);
+                    }}>
+                    <Input
+                        onChangeText={text => setPassword(text)}
+                        placeholder="MM/DD/YYYY"
+                        style={[styles.input]}
+                        placeholderTextColor={Colors.GRAY_MEDIUM}
+                        isDisabled={true}
+                        InputLeftElement={
+                            <MaterialIcons
+                                name="date-range"
+                                size={22}
+                                color={Colors.GREEN}
+                            />
+                        }
+                        variant="underlined"
+                        backgroundColor={Colors.WHITE}
+                    />
+                </Pressable>
+
+                {open ? (
+                    <DateTimePicker
+                        value={date}
+                        mode="date"
+                        onChange={onChange}
+                    />
+                ) : null} */}
+
                 <Button style={styles.button} onPress={() => createAccount()}>
                     CONTINUE
                 </Button>
@@ -243,7 +294,7 @@ const styles = StyleSheet.create({
     body: {
         flexDirection: 'column',
         justifyContent: 'space-between',
-        height: '70%',
+        height: '78%',
     },
     title: {
         textAlign: 'center',
@@ -256,6 +307,7 @@ const styles = StyleSheet.create({
         fontWeight: '500',
         borderRadius: 8,
         borderBottomColor: Colors.GRAY_MEDIUM,
+        backgroundColor: Colors.WHITE,
     },
     signInRow: {
         display: 'flex',
@@ -273,6 +325,14 @@ const styles = StyleSheet.create({
         marginTop: 10,
         marginBottom: 10,
         backgroundColor: Colors.GREEN,
+    },
+    radioGroup: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    radio: {
+        flexGrow: 1,
     },
 });
 
