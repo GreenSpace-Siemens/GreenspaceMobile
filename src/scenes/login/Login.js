@@ -63,7 +63,10 @@ function Login({ navigation }) {
                     Alert.alert('The password is invalid.');
                 }
 
-                if (error.code === 'auth/invalid-email') {
+                if (
+                    error.code === 'auth/invalid-email' ||
+                    error.code === 'auth/user-not-found'
+                ) {
                     console.log('That email address is invalid!');
                     Alert.alert('The email is invalid.');
                 }
