@@ -5,6 +5,8 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import { Colors } from '../../styles/index';
 import Swiper from 'react-native-deck-swiper';
 
+import MenuCard from '../../components/atoms/menucard/MenuCard';
+
 // This is dummy image
 import img from './twitter.jpeg';
 
@@ -14,15 +16,21 @@ import auth from '@react-native-firebase/auth';
 
 function Home({ navigation }) {
     const [userType, setUserType] = React.useState(null);
+    const [jobs, setJobs] = React.useState(null);
     const userID = auth().currentUser.uid;
 
-    const fetchUserType = async () => {
+    const fetchUserData = async () => {
         await firestore()
             .collection('Users')
             .doc(userID)
             .get()
             .then(snapshot => {
                 const data = snapshot.data();
+
+                if (data.userType !== 0) {
+                    setJobs(data.postings);
+                }
+
                 setUserType(data.userType);
             });
     };
@@ -40,7 +48,6 @@ function Home({ navigation }) {
         return false;
     };
 
-    const [jobs, setJobs] = React.useState(null);
     const onResult = async QuerySnapshot => {
         const queries = [];
 
@@ -78,7 +85,9 @@ function Home({ navigation }) {
     };
 
     React.useEffect(() => {
-        if (userType !== 0) {
+        fetchUserData();
+
+        if (userType === 0) {
             const fetchJobs = async () => {
                 await firestore()
                     .collection('Jobs')
@@ -87,9 +96,7 @@ function Home({ navigation }) {
 
             fetchJobs();
         }
-
-        fetchUserType();
-    }, []);
+    }, [userType]);
 
     const saveJob = async jobID => {
         console.log(`Saved Job! with ID: ${jobID}`);
@@ -129,7 +136,21 @@ function Home({ navigation }) {
                     onPress={() => printUsers()}
                 />
             </View>
-            <View style={styles.body}>
+            <View
+                style={[
+                    styles.body,
+                    userType === null || userType === 0
+                        ? { alignItems: 'center', justifyContent: 'center' }
+                        : {
+                              alignItems: 'flex-start',
+                              // Flex start and padding for this one item.
+                              justifyContent: 'flex-start',
+                              paddingLeft: 25,
+                              paddingRight: 25,
+                              flexDirection: 'row',
+                              flexWrap: 'wrap',
+                          },
+                ]}>
                 {userType === null || jobs === null ? (
                     <ActivityIndicator size={60} color={Colors.GREEN} />
                 ) : userType === 0 && jobs.length > 0 ? (
@@ -158,7 +179,14 @@ function Home({ navigation }) {
                         onSwipedRight={jobID => saveJob(jobID)}
                         onSwipedLeft={jobID => deleteJob(jobID)}
                     />
-                ) : null}
+                ) : (
+                    <MenuCard
+                        navigation={navigation}
+                        header="Active Jobs"
+                        value={jobs.length}
+                        jobs={jobs}
+                    />
+                )}
             </View>
         </View>
     );
@@ -181,8 +209,6 @@ const styles = StyleSheet.create({
     body: {
         flex: 8,
         padding: 0,
-        alignItems: 'center',
-        justifyContent: 'center',
     },
     title: {
         flex: 1,

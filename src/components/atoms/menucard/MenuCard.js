@@ -1,9 +1,8 @@
 import React from 'react';
 import { StyleSheet, View, Text, Pressable } from 'react-native';
-import { style } from 'styled-system';
 import { Colors } from '../../../styles/index';
 
-function MenuCard({ navigation, header, value }) {
+function MenuCard({ navigation, header, value, jobs }) {
     const renderValue = () => {
         if (value > 999999) {
             return `${Math.floor(value / 1000000)}M`;
@@ -15,21 +14,22 @@ function MenuCard({ navigation, header, value }) {
     };
 
     return (
-        <Pressable onPress={() => console.log('Go to Active Jobs')}>
-            <View style={styles.container}>
-                <Text
-                    style={[styles.text, { textAlign: 'right', fontSize: 46 }]}>
-                    {renderValue()}
-                </Text>
+        <Pressable
+            style={styles.container}
+            onPress={() =>
+                navigation.navigate('Postings', {
+                    header: header,
+                    value: value,
+                    jobs: jobs,
+                })
+            }>
+            <Text style={[styles.text, { textAlign: 'right', fontSize: 46 }]}>
+                {renderValue()}
+            </Text>
 
-                <Text
-                    style={[
-                        styles.text,
-                        { textAlign: 'center', fontSize: 20 },
-                    ]}>
-                    {header}
-                </Text>
-            </View>
+            <Text style={[styles.text, { textAlign: 'center', fontSize: 20 }]}>
+                {header}
+            </Text>
         </Pressable>
     );
 }
@@ -45,6 +45,8 @@ const styles = StyleSheet.create({
         paddingLeft: 10,
         paddingRight: 10,
         justifyContent: 'space-between',
+        marginRight: 13,
+        marginBottom: 17,
     },
     text: { color: Colors.WHITE, fontWeight: 'bold' },
 });
