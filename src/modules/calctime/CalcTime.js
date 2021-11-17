@@ -1,6 +1,6 @@
 import firestore from '@react-native-firebase/firestore';
 
-function CalcTime(date) {
+function CalcTime(date, inSentence) {
     const dayOfYear = date => {
         return Math.floor(
             (date - new Date(date.getFullYear(), 0, 0)) / 1000 / 60 / 60 / 24,
@@ -30,22 +30,28 @@ function CalcTime(date) {
     let diff = 0;
     if (today.year !== posting.year) {
         diff = today.year - posting.year;
-        return `${diff} year${diff > 1 ? 's' : ''}`;
+        return `${diff} ${inSentence ? 'year' : 'Year'}${diff > 1 ? 's' : ''}`;
     } else if (today.month !== posting.month) {
         diff = today.month - posting.month;
-        return `${diff} month${diff > 1 ? 's' : ''}`;
+        return `${diff} ${inSentence ? 'month' : 'Month'}${
+            diff > 1 ? 's' : ''
+        }`;
     } else if (today.day !== posting.day) {
         diff = today.day - posting.day;
-        return `${diff} day${diff > 1 ? 's' : ''}`;
+        return `${diff} ${inSentence ? 'day' : 'Day'}${diff > 1 ? 's' : ''}`;
     } else if (today.hours !== posting.hours) {
         diff = today.hours - posting.hours;
-        return `${diff} hour${diff > 1 ? 's' : ''}`;
+        return `${diff} ${inSentence ? 'hour' : 'Hour'}${diff > 1 ? 's' : ''}`;
     } else if (today.minutes !== posting.minutes) {
         diff = today.minutes - posting.minutes;
-        return `${diff} minute${diff > 1 ? 's' : ''}`;
+        return `${diff} ${inSentence ? 'minute' : 'Minute'}${
+            diff > 1 ? 's' : ''
+        }`;
     } else {
         diff = today.seconds - posting.seconds;
-        return `${diff} second${diff > 1 ? 's' : ''}`;
+        return `${diff} ${inSentence ? 'second' : 'Second'}${
+            diff > 1 ? 's' : ''
+        }`;
     }
 }
 

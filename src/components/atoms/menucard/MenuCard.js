@@ -19,7 +19,6 @@ function MenuCard({ navigation, header, value, jobs }) {
             onPress={() =>
                 navigation.navigate('Postings', {
                     header: header,
-                    value: value,
                     jobs: jobs,
                 })
             }>

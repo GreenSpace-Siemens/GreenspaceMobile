@@ -173,7 +173,6 @@ const styles = StyleSheet.create({
         elevation: 3,
         backgroundColor: Colors.GREEN,
     },
-    buttonTitle: { fontSize: 17 },
 });
 
 export default Login;
