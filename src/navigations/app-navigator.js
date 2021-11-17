@@ -35,6 +35,7 @@ import Notifications from '../scenes/notifications/Notifications';
 import NotificationSettings from '../scenes/notificationsettings/NotificationSettings';
 import Password from '../scenes/password/Password';
 import Phone from '../scenes/phone/Phone';
+import Postings from '../scenes/postings/Postings';
 import Profile from '../scenes/profile/Profile';
 import Search from '../scenes/search/Search';
 import Settings from '../scenes/settings/Settings';
@@ -55,6 +56,7 @@ function HomeNavigator({ navigation }) {
             }}>
             <Stack.Screen name="Home" component={Home} />
             <Stack.Screen name="Notifications" component={Notifications} />
+            <Stack.Screen name="Postings" component={Postings} />
             <Stack.Screen name="Page" component={Page} />
         </Stack.Navigator>
     );

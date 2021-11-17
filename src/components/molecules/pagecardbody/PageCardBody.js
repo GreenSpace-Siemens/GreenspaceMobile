@@ -29,7 +29,9 @@ function PageCardBody({ description, date, type, link }) {
                         onPress={() => openApplication()}>
                         Apply
                     </Button>
-                    <Text style={styles.time}>Posted {CalcTime(date)} ago</Text>
+                    <Text style={styles.time}>
+                        Posted {CalcTime(date, true)} ago
+                    </Text>
                 </View>
             ) : null}
 

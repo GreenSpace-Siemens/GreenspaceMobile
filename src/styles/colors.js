@@ -12,3 +12,4 @@ export const GRAY_VERY_DARK = '#3B4154';
 
 // SECONDARY
 export const RED = '#E02929';
+export const BLUE_GREEN = '#6ABFBF';

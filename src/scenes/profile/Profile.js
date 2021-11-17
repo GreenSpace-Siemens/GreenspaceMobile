@@ -4,15 +4,13 @@ import { Button, Input } from 'native-base';
 import Header from '../../components/organisms/header/Header';
 import { Colors } from '../../styles/index';
 
-import { profile } from '../../database/Database';
+import picture from './profile-pic.jpg';
 import PageCard from '../../components/organisms/pagecard/PageCard';
 
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 
 function Profile({ navigation }) {
-    const { picture } = profile;
-
     const [user, setUser] = React.useState(null);
     const onResult = QuerySnapshot => {
         const userData = QuerySnapshot.data();
