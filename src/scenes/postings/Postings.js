@@ -54,7 +54,11 @@ function Postings({ navigation, route }) {
                 rightButton={null}
             />
             <View style={styles.body}>
-                <Button style={styles.button}>
+                <Button
+                    style={styles.button}
+                    onPress={() => {
+                        console.log('Create new job.');
+                    }}>
                     <Text style={styles.buttonTitle}>Create New</Text>
                 </Button>
                 {postings === null ? (

@@ -9,7 +9,9 @@ function Posting({ navigation, posting }) {
     const { title, company, location, date, applicants } = posting;
 
     return (
-        <Pressable style={styles.container}>
+        <Pressable
+            style={styles.container}
+            onPress={() => console.log(`Navigate to job: ${title}.`)}>
             <View>
                 <Text style={styles.title}>{title}</Text>
                 <Text style={styles.sub}>{company}</Text>
