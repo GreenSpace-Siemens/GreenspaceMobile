@@ -2,7 +2,6 @@ import React from 'react';
 import { View, StyleSheet, Text, TextInput } from 'react-native';
 import { Button, Image } from 'native-base';
 import { Colors } from '../../../styles/index';
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import img from './profile-pic.jpg';
 

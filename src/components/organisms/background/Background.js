@@ -11,15 +11,16 @@ import CustomModal from '../../molecules/custommodal/CustomModal';
 
 import Skill from '../../atoms/skill/Skill';
 
-import { profile } from '../../../database/Database';
-
 // Firebase
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 
+import Context from '../../../modules/context/Context';
+
 function Background({ navigation, route }) {
     const { link } = route.params;
     const userID = auth().currentUser.uid;
+    const { panel } = React.useContext(Context);
 
     const [skills, setSkills] = React.useState(null);
 
@@ -44,9 +45,9 @@ function Background({ navigation, route }) {
 
         fetchSkills();
 
-        return () => {
-            setSkills(null);
-        };
+        // return () => {
+        //     setSkills(null);
+        // };
     }, []);
 
     const deleteSkill = async skill => {
@@ -78,6 +79,11 @@ function Background({ navigation, route }) {
         setOpen(!open);
     };
 
+    // Potential Replacement
+    const openModal = () => {
+        panel.show();
+    };
+
     return (
         <View style={styles.container}>
             <ScrollView style={styles.scrollContainer}>
@@ -95,11 +101,11 @@ function Background({ navigation, route }) {
                     })
                 )}
 
-                <Text style={styles.link} onPress={() => toggleModal()}>
+                <Text style={styles.link} onPress={() => openModal()}>
                     {link}
                 </Text>
             </ScrollView>
-            <CustomModal
+            {/* <CustomModal
                 open={open}
                 toggleModal={toggleModal}
                 navigation={navigation}
@@ -108,7 +114,7 @@ function Background({ navigation, route }) {
                 rightButton="plus"
                 padding={true}
                 addSkill={addSkill}
-            />
+            /> */}
         </View>
     );
 }
