@@ -4,16 +4,14 @@ import { Colors } from '../../../styles/index';
 import SlidingUpPanel from 'rn-sliding-up-panel';
 
 import SwipeLine from '../../atoms/swipeline/SwipeLine';
+import Form from '../../organisms/form/Form';
 
 function Panel({ setPanel, form }) {
     return (
         <SlidingUpPanel ref={c => setPanel(c)}>
             <View style={styles.container}>
                 <SwipeLine />
-                <View style={styles.header}>
-                    <Text>{form}</Text>
-                </View>
-                <View style={styles.body}></View>
+                <Form type={form} />
             </View>
         </SlidingUpPanel>
     );
@@ -25,11 +23,9 @@ const styles = StyleSheet.create({
         height: '100%',
         borderTopLeftRadius: 20,
         borderTopRightRadius: 20,
-        alignItems: 'center',
         paddingTop: 5,
+        alignItems: 'center',
     },
-    header: { flex: 1, width: '100%' },
-    body: { flex: 8, width: '100%' },
 });
 
 export default Panel;

@@ -192,7 +192,7 @@ function EditProfileNavigator({ navigation }) {
     const [location, setLocation] = React.useState(null);
     const [changes, setChanges] = React.useState(false);
     const [about, setAbout] = React.useState(null);
-    const openPanel = React.useContext(Context);
+    const { openPanel, closePanel } = React.useContext(Context);
 
     const states = {
         firstName: firstName,
@@ -209,6 +209,7 @@ function EditProfileNavigator({ navigation }) {
         about: about,
         setAbout: setAbout,
         openPanel: openPanel,
+        closePanel: closePanel,
     };
 
     const saveChanges = async () => {
@@ -360,12 +361,16 @@ function AppNavigator({ navigation }) {
         panel.show();
     };
 
+    const closePanel = () => {
+        panel.hide();
+    };
+
     return (
         <View
             style={{
                 height: '100%',
             }}>
-            <Provider value={openPanel}>
+            <Provider value={{ openPanel: openPanel, closePanel: closePanel }}>
                 <BottomTab.Navigator
                     initialRouteName="HomeNavigator"
                     screenOptions={{

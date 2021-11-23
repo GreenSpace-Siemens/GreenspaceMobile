@@ -97,7 +97,7 @@ function Background({ navigation, route }) {
 
                 <Text
                     style={styles.link}
-                    onPress={() => openPanel('Background')}>
+                    onPress={() => openPanel('Add Skill')}>
                     {link}
                 </Text>
             </ScrollView>

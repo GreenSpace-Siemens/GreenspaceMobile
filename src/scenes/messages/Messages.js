@@ -6,7 +6,7 @@ import { Colors } from '../../styles/index';
 import Context from '../../modules/context/Context';
 
 function Messages({ navigation }) {
-    const openPanel = React.useContext(Context);
+    const { openPanel } = React.useContext(Context);
 
     return (
         <View style={styles.container}>
