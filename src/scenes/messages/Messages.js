@@ -5,12 +5,8 @@ import { Colors } from '../../styles/index';
 
 import Context from '../../modules/context/Context';
 
-function Messages({ navigation, route }) {
-    const panel = React.useContext(Context);
-
-    const toggleModal = () => {
-        panel.show();
-    };
+function Messages({ navigation }) {
+    const openPanel = React.useContext(Context);
 
     return (
         <View style={styles.container}>
@@ -19,7 +15,7 @@ function Messages({ navigation, route }) {
                 title="Messages"
                 leftButton={null}
                 rightButton="compose"
-                toggleModal={toggleModal}
+                toggleModal={() => openPanel('New Message')}
             />
             <View style={styles.body}>
                 <Text style={styles.text}>Messages Coming Soon!</Text>

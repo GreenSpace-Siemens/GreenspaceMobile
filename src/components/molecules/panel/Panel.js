@@ -5,15 +5,14 @@ import SlidingUpPanel from 'rn-sliding-up-panel';
 
 import SwipeLine from '../../atoms/swipeline/SwipeLine';
 
-import AddSkill from '../addskill/AddSkill';
-import NewMessage from '../newmessage/NewMessage';
-
-function Panel({ setPanel }) {
+function Panel({ setPanel, form }) {
     return (
         <SlidingUpPanel ref={c => setPanel(c)}>
             <View style={styles.container}>
                 <SwipeLine />
-                <View style={styles.header}></View>
+                <View style={styles.header}>
+                    <Text>{form}</Text>
+                </View>
                 <View style={styles.body}></View>
             </View>
         </SlidingUpPanel>

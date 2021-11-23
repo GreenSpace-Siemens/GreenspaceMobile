@@ -41,6 +41,7 @@ import Profile from '../scenes/profile/Profile';
 import Search from '../scenes/search/Search';
 import Settings from '../scenes/settings/Settings';
 import Subscription from '../scenes/subscription/Subscription';
+import { LongPressGestureHandler } from 'react-native-gesture-handler';
 
 const BottomTab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -191,7 +192,7 @@ function EditProfileNavigator({ navigation }) {
     const [location, setLocation] = React.useState(null);
     const [changes, setChanges] = React.useState(false);
     const [about, setAbout] = React.useState(null);
-    const panel = React.useContext(Context);
+    const openPanel = React.useContext(Context);
 
     const states = {
         firstName: firstName,
@@ -207,7 +208,7 @@ function EditProfileNavigator({ navigation }) {
         setChanges: setChanges,
         about: about,
         setAbout: setAbout,
-        panel: panel,
+        openPanel: openPanel,
     };
 
     const saveChanges = async () => {
@@ -352,13 +353,19 @@ function EditProfileNavigator({ navigation }) {
 
 function AppNavigator({ navigation }) {
     const [panel, setPanel] = React.useState(null);
+    const [form, setForm] = React.useState(null);
+
+    const openPanel = formName => {
+        setForm(formName);
+        panel.show();
+    };
 
     return (
         <View
             style={{
                 height: '100%',
             }}>
-            <Provider value={panel}>
+            <Provider value={openPanel}>
                 <BottomTab.Navigator
                     initialRouteName="HomeNavigator"
                     screenOptions={{
@@ -437,7 +444,7 @@ function AppNavigator({ navigation }) {
                         }}
                     />
                 </BottomTab.Navigator>
-                <Panel setPanel={setPanel} />
+                <Panel setPanel={setPanel} form={form} />
             </Provider>
         </View>
     );

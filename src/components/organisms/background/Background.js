@@ -7,7 +7,6 @@ import {
     Text,
 } from 'react-native';
 import { Colors } from '../../../styles/index';
-import CustomModal from '../../molecules/custommodal/CustomModal';
 
 import Skill from '../../atoms/skill/Skill';
 
@@ -20,7 +19,7 @@ import Context from '../../../modules/context/Context';
 function Background({ navigation, route }) {
     const { link } = route.params;
     const userID = auth().currentUser.uid;
-    const { panel } = React.useContext(Context);
+    const { openPanel } = React.useContext(Context);
 
     const [skills, setSkills] = React.useState(null);
 
@@ -79,11 +78,6 @@ function Background({ navigation, route }) {
         setOpen(!open);
     };
 
-    // Potential Replacement
-    const openModal = () => {
-        panel.show();
-    };
-
     return (
         <View style={styles.container}>
             <ScrollView style={styles.scrollContainer}>
@@ -101,20 +95,12 @@ function Background({ navigation, route }) {
                     })
                 )}
 
-                <Text style={styles.link} onPress={() => openModal()}>
+                <Text
+                    style={styles.link}
+                    onPress={() => openPanel('Background')}>
                     {link}
                 </Text>
             </ScrollView>
-            {/* <CustomModal
-                open={open}
-                toggleModal={toggleModal}
-                navigation={navigation}
-                title={link}
-                leftButton="cancel"
-                rightButton="plus"
-                padding={true}
-                addSkill={addSkill}
-            /> */}
         </View>
     );
 }
