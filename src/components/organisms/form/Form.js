@@ -18,11 +18,23 @@ function Form({ type }) {
                     <Header
                         title={type}
                         leftButton="cancel"
-                        rightButton="check"
+                        rightButton="plus"
                         toggleModal={() => closePanel()}
                     />
                 </View>
-                <View style={styles.body}></View>
+                <View style={styles.body}>
+                    <View style={styles.messageBar}>
+                        <Input
+                            variant="filled"
+                            placeholder="Enter or Search Skill"
+                            placeholderTextColor={Colors.GRAY_DARK}
+                            style={[
+                                styles.input,
+                                { backgroundColor: Colors.GRAY_LIGHT },
+                            ]}
+                        />
+                    </View>
+                </View>
             </>
         );
     };
