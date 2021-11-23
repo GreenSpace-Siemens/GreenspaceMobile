@@ -11,7 +11,7 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 // Custom helper modules
 import { Colors } from '../styles/index';
-import { Provider } from '../modules/context/Context';
+import Context, { Provider } from '../modules/context/Context';
 
 // Firebase
 import auth from '@react-native-firebase/auth';
@@ -24,6 +24,7 @@ import Background from '../components/organisms/background/Background';
 import Cover from '../components/organisms/cover/Cover';
 import SavedJobs from '../components/molecules/savedjobs/SavedJobs';
 import TopTabLabel from '../components/atoms/toptablabel/TopTabLabel';
+import Panel from '../components/molecules/panel/Panel';
 
 // Scenes
 import Account from '../scenes/account/Account';
@@ -40,6 +41,7 @@ import Profile from '../scenes/profile/Profile';
 import Search from '../scenes/search/Search';
 import Settings from '../scenes/settings/Settings';
 import Subscription from '../scenes/subscription/Subscription';
+import { LongPressGestureHandler } from 'react-native-gesture-handler';
 
 const BottomTab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -189,8 +191,8 @@ function EditProfileNavigator({ navigation }) {
     const [company, setCompany] = React.useState(null);
     const [location, setLocation] = React.useState(null);
     const [changes, setChanges] = React.useState(false);
-
     const [about, setAbout] = React.useState(null);
+    const { openPanel, closePanel } = React.useContext(Context);
 
     const states = {
         firstName: firstName,
@@ -206,6 +208,8 @@ function EditProfileNavigator({ navigation }) {
         setChanges: setChanges,
         about: about,
         setAbout: setAbout,
+        openPanel: openPanel,
+        closePanel: closePanel,
     };
 
     const saveChanges = async () => {
@@ -349,89 +353,104 @@ function EditProfileNavigator({ navigation }) {
 }
 
 function AppNavigator({ navigation }) {
+    const [panel, setPanel] = React.useState(null);
+    const [form, setForm] = React.useState(null);
+
+    const openPanel = formName => {
+        setForm(formName);
+        panel.show();
+    };
+
+    const closePanel = () => {
+        panel.hide();
+    };
+
     return (
         <View
             style={{
                 height: '100%',
             }}>
-            <BottomTab.Navigator
-                initialRouteName="HomeNavigator"
-                screenOptions={{
-                    headerShown: false,
-                    tabBarStyle: {
-                        elevation: 0,
-                        borderTopWidth: 0,
-                        paddingBottom: 0,
-                    },
-                    tabBarShowLabel: false,
-                    tabBarActiveBackgroundColor: Colors.GRAY_LIGHT,
-                }}>
-                <BottomTab.Screen
-                    name="HomeNavigator"
-                    component={HomeNavigator}
-                    options={{
-                        tabBarIcon: () => (
-                            <Entypo
-                                name="home"
-                                color={Colors.GREEN}
-                                size={28}
-                            />
-                        ),
-                    }}
-                />
-                <BottomTab.Screen
-                    name="MessageNavigator"
-                    component={MessageNavigator}
-                    options={{
-                        tabBarIcon: () => (
-                            <Entypo
-                                name="message"
-                                color={Colors.GREEN}
-                                size={28}
-                            />
-                        ),
-                    }}
-                />
-                <BottomTab.Screen
-                    name="SearchNavigator"
-                    component={SearchNavigator}
-                    options={{
-                        tabBarIcon: () => (
-                            <FontAwesome
-                                name="search"
-                                color={Colors.GREEN}
-                                size={28}
-                            />
-                        ),
-                    }}
-                />
-                <BottomTab.Screen
-                    name="SavedNavigator"
-                    component={SavedNavigator}
-                    options={{
-                        tabBarIcon: () => (
-                            <FontAwesome
-                                name="star"
-                                color={Colors.GREEN}
-                                size={28}
-                            />
-                        ),
-                    }}
-                />
-                <BottomTab.Screen
-                    name="ProfileNavigator"
-                    component={ProfileNavigator}
-                    options={{
-                        tabBarIcon: () => (
-                            <Ionicons
-                                name="md-person-circle-sharp"
-                                color={Colors.GREEN}
-                                size={30}
-                            />
-                        ),
-                    }}
-                />
-            </BottomTab.Navigator>
+            <Provider value={{ openPanel: openPanel, closePanel: closePanel }}>
+                <BottomTab.Navigator
+                    initialRouteName="HomeNavigator"
+                    screenOptions={{
+                        headerShown: false,
+                        tabBarStyle: {
+                            elevation: 0,
+                            borderTopWidth: 0,
+                            paddingBottom: 0,
+                        },
+                        tabBarShowLabel: false,
+                        tabBarActiveBackgroundColor: Colors.GRAY_LIGHT,
+                    }}>
+                    <BottomTab.Screen
+                        name="HomeNavigator"
+                        component={HomeNavigator}
+                        options={{
+                            tabBarIcon: () => (
+                                <Entypo
+                                    name="home"
+                                    color={Colors.GREEN}
+                                    size={28}
+                                />
+                            ),
+                        }}
+                    />
+                    <BottomTab.Screen
+                        name="MessageNavigator"
+                        component={MessageNavigator}
+                        options={{
+                            tabBarIcon: () => (
+                                <Entypo
+                                    name="message"
+                                    color={Colors.GREEN}
+                                    size={28}
+                                />
+                            ),
+                        }}
+                    />
+                    <BottomTab.Screen
+                        name="SearchNavigator"
+                        component={SearchNavigator}
+                        options={{
+                            tabBarIcon: () => (
+                                <FontAwesome
+                                    name="search"
+                                    color={Colors.GREEN}
+                                    size={28}
+                                />
+                            ),
+                        }}
+                    />
+                    <BottomTab.Screen
+                        name="SavedNavigator"
+                        component={SavedNavigator}
+                        options={{
+                            tabBarIcon: () => (
+                                <FontAwesome
+                                    name="star"
+                                    color={Colors.GREEN}
+                                    size={28}
+                                />
+                            ),
+                        }}
+                    />
+                    <BottomTab.Screen
+                        name="ProfileNavigator"
+                        component={ProfileNavigator}
+                        options={{
+                            tabBarIcon: () => (
+                                <Ionicons
+                                    name="md-person-circle-sharp"
+                                    color={Colors.GREEN}
+                                    size={30}
+                                />
+                            ),
+                        }}
+                    />
+                </BottomTab.Navigator>
+                <Panel setPanel={setPanel} form={form} />
+            </Provider>
         </View>
     );
 }

@@ -2,15 +2,11 @@ import React from 'react';
 import { View, StyleSheet, Text, Button } from 'react-native';
 import Header from '../../components/organisms/header/Header';
 import { Colors } from '../../styles/index';
-import CustomModal from '../../components/molecules/custommodal/CustomModal';
-import SwipeList from '../../components/molecules/swipelist/SwipeList';
 
-function Messages({ navigation, route }) {
-    const [open, setOpen] = React.useState(false);
+import Context from '../../modules/context/Context';
 
-    const toggleModal = () => {
-        setOpen(!open);
-    };
+function Messages({ navigation }) {
+    const { openPanel } = React.useContext(Context);
 
     return (
         <View style={styles.container}>
@@ -19,20 +15,11 @@ function Messages({ navigation, route }) {
                 title="Messages"
                 leftButton={null}
                 rightButton="compose"
-                toggleModal={toggleModal}
+                toggleModal={() => openPanel('New Message')}
             />
             <View style={styles.body}>
                 <Text style={styles.text}>Messages Coming Soon!</Text>
             </View>
-            <CustomModal
-                open={open}
-                toggleModal={toggleModal}
-                navigation={navigation}
-                title="New Message"
-                leftButton={null}
-                rightButton="cancel"
-                padding={false}
-            />
         </View>
     );
 }
