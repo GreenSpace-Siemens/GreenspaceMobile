@@ -1,6 +1,6 @@
 // * Dashboard, Home, Messages, Saved, Profile, EditProfile
 import React from 'react';
-import { View, StyleSheet, Text, Button } from 'react-native';
+import { View, StyleSheet, Text } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -13,7 +13,7 @@ import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { Colors } from '../styles/index';
 import Context, { Provider } from '../modules/context/Context';
 
-// Firebase
+// Firebase controllers
 import auth from '@react-native-firebase/auth';
 import firestore from '@react-native-firebase/firestore';
 
@@ -26,7 +26,7 @@ import SavedJobs from '../components/molecules/savedjobs/SavedJobs';
 import TopTabLabel from '../components/atoms/toptablabel/TopTabLabel';
 import Panel from '../components/molecules/panel/Panel';
 
-// Scenes
+// Scenes: Pages that make up the rest of the app.
 import Account from '../scenes/account/Account';
 import Email from '../scenes/email/Email';
 import Page from '../scenes/page/Page';
@@ -41,12 +41,13 @@ import Profile from '../scenes/profile/Profile';
 import Search from '../scenes/search/Search';
 import Settings from '../scenes/settings/Settings';
 import Subscription from '../scenes/subscription/Subscription';
-import { LongPressGestureHandler } from 'react-native-gesture-handler';
 
+// There are three different navigation components.
 const BottomTab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 const TopTab = createMaterialTopTabNavigator();
 
+// Navigator for the home page.
 function HomeNavigator({ navigation }) {
     return (
         <Stack.Navigator
@@ -64,6 +65,7 @@ function HomeNavigator({ navigation }) {
     );
 }
 
+// Navigator the for messages page.
 function MessageNavigator({ navigation, route }) {
     return (
         <Stack.Navigator
@@ -75,6 +77,7 @@ function MessageNavigator({ navigation, route }) {
     );
 }
 
+// Search bar navigator.
 function SearchNavigator({ navigation }) {
     return (
         <Stack.Navigator
@@ -90,6 +93,7 @@ function SearchNavigator({ navigation }) {
     );
 }
 
+// Tabs for the saved and applied pages.
 function SavedTabs({ navigation }) {
     return (
         <View style={styles.container}>
@@ -139,6 +143,7 @@ function SavedTabs({ navigation }) {
     );
 }
 
+// Navigator for the saved and applied jobs pages.
 function SavedNavigator({ navigation }) {
     return (
         <Stack.Navigator
@@ -154,6 +159,7 @@ function SavedNavigator({ navigation }) {
     );
 }
 
+// Navigator for the profile page.
 function ProfileNavigator({ navigation }) {
     return (
         <Stack.Navigator
@@ -184,6 +190,7 @@ function ProfileNavigator({ navigation }) {
     );
 }
 
+// Navigator for editing the profile.
 function EditProfileNavigator({ navigation }) {
     const [firstName, setFirstName] = React.useState(null);
     const [lastName, setLastName] = React.useState(null);
@@ -352,6 +359,7 @@ function EditProfileNavigator({ navigation }) {
     );
 }
 
+// Main App controller for everything
 function AppNavigator({ navigation }) {
     const [panel, setPanel] = React.useState(null);
     const [form, setForm] = React.useState(null);
