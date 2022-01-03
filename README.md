@@ -61,6 +61,8 @@ Install dependencies:
 5. [Lambda Mart](https://www.educative.io/edpresso/what-is-lambdamart)
 6. [Restricted Boltzmann Machines (RBM)](https://en.wikipedia.org/wiki/Restricted_Boltzmann_machine)
 
+## Machine Learning Models and Libraries
+
 ## Tools and Packages
 
 -   [Firebase](https://firebase.google.com/)
