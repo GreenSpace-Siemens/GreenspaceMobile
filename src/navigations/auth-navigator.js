@@ -2,6 +2,7 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
+// The pages and components for the signing and register process.
 import Login from '../scenes/login/Login';
 import Register from '../scenes/register/Register';
 import SkillBuilder from '../scenes/skillBuilder/SkillBuilder';
