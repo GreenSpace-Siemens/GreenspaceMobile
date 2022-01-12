@@ -13,7 +13,7 @@ class MatchMaker {
 		this.#data = this.processData(jobs);
 
  		console.log("=====Created MatchMaker Object=====");
-		console.log();
+		console.log(this.#data);
  	}
 
 	async onWaitReady() {
@@ -21,9 +21,9 @@ class MatchMaker {
 	}
 
 	processData(jobs) {
-		let data = [];
-		
-		return tf.tensor([1,2,3]);
+		let data = [1, 2, 3];
+
+		return tf.tensor(data);
 	}
 }
 
