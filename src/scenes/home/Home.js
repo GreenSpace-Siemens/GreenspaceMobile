@@ -14,10 +14,14 @@ import PageCard from '../../components/organisms/pagecard/PageCard';
 import firestore from '@react-native-firebase/firestore';
 import auth from '@react-native-firebase/auth';
 
+import MatchMaker from '../../model/MatchMaker.js';
+
 function Home({ navigation }) {
     const [userType, setUserType] = React.useState(null);
     const [jobs, setJobs] = React.useState(null);
     const userID = auth().currentUser.uid;
+    const [skills, setSkills] = React.useState(null);
+
 
     const fetchUserData = async () => {
         await firestore()
@@ -26,6 +30,11 @@ function Home({ navigation }) {
             .get()
             .then(snapshot => {
                 const data = snapshot.data();
+		console.log('=====Retrieved User Data=====');
+		console.log(data);
+		console.log();
+		
+		setSkills(data['description']['Skills']);
 
                 if (data.userType !== 0) {
                     setJobs(data.postings);
@@ -76,8 +85,17 @@ function Home({ navigation }) {
         ];
 
         let diff = queries.filter(query => !contains(saved, query));
+	
+	console.log('MATCHMAKING STARTS');
+	console.log("=====Passing Jobs to MatchMaker Model=====");
+	console.log(diff);
+	console.log();
+
+	const matchMaker = new MatchMaker(diff);
+	const predictions = matchMaker.train(skills);
 
         setJobs(diff);
+	console.log('MATCHMAKING ENDS');
     };
 
     const onError = error => {
@@ -86,7 +104,7 @@ function Home({ navigation }) {
 
     React.useEffect(() => {
         fetchUserData();
-
+	
         if (userType === 0) {
             const fetchJobs = async () => {
                 await firestore()
