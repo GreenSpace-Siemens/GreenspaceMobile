@@ -2,11 +2,10 @@ import React from 'react';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { NativeBaseProvider } from 'native-base';
 
-import * as tf from '@tensorflow/tfjs'
-
 // Main controller for the entire app.
 import RootNavigator from './src/navigations/index';
 
+// Matchmaking Clustering model
 import MatchMaker from './src/model/MatchMaker.js';
 
 function App() {

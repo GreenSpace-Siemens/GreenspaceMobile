@@ -2,6 +2,9 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { Colors } from '../../../styles/index';
 
+// UNUSED COMPONENT: Will include education to profile laters
+
+// Education record for the user.
 function Education({ school, degreeType, major, gradDate, gpa }) {
     return (
         <View style={styles.container}>

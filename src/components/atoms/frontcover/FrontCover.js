@@ -2,6 +2,7 @@ import React from 'react';
 import { ImageBackground, StyleSheet, Text, View } from 'react-native';
 import { Colors } from '../../../styles/index';
 
+// This is the background cover image for the swipable card
 function FrontCover({ header, subheader, imgsrc, height, location, type }) {
     return (
         <View style={[styles.container, { height: height }]}>
@@ -37,7 +38,6 @@ const styles = StyleSheet.create({
     container: { flex: 1 },
     image: {
         flex: 1,
-
         flexDirection: 'column',
     },
     score: {
