@@ -61,7 +61,7 @@ Install dependencies:
 
 ## Problem
 
-Hiring managers and recruiters are having a hard time vetting job applications and resumes from common job listing boards and networking sites. This prevents the recruiters from narrowing down the list of applicants and finding the best applicant(s). The existing ATS Resume scanners out today have loopholes and can be cheated by job applicants which.
+Hiring managers and recruiters are having a hard time vetting job applications and resumes from common job listing boards and networking sites. This prevents the recruiters from narrowing down the list of applicants and finding the best applicant(s). The existing ATS Resume scanners out today have loopholes and can be cheated by job applicants.
 
 ## Task
 
