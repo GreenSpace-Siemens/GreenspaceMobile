@@ -43,10 +43,10 @@ function Register({ navigation }) {
 
     const navigateToSkillBuilder = () => {
         // NOTE: Will go back to skill tree builder when it's ready
-        // navigation.navigate('SkillBuilder');
+        navigation.navigate('SkillBuilder');
 
         // This is temporary
-        navigation.navigate('App');
+        //navigation.navigate('App');
     };
 
     const createAccount = async () => {
@@ -214,7 +214,7 @@ function Register({ navigation }) {
                     </View>
                 </Radio.Group>
 
-                {/* 
+                {/*
                 Cross Platform date picker.
                 <Pressable
                     onPress={() => {

@@ -9,20 +9,17 @@ import DatePicker from 'react-native-date-picker'
 function Discipline({ route, navigation }) {
 
   const {disciplineList, bucket} = route.params;
-  const [subDisciplines, setSubDisciplines] = React.useState([]);
+  const [subDisciplines, setSubDisciplines] = React.useState({});
   const [selectedDiscipline, setSelectedDiscipline] = React.useState(null);
 
-  const getSubDisciplines = (tmp) => {
-    var subD = [];
-    disciplineList.map(d=>{
-      if (d['name'] == tmp) {
-        d['subDisciplines'].map(s=> {
-          subD.push(s['name'])
-        })
-      }
-    })
-    setSubDisciplines(subD);
-    setSelectedDiscipline(tmp);
+  const getConcentrations = async(subDiscipline) => {
+    setSelectedDiscipline(subDiscipline)
+    const response = await firestore().collection('SubDisciplines').doc(subDiscipline).get();
+    setSubDisciplines(response['_data']['concentrations']);
+    firestore()
+      .collection('Users')
+      .doc(auth().currentUser.uid)
+      .update({'profileCreationLevel': 0,})
   }
 
   React.useEffect(() => {
@@ -30,9 +27,9 @@ function Discipline({ route, navigation }) {
       firestore()
         .collection('Users')
         .doc(auth().currentUser.uid)
-        .update({'profileCreationLevel': 2})
+        .update({'profileCreationLevel': 0})
         .then(() => {
-          navigation.navigate('SubDiscipline', {disciplineList: subDisciplines, discipline: selectedDiscipline, bucket: bucket});
+          navigation.navigate('SubDiscipline', {concentrationList: subDisciplines, discipline: selectedDiscipline, bucket: bucket});
         });
     }
   }, [subDisciplines])
@@ -41,13 +38,13 @@ function Discipline({ route, navigation }) {
     <View style={styles.container}>
       <Text style={styles.title} onPress={()=>print()}>{bucket}</Text>
       <View style={styles.dContainer}>
-    {
-      disciplineList && disciplineList.map(discipline=>{
-          return(
-            <Text key={discipline['name']} style={styles.link} onPress={()=>getSubDisciplines(discipline['name'])}>{discipline['name']}</Text>
-          )
-        })
-    }
+      {
+        disciplineList && disciplineList.map(key => {
+            return(
+              <Text key={key} style={styles.link} onPress={()=>getConcentrations(key)}>{key}</Text>
+            )
+          })
+      }
       </View>
       <Text style={styles.regLink}>Let's see some jobs!</Text>
     </View>
