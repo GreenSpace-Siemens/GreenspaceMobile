@@ -77,7 +77,7 @@ function Home({ navigation }) {
 
         let diff = queries.filter(query => !contains(saved, query));
 
-        setJobs(diff);
+        setJobs(queries);
     };
 
     const onError = error => {
@@ -153,7 +153,7 @@ function Home({ navigation }) {
                 ]}>
                 {userType === null || jobs === null ? (
                     <ActivityIndicator size={60} color={Colors.GREEN} />
-                ) : userType === 0 && jobs.length > 0 ? (
+                ) : userType === 0 ? jobs.length > 0 ? (
                     <Swiper
                         cards={jobs}
                         renderCard={job => {
@@ -179,6 +179,8 @@ function Home({ navigation }) {
                         onSwipedRight={jobID => saveJob(jobID)}
                         onSwipedLeft={jobID => deleteJob(jobID)}
                     />
+                  ) : (
+                    <Text style={styles.subtitle}>There are no more new jobs for you right now.</Text>
                 ) : (
                     <MenuCard
                         navigation={navigation}
@@ -209,6 +211,13 @@ const styles = StyleSheet.create({
     body: {
         flex: 8,
         padding: 0,
+    },
+    subtitle: {
+      flex: 1,
+      textAlign: 'center',
+      fontSize: 20,
+      fontWeight: '600',
+      color: Colors.GRAY
     },
     title: {
         flex: 1,

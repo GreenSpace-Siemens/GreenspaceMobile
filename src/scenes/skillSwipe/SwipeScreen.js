@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, Text } from 'react-native';
+import { View, StyleSheet, Text, Dimensions } from 'react-native';
 import { Button, Input } from 'native-base';
 import { Colors } from '../../styles/index';
 import auth from '@react-native-firebase/auth';
@@ -8,85 +8,100 @@ import Swiper from 'react-native-deck-swiper';
 
 function SwipeScreen({route, navigation}) {
 
-  const {subDiscipline, discipline, bucket} = route.params;
-  const [skills, setSkills] = React.useState([]);
+  const {skillList, concentration, discipline} = route.params;
+  const [questions, setQuestions] = React.useState([]);
   const [disciplines, setDisciplines] = React.useState([]);
   const [userSkills, setUserSkills] = React.useState(null);
+  const [didSwipeAll, setDidSwipeAll] = React.useState(false);
 
 
-  const goToQuestion = (jobID, questions) => {
-      console.log(questions);
-  };
+  const goToQuestion = async(jobID, skillName) => {
+    const response = await firestore().collection('SubDisciplines').doc(discipline).get(concentration).doc('skills').get();
+    setQuestionsList(response['_data']);
+    console.log(questionsList)
+    firestore()
+      .collection('Users')
+      .doc(auth().currentUser.uid)
+      .update({'profileCreationLevel': 0,})
+  }
+
+  React.useEffect(() => {
+    if (questions.length > 0) {
+      firestore()
+        .collection('Users')
+        .doc(auth().currentUser.uid)
+        .update({'profileCreationLevel': 0})
+        .then(() => {
+          navigation.navigate('QuestionScreen', {question: questions[0], concentration: concentration});
+        });
+    }
+  }, [questions])
 
   const denySkill = (jobID) => {
       console.log(`Not interested in job with ID: ${jobID}`);
   };
 
-  const fetchAllSkills = async() => {
-    const skillsDoc = firestore().collection('Skills').doc(bucket);
-    const skillsData = await skillsDoc.get();
-    var skillsTmp = [];
-    skillsData['_data']['Disciplines'].map(s=>{
-      s['subDisciplines'].map(d=>{
-          if (d['name'] == subDiscipline) {
-            setSkills(d['skills']);
-          }
-      })
-    })
+  // React.useEffect(() => {
+  //   if (skills.length > 0) {
+  //     firestore()
+  //       .collection('Users')
+  //       .doc(auth().currentUser.uid)
+  //       .update({'profileCreationLevel': 0})
+  //       .then(() => {
+  //         navigation.navigate('SubDiscipline', {concentrationList: subDisciplines, discipline: selectedDiscipline, bucket: bucket});
+  //       });
+  //   }
+  // }, [subDisciplines])
+
+  const swipedAll = (jobID) => {
+    setDidSwipeAll(true)
   }
 
-  const fetchUserSkills = async() => {
-    const userID = auth().currentUser.uid;
-    const user = firestore().collection('Users').doc(userID);
-    const userData = await user.get();
-    setUserSkills(userData['_data']['skills']);
+  function CardSection() {
+    if (didSwipeAll || !skillList.length > 0) {
+      return (
+        <View style={styles.noMoreContainer}>
+          <Text style={styles.noMoreText}>No More Skills</Text>
+        </View>
+      )
+    } else {
+      return (
+        <Swiper
+            cards={skillList}
+            renderCard={(skill) => {
+                return (
+                  <View style={styles.card}>
+                    <Text style={styles.cardText}>{skill}</Text>
+                  </View>
+                )
+            }}
+            backgroundColor={Colors.WHITE}
+            verticalSwipe={false}
+            onSwipedRight={jobID => goToQuestion(jobID, skillList[jobID])}
+            onSwipedLeft={jobID => denySkill(jobID)}
+            onSwipedAll={jobID => swipedAll()}
+        />
+      )
+    }
   }
 
-  React.useEffect(() => {
-    fetchAllSkills();
-  }, [])
-
-
-  React.useEffect(() => {
-    console.log(skills);
-    fetchUserSkills();
-  }, [skills])
+  const goBack = () => {
+  //   navigation.navigate('SubDiscipline', {disciplineList: subDiscipline, discipline: discipline, bucket: bucket});
+   }
 
     return (
       <View style={styles.container}>
-        <Text style={styles.title}>{subDiscipline}</Text>
+        <View style={styles.titleContainer}>
+          <Text style={styles.titleText}>Commercial</Text>
+        </View>
         <View style={styles.cardContainer}>
-        {skills.length > 0 &&
-          <Swiper
-              cards={skills}
-              renderCard={skill => {
-                  return (
-                      <Text style={styles.skillCard}>{skill['skillName']}</Text>
-                  );
-              }}
-              backgroundColor={Colors.WHITE}
-              cardVerticalMargin={0}
-              verticalSwipe={false}
-              horizontalThreshold={100}
-              onSwipedRight={jobID => goToQuestion(jobID, skills[jobID]['questions'])}
-              onSwipedLeft={jobID => denySkill(jobID)}
-          />
-        }
+          <CardSection />
         </View>
         <View style={styles.subTitleContainer}>
-          <Text style={styles.subTitle}>My {subDiscipline} Skills</Text>
-          <View style={styles.skillsContainer}>
-            {userSkills && userSkills[subDiscipline].map(function(name, index){
-                return (
-                  <View style={styles.skillText}>
-                    <Text key={ index }>{name}</Text>
-                  </View>
-                )})
-            }
-          </View>
+          <Text style={styles.subTitle}>My Commercial Skills</Text>
         </View>
         <View style={styles.buttonContainer}>
-          <Text style={styles.finishedButton}>I'm Done</Text>
+          <Text style={styles.finishedButton} onClick={goBack()}>I'm Done</Text>
         </View>
       </View>
     );
@@ -95,34 +110,53 @@ function SwipeScreen({route, navigation}) {
   const styles = StyleSheet.create({
       container: {
           flex: 1,
-          height: '100%',
           backgroundColor: Colors.WHITE,
-          display: 'flex',
-          flexDirection: 'column',
-          padding: 40,
       },
-      title: {
-          textAlign: 'left',
-          fontSize: 20,
-          fontWeight: '600',
-          color: Colors.GREEN,
+      titleContainer: {
+          alignItems: 'flex-start',
+          justifyContent: 'flex-end',
           flex: 1,
-          backgroundColor: Colors.RED,
+          padding: 20,
+      },
+      titleText: {
+        fontSize: 40,
+        fontWeight: '600',
+        color: Colors.GREEN,
       },
       cardContainer: {
         flex: 2,
+        display: 'flex',
+        flexDirection: 'row',
+        justifyContent: 'flex-end',
+        backgroundColor: Colors.WHITE,
       },
-      skillCard: {
-        borderRadius: 8,
+      card: {
+        borderRadius: 5,
+        borderWidth: 5,
         borderColor: Colors.GREEN,
-        borderWidth: 2,
+        justifyContent: 'center',
+        backgroundColor: Colors.WHITE,
       },
-      buttonContainer: {
+      cardText: {
+        textAlign: 'center',
+        fontSize: 50,
+        backgroundColor: Colors.WHITE,
+        color: Colors.GREEN,
+      },
+      noMoreContainer: {
+        display: 'none',
         flex: 1,
+        justifyContent: 'center',
+      },
+      noMoreText: {
+        textAlign: 'center',
+        fontSize: 16,
+        fontWeight: '600',
+        color: Colors.GREEN,
       },
       subTitleContainer: {
         flex: 1,
-        backgroundColor: Colors.RED,
+        padding: 20,
       },
       subTitle: {
         textAlign: 'left',
@@ -139,6 +173,11 @@ function SwipeScreen({route, navigation}) {
       skillText: {
         margin: 5,
       },
+      buttonContainer: {
+        flex: 1,
+        marginLeft: 20,
+        marginRight: 20,
+      },
       finishedButton: {
         color: Colors.GREEN,
         textAlign: 'center',
@@ -146,11 +185,20 @@ function SwipeScreen({route, navigation}) {
         borderRadius: 8,
         borderWidth: 2,
         borderColor: Colors.GREEN,
-        marginTop: 20,
         paddingTop: 20,
         paddingBottom: 20
       }
   });
+
+  /* <View style={styles.skillsContainer}>
+    {userSkills && userSkills[subDiscipline].map(function(name, index){
+        return (
+          <View style={styles.skillText}>
+            <Text key={ index }>{name}</Text>
+          </View>
+        )})
+    }
+  </View> */
 
 
 

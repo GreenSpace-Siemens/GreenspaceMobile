@@ -5,6 +5,7 @@ import { Colors } from '../../styles/index';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
 import auth from '@react-native-firebase/auth';
+import firestore from '@react-native-firebase/firestore';
 
 function Login({ navigation }) {
     // Username input handler
@@ -21,6 +22,9 @@ function Login({ navigation }) {
             case 1:
                 navigation.navigate('Discipline');
                 break;
+            case 2:
+                navigation.navigate('SubDiscipline');
+                break;
             default:
                 navigation.navigate('App', user);
                 break;
@@ -35,6 +39,22 @@ function Login({ navigation }) {
             username === '' ||
             password === ''
         ) {
+          auth()
+              .signInWithEmailAndPassword("demoman@demo.com", "demodemo")
+              .then(() => {
+                  const user = auth().currentUser;
+                  const users = firestore().collection('Users').doc(user.uid);
+                  firestore()
+                      .collection('Users')
+                      .doc(user.uid)
+                      .get()
+                      .then(documentSnapshot => {
+                          handleNavigation(
+                              documentSnapshot['_data']['profileCreationLevel'],
+                          );
+                      });
+                  //navigation.navigate('App');
+              })
             Alert.alert('Missing email and/or password');
             return;
         }

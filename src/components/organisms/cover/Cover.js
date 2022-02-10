@@ -3,7 +3,7 @@ import { View, StyleSheet, Text, TextInput } from 'react-native';
 import { Button, Image } from 'native-base';
 import { Colors } from '../../../styles/index';
 
-import img from './profile-pic.jpg';
+import img from './propic.jpg';
 
 import { launchImageLibrary } from 'react-native-image-picker';
 

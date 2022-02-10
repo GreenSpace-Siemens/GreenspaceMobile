@@ -8,20 +8,40 @@ import DatePicker from 'react-native-date-picker'
 
 function SubDiscipline({ route, navigation }) {
 
-  const {disciplineList, discipline, bucket} = route.params;
+  const {concentrationList, discipline, bucket} = route.params;
+  const [skills, setSkills] = React.useState([])
+  const [conc, setConc] = React.useState()
 
-  const goToSkillSwipe = (subDiscipline) => {
-    navigation.navigate('SwipeScreen', {subDiscipline: subDiscipline, discipline: discipline, bucket: bucket});
+  const getSkills = async(concentration) => {
+    setConc(concentration)
+    const response = await firestore().collection('SubDisciplines').doc(discipline).collection(concentration).doc('skills').get();
+    setSkills(response['_data']['names']);
+    firestore()
+      .collection('Users')
+      .doc(auth().currentUser.uid)
+      .update({'profileCreationLevel': 0,})
   }
+
+  React.useEffect(() => {
+    if (skills.length > 0) {
+      firestore()
+        .collection('Users')
+        .doc(auth().currentUser.uid)
+        .update({'profileCreationLevel': 0})
+        .then(() => {
+          navigation.navigate('SwipeScreen', {skillList: skills, concentration: conc, discipline: discipline});
+        });
+    }
+  }, [skills])
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title} onPress={()=>print()}>{bucket}</Text>
+      <Text style={styles.title} onPress={()=>print()}>{concentrationList[0]}</Text>
       <View style={styles.dContainer}>
     {
-      disciplineList && disciplineList.map((d, id)=>{
+      concentrationList && concentrationList.map((d, id)=>{
           return(
-            <Text key={id} style={styles.link} onPress={()=>goToSkillSwipe(d)}>{d}</Text>
+            <Text key={id} style={styles.link} onPress={()=>getSkills(d)}>{d}</Text>
           )
         })
     }

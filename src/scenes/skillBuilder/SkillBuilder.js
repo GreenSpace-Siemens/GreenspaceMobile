@@ -14,14 +14,14 @@ function SkillBuilder({navigation}) {
 
   const getBucket = async(bucketName) => {
     setBucket(bucketName);
-    const response = await firestore().collection('Skills').doc(bucketName).get();
-    setDisciplines(response['_data']['Disciplines']);
+    const response = await firestore().collection('Disciplines').doc(bucketName).get();
+    setDisciplines(response['_data']['subDisciplines']);
     firestore()
       .collection('Users')
       .doc(auth().currentUser.uid)
       .update({'profileCreationLevel': 1,})
       .then(() => {
-        navigation.navigate('Discipline', {disciplineList: response['_data']['Disciplines'], bucket: bucketName});
+        navigation.navigate('Discipline', {disciplineList: response['_data']['subDisciplines'], bucket: bucketName});
       });
   }
 

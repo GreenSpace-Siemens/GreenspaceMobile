@@ -15,7 +15,9 @@ function Account({ navigation }) {
         auth()
             .signOut()
             .then(() => {
-                navigation.navigate('Login');
+                navigation.popToTop();
+                navigation.goBack();
+                navigation.goBack();
                 console.log('User signed out!');
             })
             .catch(error => {
